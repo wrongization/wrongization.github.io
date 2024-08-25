@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>vscode配置 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.vscode简介VSCode是微软出的一款轻量级编辑器，它本身只是一款文本编辑器而已，并不是一个集成开发环境(IDE)，几乎所有功能都是以插件扩展的形式所存在的。因此，我们想用它编程，不只是把vscode下载下来就行，还需要安装对应编程语言的扩展以及相应的编译器。 2.安装vscode进入vscode官网：https:&#x2F;&#x2F;code.visualstudio.com&#x2F;   点击红色圈出区域，见到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode配置">
+<meta property="og:url" content="https://wrongization.github.io/2024/08/25/2022795773.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="1.vscode简介VSCode是微软出的一款轻量级编辑器，它本身只是一款文本编辑器而已，并不是一个集成开发环境(IDE)，几乎所有功能都是以插件扩展的形式所存在的。因此，我们想用它编程，不只是把vscode下载下来就行，还需要安装对应编程语言的扩展以及相应的编译器。 2.安装vscode进入vscode官网：https:&#x2F;&#x2F;code.visualstudio.com&#x2F;   点击红色圈出区域，见到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg">
+<meta property="article:published_time" content="2024-08-25T13:42:34.000Z">
+<meta property="article:modified_time" content="2024-08-25T14:19:16.731Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="vscode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg"><link rel="shortcut icon" href="/img/logo.jpg"><link rel="canonical" href="https://wrongization.github.io/2024/08/25/2022795773.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family= broadway|华文行楷|Titillium Web|PingFang SC|Hiragino Sans GB|Microsoft JhengHei|Microsoft YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: wrongization","info":"复制和转载请标明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vscode配置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-25 22:19:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/logo.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src="/img/logo.jpg"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vscode配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2024-08-25T13:42:34.000Z" title="创建 2024-08-25 21:42:34">2024-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2024-08-25T14:19:16.731Z" title="更新 2024-08-25 22:19:16">2024-08-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">软件配置</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/vscode/">vscode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>4分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-vscode简介"><a href="#1-vscode简介" class="headerlink" title="1.vscode简介"></a>1.vscode简介</h1><p>VSCode是微软出的一款轻量级编辑器，它本身只是一款文本编辑器而已，并不是一个集成开发环境(IDE)，几乎所有功能都是以插件扩展的形式所存在的。因此，我们想用它编程，不只是把vscode下载下来就行，还需要安装对应编程语言的扩展以及相应的编译器。</p>
+<h1 id="2-安装vscode"><a href="#2-安装vscode" class="headerlink" title="2.安装vscode"></a>2.安装vscode</h1><p>进入vscode官网：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<img src="/2024/08/25/2022795773/6ad5756096a415e42f6eb07f23f0a5fb.png" class="" title="alt"> 
+<p>点击红色圈出区域，见到下图所示选项。<br><img src="https://i-blog.csdnimg.cn/blog_migrate/5662174db4a10ecf7ef464dd295e5b52.png" alt=""><br>根据自己电脑的系统选择相应的下载项。（注：stable是稳定版本；insider是内部测试版本，可能会出问题，建议选stable）<br>下载完成后得到下图所示安装程序，双击进入安装程序<br><img src="https://i-blog.csdnimg.cn/blog_migrate/ee7b944ad6a1cb31277b9c9cd5c7de2d.png" alt=""></p>
+<p>这里我只勾选了这两个<br><img src="https://i-blog.csdnimg.cn/blog_migrate/57f03270802c2494eadfb54ce785f4af.png" alt=""><br>注意，这里安装路径最好是全英文的，不要创建中文文件夹。另外根据硬盘实际情况看要不要放在c盘<br><img src="https://i-blog.csdnimg.cn/blog_migrate/c771458d34d362c5a60a63f68186fb3a.png" alt=""><br>安装完成后打开vscode，点击红色圈出区域，在搜索框分别搜索“C/C++”以及“chinese”，安装C/C++插件(必须有)与简体中文插件编译运行插件(个人推荐)<br><img src="https://i-blog.csdnimg.cn/blog_migrate/520eacd23076ad9f93ea4148743f3042.png" alt=""><br><img src="https://i-blog.csdnimg.cn/blog_migrate/20d86ed1b3392fa7d93fcbe8abe5d442.png" alt=""><br><img src="https://i-blog.csdnimg.cn/blog_migrate/18a8604f524c1d1afda73a7ceaa30a1a.png" alt=""><br><img src="/2024/08/25/2022795773/image.png" class="" title="alt text"></p>
+<p>至此，vscode安装以及必备插件安装就完成了，可以关掉vscode了</p>
+<h1 id="3-安装MinGW-w64"><a href="#3-安装MinGW-w64" class="headerlink" title="3.安装MinGW-w64"></a>3.安装MinGW-w64</h1><p>C/C++的编译器有很多种，大家可自行选择，但网上大部分人都用的MinGW-w64，故以此编译器为例。</p>
+<p>MinGW-w64官网下载地址<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mingw-w64/files/">https://sourceforge.net/projects/mingw-w64/files/</a><br>下载<br><img src="https://i-blog.csdnimg.cn/blog_migrate/a6e078c88e94ce4041c30cce399d0249.png" alt=""><br>系统架构，电脑系统是64位的选择x86_64，是32位的则选择 i686；<br>操作系统接口协议， 如果你想要开发 Windows 程序，需要选择 win32 ，而开发 Linux、Unix、Mac OS 等其他操作系统下的程序，则需要选择 posix<br>异常处理模型推荐seh(64位系统)或dwarf(32位系统)<br>build revision，默认值即可<br>注意安装目录需是纯英文的，且不含空格</p>
+<p>解压<br><img src="https://i-blog.csdnimg.cn/blog_migrate/66706b081ae101c45b3d9a48f0a239a6.png" alt=""><br><img src="https://i-blog.csdnimg.cn/blog_migrate/1cb773df8bf5d5d01544aec608f5a27b.png" alt=""></p>
+<p>bin目录里面就是需要的<br><img src="https://i-blog.csdnimg.cn/blog_migrate/83ede902f054c57060e05c81f9ae4ea4.png" alt=""></p>
+<h1 id="4-设置系统环境变量"><a href="#4-设置系统环境变量" class="headerlink" title="4.设置系统环境变量"></a>4.设置系统环境变量</h1><p>右击“此电脑”——“属性”——“高级系统设置”——“环境变量”——找到“系统变量”中的“Path”条目——“编辑”——“新建”——将你的MinGW-w64下载路径复制到新条目中(格式形如C:\TDM-GCC-64\bin，一定要写到bin这个文件夹)——完成<br><img src="https://i-blog.csdnimg.cn/blog_migrate/6bd4b29d6044f500661c66391de52c62.png" alt=""></p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/b76a3acd726f71598068eee0d39255f6.png" alt=""></p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/68e9419589f4f4b5e14d152138c52042.png" alt=""><br>打开命令提示符(直接在Windows搜索框输入cmd即可找到)，输入gcc -v，然后回车，验证是否成功(如果出现十几行乱码一样的东西，则配置环境变量成功)(注意：gcc与-v之间有一个空格！)</p>
+<h1 id="5-设置vscode里的环境"><a href="#5-设置vscode里的环境" class="headerlink" title="5.设置vscode里的环境"></a>5.设置vscode里的环境</h1><ol>
+<li>配置编译器(生成c_cpp_properties.json文件)<br>该步用于告诉vscode你的编译器在哪儿</li>
+</ol>
+<p>在电脑中创建一个未来用于存放代码的文件夹(用英文命名)，随后打开vscode，点击“打开文件夹”，从而在vscode内打开该文件夹<br><img src="https://i-blog.csdnimg.cn/blog_migrate/45321d811ef82ab3b630055fad750745.png" alt=""><br>按下快捷键shift+ctrl+p，展示全局命令面板，搜索找到C/C++ Edit Configurations(UI)<br><img src="https://i-blog.csdnimg.cn/blog_migrate/034b0cd860ed0874075c2f76ee622f88.png" alt=""><br>点击该条目，进入如下画面，看左侧栏目可发现程序自动在我们存代码的文件夹下建立了一个“.vscode”文件夹(这个文件夹非常重要，后续的配置都是在它内部建立文件的)，该文件夹下还有一个c_cpp_properties.json文件<br><img src="https://i-blog.csdnimg.cn/blog_migrate/05766f8fae865d9b9eafff81aedac274.png" alt="alt">  </p>
+<p>配置“编译器路径”(写自己的编译器下载路径)以及“IntelliSense 模式”(设为：gcc-x64)<br><img src="https://i-blog.csdnimg.cn/blog_migrate/ca8a63b6f7edf18cd0cc9f29496499f7.png" alt="alt">  </p>
+<ol>
+<li>配置构建任务(生成tasks.json文件)<br>该步用于告诉vscode如何构建（编译）程序</li>
+</ol>
+<p>点击“文件——新建文件”，输入一段简单的测试代码(我们会发现代码明明没错却被划上了曲线，这是因为配置还没完成，暂时不用管)，随后按ctrl+s保存(一定要保存，否则无法进行后续操作)，注意要保存为.c或.cpp格式而不是默认的.txt<br><img src="https://i-blog.csdnimg.cn/blog_migrate/7a81a8f259aa0b7f17abce3ec32428c3.png" alt=""></p>
+<p>再次按快捷键Ctrl+Shift+P调出命令面板，输入tasks，选择“Tasks:Configure Default Build Task”，再选择“C/C++: g++.exe build active file”或叫“g++.exe - 生成和调试活动文件”，此时会出现一个名为tasks.json的配置文件，内容如下:<br><img src="https://i-blog.csdnimg.cn/blog_migrate/3e7e44d3473bb36384b9c2d9d48d04ac.png" alt=""></p>
+<ol>
+<li>配置调试设置(生成launch.json文件)<br>该步用于配置调试的相关信息</li>
+</ol>
+<p>回到测试代码界面，点击菜单栏的“Debug——Start Debugging”(或“运行——启动调试”)，再选择“C++(GDB/LLDB)”，再选择”g++.exe build active file”(或“g++.exe - 生成和调试活动文件”)，此时会出现一个名为launch.json的配置文件，内容如下：<br><img src="https://i-blog.csdnimg.cn/blog_migrate/df4d0966a773c7a134a99a133b4cd7e5.png" alt=""><br>选择该项，可以看到.exe文件成功生成，底部终端运行正常<br>关于断点调试可以查询有关教程。<br><img src="/2024/08/25/2022795773/image-6.png" class="" title="alt text"><br>!!注意文件位置不要随意更改，可能出现配置错误，可以在新位置复制一份重新运行。</p>
+<p>ps：如果安装了编译运行插件，会弹出窗口运行。可选择该选项直接运行代码，.exe文件会建立在另一个文件夹，这种方法可以避免配置问题和便于分类。<br><img src="/2024/08/25/2022795773/image-1.png" class="" title="alt text"><br>大概的效果：<br><img src="/2024/08/25/2022795773/image-5.png" class="" title="alt text"><br>配置里默认应该为gcc和g++：<br><img src="/2024/08/25/2022795773/image-7.png" class="" title="alt text"></p>
+<p>pps：如果想要实现运行其他语言，安装对应语言包和运行插件（如code runner或对应专属插件）即可<br><img src="/2024/08/25/2022795773/image-2.png" class="" title="alt text"><br>选择该项：<br><img src="/2024/08/25/2022795773/image-4.png" class="" title="alt text"><br><img src="/2024/08/25/2022795773/image-3.png" class="" title="alt text"></p>
+<p>至此，vscode安装及环境配置(C/C++)(Windows系统)完成</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.github.io">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>连接: </span><span class="post-copyright-info"><a href="https://wrongization.github.io/2024/08/25/2022795773.html">https://wrongization.github.io/2024/08/25/2022795773.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用 <a href=“https://creativecommons.org/licenses/by-nc-sa/4.0/”>CC BY-NC-SA 4.0 许可</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vscode/">vscode</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/08/05/2212294583.html" title="各种测试"><img class="cover" src="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg" onerror="onerror=null;src='/img/404.png'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">各种测试</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/logo.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">BUAAer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到wrongization的博客小屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-vscode%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1.vscode简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85vscode"><span class="toc-number">2.</span> <span class="toc-text">2.安装vscode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85MinGW-w64"><span class="toc-number">3.</span> <span class="toc-text">3.安装MinGW-w64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">4.设置系统环境变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%AE%BE%E7%BD%AEvscode%E9%87%8C%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">5.</span> <span class="toc-text">5.设置vscode里的环境</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/25/2022795773.html" title="vscode配置"><img src="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="vscode配置"/></a><div class="content"><a class="title" href="/2024/08/25/2022795773.html" title="vscode配置">vscode配置</a><time datetime="2024-08-25T13:42:34.000Z" title="创建 2024-08-25 21:42:34">2024-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/05/2212294583.html" title="各种测试"><img src="https://pic.imgdb.cn/item/66cb207bd9c307b7e918962d.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="各种测试"/></a><div class="content"><a class="title" href="/2024/08/05/2212294583.html" title="各种测试">各种测试</a><time datetime="2024-08-05T01:29:38.000Z" title="创建 2024-08-05 09:29:38">2024-08-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 By wrongization</div><div class="footer_custom_text"><span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="translateLink" type="button" title="切换简繁体">简</button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><script src="/scripts/welcome.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="199" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div><!-- hexo injector body_end start --><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://pic.imgdb.cn/item/66b885fad9c307b7e95694ee.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
