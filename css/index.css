@@ -2439,7 +2439,7 @@ maxWidth1200()
 .flink-name {
   margin-bottom: 5px;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 3em;
 }
 #article-container img {
   margin-bottom: 0.5rem;
@@ -2463,7 +2463,7 @@ maxWidth1200()
   box-shadow: var(--anzhiyu-shadow-theme) !important;
 }
 .flexcard-flink-list > a {
-  width: calc(100% / 5 - 0.5rem);
+  width: calc(100% / 3 - 0.5rem);
   height: 150px;
   position: relative;
   display: block;
