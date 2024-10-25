@@ -1,20 +1,44 @@
-/* 文章页背景 */
+/* 文章页背景透明度 */
 .layout_post>#post {
     /* 以下代表透明度为0.7 可以自行修改*/
-    background: rgba(255,255,255,.8);
+    opacity: 0.3;
 }
 
 /* 所有页面背景 */
-#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
-    /* 以下代表透明度为0.7 */
-    background: rgba(255,255,255,.8);
+
+
+#recent-posts>.recent-post-item{
+
+    opacity: 0.93;/* 最近投稿 */
 }
-/*侧边卡片的透明度 */
+#recent-posts>.avatar-img{
+
+  opacity: 0.1;/* 最近投稿 */
+}
+#aside_content .card-widget{
+    opacity: 0.5;
+}
+.layout_page>div:first-child:not(.recent-posts){
+    opacity: 0.5;
+}
+.layout_post>#page{
+    opacity: 0.5;
+}
+.author-content-img.no-lightbox
+{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+.layout_post>#post{
+  opacity:0.5;
+}
+/*侧边卡片的透明度、文章打开后背景的透明度 */
 :root {
-  --card-bg: rgba(255, 255, 255, .8);
+  opacity: 1;
 }
 /* 页脚透明 */
 #footer {
 	/* 以下代表透明度为0.7 */
-	background: rgba(255,255,255, .0);
+	opacity: 1;
 }
+
