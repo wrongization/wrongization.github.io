@@ -7530,7 +7530,7 @@ blockquote.pullquote.right {
     margin-right: 0.5rem;
   }
   [data-theme="dark"] .author-content-item.game-yuanshen {
-    background: url(../../../img/arcaea.avif) no-repeat top;
+    background: url(../../../img/arcaea_night.jpg) no-repeat top;
     background-size: 100%;
   }
   .author-content-item.game-yuanshen {
@@ -7540,6 +7540,7 @@ blockquote.pullquote.right {
     overflow: hidden;
     color: var(--anzhiyu-white);
     width: 62%;
+
   }
   .author-content-item.game-yuanshen .title2 {
     font-size: 50px;
