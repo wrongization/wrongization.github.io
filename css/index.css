@@ -4642,7 +4642,7 @@ h1.page-title + .tag-cloud-list {
   border: 1px solid #7d26cd;
   border-radius: 12px;
   color: #7d26cd;
-  font-size: 0.85em;
+  font-size: 1.35em;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -4666,14 +4666,15 @@ h1.page-title + .tag-cloud-list {
   margin: 0 4px;
   width: 1.85em;
   height: 1.85em;
-  font-size: 1.2em;
+  font-size: 1.85em;
   line-height: 1.85em;
 }
 #post .post-copyright {
   position: relative;
   margin: 40px 0 10px;
   padding: 10px 16px;
-  border: 1px solid var(--light-grey);
+  border: 2px solid #7d26cd;
+  border-radius: 10px;
   -webkit-transition: box-shadow 0.3s ease-in-out;
   -moz-transition: box-shadow 0.3s ease-in-out;
   -o-transition: box-shadow 0.3s ease-in-out;
