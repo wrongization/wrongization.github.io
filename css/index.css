@@ -5140,6 +5140,7 @@ mjx-assistive-mml {
 }
 #article-container .aplayer {
   margin: 0 0 20px;
+  border-radius: 20px;
 }
 .snackbar-css {
   border-radius: 5px !important;
@@ -6970,8 +6971,14 @@ blockquote.pullquote.right {
     color: var(--anzhiyu-white);
     overflow: hidden;
   }
+  /*统计*//*tongji*/
+  [data-theme="dark"] #about-page .about-statistic::after {
+    box-shadow: 0 159px 173px 71px #1c1c1c inset;
+    opacity: 0.8;
+  }
   #about-page .about-statistic::after {
-    box-shadow: 0 -159px 173px 71px #0c1c2c inset;
+    box-shadow: 0 159px 173px 71px #bce1ff inset;
+    opacity: 0.3;
     position: absolute;
     content: "";
     width: 100%;
@@ -7029,11 +7036,11 @@ blockquote.pullquote.right {
   .author-content-item .author-content-game-title {
     font-size: 36px;
     font-weight: 700;
-    color: #bb85d4;
+    color: #ffffff;
     line-height: 1;
   }
   .author-content-item .author-content-game-tips {
-    color: #bb85d4;
+    color: #ffffff;
     opacity: 0.8;
     font-size: 12px;
     margin-bottom: 0.5rem;
@@ -7042,7 +7049,7 @@ blockquote.pullquote.right {
     font-size: 16px;
     border-radius: 15px;
     width: 100%;
-    color: #e8e8e8;
+    color: var(--anzhiyu-white);
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -7050,13 +7057,15 @@ blockquote.pullquote.right {
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
+  /*统计字体*/
   #statistic div span:first-child {
     opacity: 0.8;
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 0.8;
   }
   #statistic div span:last-child {
     font-weight: 700;
-    font-size: 34px;
+    font-size: 38px;
     line-height: 1;
     white-space: nowrap;
   }
@@ -7064,8 +7073,8 @@ blockquote.pullquote.right {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 50%;
-    margin-bottom: 0.5rem;
+    width: 40%;
+    margin-bottom: 0.8rem;
   }
   
   .post-tips {
@@ -7445,6 +7454,21 @@ blockquote.pullquote.right {
     display: flex;
     flex-direction: column;
   }
+  [data-theme="dark"] .author-content-item.buff::after {
+    box-shadow: 0 20px 120px 40px #373737 inset;
+    opacity: 0.7;
+  }
+  .author-content-item.buff::after {
+    /*环绕颜色*/ 
+    box-shadow: 0 159px 173px 71px #5c5c5c inset;
+    opacity: 0.2;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
   [data-theme="dark"] .author-content-item.buff {
     background: url(../../../img/2024.png);
     background-size: 100%;
@@ -7504,13 +7528,17 @@ blockquote.pullquote.right {
     height: 18px;
     margin-right: 0.5rem;
   }
-  .author-content-item.game-yuanshen {
+  [data-theme="dark"] .author-content-item.game-yuanshen {
     background: url(../../../img/arcaea.avif) no-repeat top;
-    background-size: cover;
+    background-size: 100%;
+  }
+  .author-content-item.game-yuanshen {
+    background: url(../../../img/arcaea_day.jpg) no-repeat top;
+    background-size: 100%;
     min-height: 300px;
     overflow: hidden;
     color: var(--anzhiyu-white);
-    width: 59%;
+    width: 62%;
   }
   .author-content-item.game-yuanshen .title2 {
     font-size: 50px;
@@ -7519,6 +7547,7 @@ blockquote.pullquote.right {
   }
   .author-content-item.game-yuanshen::after {
     box-shadow: 0 -69px 203px 11px #5a63a4 inset;
+    opacity: 0.6;
     position: absolute;
     content: "";
     width: 100%;
@@ -7532,7 +7561,7 @@ blockquote.pullquote.right {
     color: rgb(234, 205, 255);
   }
   .author-content-item.comic-content {
-    width: 39%;
+    width: 36%;
     background: url(../../../img/re0_day.jpg) no-repeat top;
     background-size: 105%;
     min-height: 300px;
@@ -7545,6 +7574,7 @@ blockquote.pullquote.right {
   .author-content-item.comic-content::after {
     /*环绕颜色*/ 
     box-shadow: 0 -48px 203px 11px #bb81d4 inset;
+    opacity: 0.7;
     position: absolute;
     content: "";
     width: 100%;
@@ -7552,7 +7582,36 @@ blockquote.pullquote.right {
     top: 0;
     left: 0;
   }
-  
+  [data-theme="dark"] .author-content-item.like-technology::after {
+    /*mili*/
+    box-shadow: 0 0px 120px 50px #206ad1 inset;
+    opacity: 0.5;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .author-content-item.like-technology::after {
+    /*mili*/
+    box-shadow: 0 0px 120px 50px #ae35ff inset;
+    opacity: 0.35;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  [data-theme="dark"] .author-content-item.like-technology {
+    /*mili*/
+    background: url(../../../img/mili_night.jpg) no-repeat top;
+    background-size: cover;
+    min-height: 400px;
+    color: var(--anzhiyu-white);
+    overflow: hidden;
+  }
   .author-content-item.like-technology {
     /*mili*/
     background: url(../../../img/mili.png) no-repeat top;
@@ -7581,7 +7640,8 @@ blockquote.pullquote.right {
   }
   
   .author-content-item.like-music::after {
-    box-shadow: 0 -69px 203px 11px #5e0492 inset;
+    box-shadow: 0 -69px 180px 11px #5e0492 inset;
+    opacity: 0.8;
     position: absolute;
     content: "";
     width: 100%;
