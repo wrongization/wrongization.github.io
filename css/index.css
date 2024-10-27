@@ -7616,7 +7616,7 @@ blockquote.pullquote.right {
   }
   .author-content-item.like-technology {
     /*mili*/
-    background: url(../../../img/mili.png) no-repeat top;
+    background: url(../../../img/mili.webp) no-repeat top;
     background-size: cover;
     min-height: 400px;
     color: var(--anzhiyu-white);
