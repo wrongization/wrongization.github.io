@@ -6871,8 +6871,8 @@ blockquote.pullquote.right {
     flex-direction: column;
     justify-content: center;
     color: #ffffff;
-    background:  url(../../../img/wispx.webp);
-    background-size: 100%;
+    background:  url(../../../img/wispx.webp) no-repeat top;
+    background-size: cover;
     width: 59%;
     height: 40vh; /* Adjust the height to be taller */
   }
