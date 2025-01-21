@@ -1504,7 +1504,7 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: url(/img/background.jpg);
+  background: url(/img/background.webp);
   background-attachment: local;
   background-position: center;
   background-size: cover;
@@ -6862,7 +6862,7 @@ blockquote.pullquote.right {
     flex-direction: column;
     justify-content: center;
     color: #ffffff;
-    background:  url(../../../img/wispx_night.jpg);
+    background:  url(../../../img/wispx_night.webp);
     background-size: 100%;
     width: 59%;
   }
@@ -6871,9 +6871,10 @@ blockquote.pullquote.right {
     flex-direction: column;
     justify-content: center;
     color: #ffffff;
-    background:  url(../../../img/wispx.jpg);
+    background:  url(../../../img/wispx.webp);
     background-size: 100%;
     width: 59%;
+    height: 40vh; /* Adjust the height to be taller */
   }
   
   .author-content-item {
@@ -6967,7 +6968,7 @@ blockquote.pullquote.right {
   #about-page .about-statistic {
     min-height: 380px;
     width: 39%;
-    background: url(../../../img/tongji.jpg) no-repeat top;
+    background: url(../../../img/tongji.webp) no-repeat top;
     background-size: cover;
     color: var(--anzhiyu-white);
     overflow: hidden;
@@ -7006,6 +7007,7 @@ blockquote.pullquote.right {
     font-size: 35px;
     font-weight: 700;
     line-height: 1;
+    text-shadow: 0 0 2px rgb(129, 129, 129), 0 0 5px rgb(155, 155, 155), 0 0 8px rgb(255, 255, 255);
   }
   .author-content-item .author-content-white-title {
     font-size: 36px;
@@ -7034,17 +7036,24 @@ blockquote.pullquote.right {
     font-weight: 700;
     line-height: 1;
   }
-  .author-content-item .author-content-game-title {
-    font-size: 36px;
+  .author-content-item .author-content-arcaea-title {
+    font-size: 6vh;
     font-weight: 700;
-    color: #ffffff;
+    color: #23202d;
     line-height: 1;
+    text-shadow: 0 0 2px white, 0 0 5px white, 0 0 8px white;
   }
-  .author-content-item .author-content-game-tips {
+
+
+  
+
+
+  .author-content-item .author-content-arcaea-tips {
     color: #ffffff;
     opacity: 0.8;
     font-size: 12px;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 2px rgb(91, 87, 94), 0 0 5px rgb(90, 88, 93), 0 0 8px rgb(255, 255, 255);
   }
   #statistic {
     font-size: 16px;
@@ -7057,6 +7066,7 @@ blockquote.pullquote.right {
     flex-wrap: wrap;
     margin-top: 1rem;
     margin-bottom: 2rem;
+    text-shadow: 0 0 2px rgb(74, 74, 74), 0 0 5px rgb(155, 155, 155), 0 0 8px rgb(255, 255, 255);
   }
   /*统计字体*/
   #statistic div span:first-child {
@@ -7174,7 +7184,7 @@ blockquote.pullquote.right {
   }
   
   .author-content-item.map {
-    background: url(../../../img/map_day.png) no-repeat center;
+    background: url(../../../img/map_day.webp) no-repeat center;
     min-height: 160px;
     max-height: 400px;
     position: relative;
@@ -7185,7 +7195,7 @@ blockquote.pullquote.right {
     transition: 1s ease-in-out;
   }
   [data-theme="dark"] .author-content-item.map {
-    background: url(../../../img/map_night.png) no-repeat center;
+    background: url(../../../img/map_night.webp) no-repeat center;
     background-size: 100%;
   }
   
@@ -7431,78 +7441,61 @@ blockquote.pullquote.right {
     content: none !important;
   }
   [data-theme="dark"] .author-content-item.maxim {
-    background: url(../../../img/fumo_night.jpg);
+    background: url(../../../img/fumo_night.webp);
     background-size: 100%;
   } 
   .author-content-item.maxim {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.1;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    background: url(../../../img/fumo.jpg);
-    background-size: 100%;
-    justify-content: center;
     width: 39%;
+    background: url(../../../img/fumo.webp) no-repeat top;
+    background-size: cover;
+    height: 40vh;
+    overflow: hidden;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 7px rgb(233, 233, 233), 0 0 10px rgb(217, 217, 217);
+    font-weight: bold;
+    font-size: 5.5vh;
   }
   .author-content-item .author-content-item-tips {
     opacity: 0.8;
     font-size: 12px;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 7px rgb(233, 233, 233), 0 0 10px rgb(217, 217, 217);
   }
   .author-content-item.maxim .maxim-title {
     display: flex;
     flex-direction: column;
   }
-  [data-theme="dark"] .author-content-item.buff::after {
-    box-shadow: 0 20px 120px 40px #373737 inset;
-    opacity: 0.7;
-  }
-  .author-content-item.buff::after {
-    /*环绕颜色*/ 
-    box-shadow: 0 159px 173px 71px #5c5c5c inset;
-    opacity: 0.2;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-  [data-theme="dark"] .author-content-item.buff {
-    background: url(../../../img/2024.png);
+
+
+
+
+
+
+  [data-theme="dark"] .author-content-item.drawing-content {
+    background: url(../../../img/2024.webp);
     background-size: 100%;
-    color: rgb(236, 236, 236);
-    font-size: 34px;
-  }
-  .author-content-item.buff {
-    height: 200px;
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 1.1;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-    background: url(../../../img/daoyetan.jpg);
-    color: rgb(50, 50, 50);
-    background-size: 100%;
-    animation: gradient 15s ease infinite;
-    min-height: 200px;
-    height: fit-content;
+  } 
+  .author-content-item.drawing-content {
     width: 59%;
+    background: url(../../../img/daoyetan.webp) no-repeat top;
+    background-size: cover;
+    height: 40vh;
+    overflow: hidden;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 7px rgb(233, 233, 233), 0 0 10px rgb(217, 217, 217);
+    font-weight: bold;
+    font-size: 6vh;
   }
-  .author-content-item.buff .card-content {
+  .author-content-item.drawing-content .drawing-content-title {
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
-  .author-content-item.buff .buff-title {
-    display: flex;
-    font-size: 18px;
-    flex-direction: column;
-  }
+
+
+
+
+
+
   .card-background-icon {
     font-size: 12rem;
     opacity: 0.2;
@@ -7529,25 +7522,21 @@ blockquote.pullquote.right {
     height: 18px;
     margin-right: 0.5rem;
   }
-  [data-theme="dark"] .author-content-item.game-yuanshen {
-    background: url(../../../img/arcaea_night.jpg) no-repeat top;
+  [data-theme="dark"] .author-content-item.game-arcaea {
+    background: url(../../../img/arcaea_night.webp) no-repeat top;
     background-size: 100%;
   }
-  .author-content-item.game-yuanshen {
-    background: url(../../../img/arcaea_day.jpg) no-repeat top;
-    background-size: 100%;
-    min-height: 300px;
+  .author-content-item.game-arcaea {
+    background: url(../../../img/arcaea_day.webp) no-repeat top;
+    background-size: cover;
+    height: 45vh;
     overflow: hidden;
-    color: var(--anzhiyu-white);
-    width: 62%;
+    text-shadow: 0 0 2px rgb(204, 198, 207), 0 0 5px rgb(199, 151, 244), 0 0 8px rgb(192, 149, 250);/*文字阴影*/
+  
+    width: 100%;
+  }
 
-  }
-  .author-content-item.game-yuanshen .title2 {
-    font-size: 50px;
-    font-weight: 600;
-    line-height: 1.1;
-  }
-  .author-content-item.game-yuanshen::after {
+  .author-content-item.game-arcaea::after {
     box-shadow: 0 -69px 203px 11px #5a63a4 inset;
     opacity: 0.6;
     position: absolute;
@@ -7557,18 +7546,26 @@ blockquote.pullquote.right {
     top: 0;
     left: 0;
   }
+
+
+
+
   [data-theme="dark"] .author-content-item.comic-content {
-    background: url(../../../img/re0_night.jpg);
+    background: url(../../../img/re0_night.webp);
     background-size: 105%;
     color: rgb(234, 205, 255);
+    text-shadow: 0 0 2px rgb(209, 147, 238), 0 0 5px rgb(199, 151, 244), 0 0 8px rgb(192, 149, 250);
   }
   .author-content-item.comic-content {
     width: 36%;
-    background: url(../../../img/re0_day.jpg) no-repeat top;
-    background-size: 105%;
-    min-height: 300px;
+    background: url(../../../img/re0_day.webp) no-repeat top;
+    background-size: cover;
+    height: 40vh;
     overflow: hidden;
-    color: rgb(125, 92, 149);
+    color: rgb(108, 45, 153);
+    text-shadow: 0 0 2px rgb(202, 170, 227), 0 0 5px rgb(199, 170, 234), 0 0 8px rgb(255, 255, 255);
+    font-weight: bold;
+    
   }
   [data-theme="dark"] .author-content-item.comic-content::after {
     box-shadow: 0 -48px 203px 11px #65048f inset;
@@ -7584,7 +7581,49 @@ blockquote.pullquote.right {
     top: 0;
     left: 0;
   }
-  [data-theme="dark"] .author-content-item.like-technology::after {
+
+
+
+
+  
+  [data-theme="dark"] .author-content-item.touhou-content {
+    background: url(../../../img/touhou_night.webp);
+    background-size: cover;
+    color: rgb(24, 17, 133);
+    text-shadow: 0 0 2px rgb(186, 186, 244), 0 0 5px rgb(148, 148, 221), 0 0 8px rgb(145, 145, 245);
+  }
+  .author-content-item.touhou-content {
+    width: 62%;
+    background: url(../../../img/touhou_day.webp) no-repeat top;
+    background-size: cover;
+    height: 40vh;
+    overflow: hidden;
+    color: rgb(161, 38, 38);
+    text-shadow: 0 0 2px rgb(224, 185, 185), 0 0 5px rgb(233, 165, 165), 0 0 8px rgb(237, 159, 159);
+    font-weight: bold;
+  }
+  [data-theme="dark"] .author-content-item.touhou-content::after {
+    box-shadow: 0 -48px 203px 11px #154c99 inset;
+  }
+  .author-content-item.touhou-content::after {
+    /*环绕颜色*/ 
+    box-shadow: 0 -48px 203px 11px #f13c63 inset;
+    opacity: 0.25;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+
+
+
+  
+
+
+  [data-theme="dark"] .author-content-item.like-mili::after {
     /*mili*/
     box-shadow: 0 0px 120px 50px #206ad1 inset;
     opacity: 0.5;
@@ -7595,9 +7634,9 @@ blockquote.pullquote.right {
     top: 0;
     left: 0;
   }
-  .author-content-item.like-technology::after {
+  .author-content-item.like-mili::after {
     /*mili*/
-    box-shadow: 0 0px 120px 50px #ae35ff inset;
+    box-shadow: 0 0px 120px 50px #3949c5 inset;
     opacity: 0.35;
     position: absolute;
     content: "";
@@ -7606,33 +7645,37 @@ blockquote.pullquote.right {
     top: 0;
     left: 0;
   }
-  [data-theme="dark"] .author-content-item.like-technology {
+  [data-theme="dark"] .author-content-item.like-mili {
     /*mili*/
-    background: url(../../../img/mili_night.jpg) no-repeat top;
+    background: url(../../../img/mili_night.webp) no-repeat top;
     background-size: cover;
-    min-height: 400px;
-    color: var(--anzhiyu-white);
+    color: #cab218;
     overflow: hidden;
   }
-  .author-content-item.like-technology {
+  .author-content-item.like-mili {
     /*mili*/
     background: url(../../../img/mili.webp) no-repeat top;
     background-size: cover;
-    min-height: 400px;
-    color: var(--anzhiyu-white);
+    height: 50vh;
+    color: #3949c5;
     overflow: hidden;
+    text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 5px rgb(255, 255, 255), 0 0 8px white;
+    font-weight: bold;
   }
-  [data-theme="dark"] .author-content-item.like-music {
-    background: url(../../../img/acane.jpg) no-repeat top;
+  [data-theme="dark"] .author-content-item.like-ztmy {
+    background: url(../../../img/acane.webp) no-repeat top;
     background-size: cover;
-    min-height: 400px;
+
   }
-  .author-content-item.like-music {
+  .author-content-item.like-ztmy {
     /*ztmy 真夜中*/
-    background: url(../../../img/acane_day.jpg) no-repeat top;
+    background: url(../../../img/acane_day.webp) no-repeat top;
     background-size: cover;
-    min-height: 400px;
+    height: 50vh;
+    color: rgb(157, 72, 214);
     overflow: hidden;
+    text-shadow: 0 0 2px rgb(242, 183, 246), 0 0 5px rgb(255, 255, 255), 0 0 8px white;
+    font-weight: bold;
   }
   
   .author-content-item .card-content .banner-button-group {
@@ -7641,8 +7684,8 @@ blockquote.pullquote.right {
     right: 2rem;
   }
   
-  .author-content-item.like-music::after {
-    box-shadow: 0 -69px 180px 11px #5e0492 inset;
+  .author-content-item.like-ztmy::after {
+    box-shadow: 0 -69px 180px 11px #710cac inset;
     opacity: 0.8;
     position: absolute;
     content: "";
@@ -7662,11 +7705,8 @@ blockquote.pullquote.right {
     .author-content-item .card-content .banner-button-group .banner-button:hover {
       background: none !important;
     }
-    .author-content-item.game-yuanshen .content-bottom {
+    .author-content-item.game-arcaea .content-bottom {
       padding-bottom: 10px;
-    }
-    .author-content-item.game-yuanshen .game-yuanshen-uid {
-      display: none;
     }
     .author-content {
       margin-top: 0;
@@ -7738,7 +7778,7 @@ blockquote.pullquote.right {
   }
   
   @media screen and (min-width: 768px) and (max-width: 896px) {
-    .author-content-item.like-music .content-bottom .tips {
+    .author-content-item.like-ztmy .content-bottom .tips {
       display: none;
     }
   }
@@ -7802,13 +7842,16 @@ blockquote.pullquote.right {
     position: relative;
     overflow: hidden;
     user-select: none;
+    height: 45vh;
   }
   
   .shapes {
     position: relative;
-    height: 315px;
+    height: 45vh;
     width: 100%;
-    background: #5600a9;
+    background: url(../../../img/ye.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
   
@@ -7819,24 +7862,27 @@ blockquote.pullquote.right {
   }
   
   .shape.shape-1 {
-    background: #7d26cd;
+    background: radial-gradient(circle, #7d26cd 0%, transparent 100%);
     width: 650px;
     height: 650px;
     margin: -325px 0 0 -325px;
+    opacity: 0.3;
   }
-  
+
   .shape.shape-2 {
-    background: #a14af1;
+    background: radial-gradient(circle, #a14af1 0%, transparent 100%);
     width: 440px;
     height: 440px;
     margin: -220px 0 0 -220px;
+    opacity: 0.3;
   }
-  
+
   .shape.shape-3 {
-    background: #c66cff;
+    background: radial-gradient(circle, #c66cff 0%, transparent 100%);
     width: 270px;
     height: 270px;
     margin: -135px 0 0 -135px;
+    opacity: 0.3;
   }
   
   .hello-about .content {
@@ -7846,7 +7892,7 @@ blockquote.pullquote.right {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 315px;
+    height: 45vh;
     width: 100%;
     background: #fff;
     mix-blend-mode: screen;
@@ -7855,7 +7901,7 @@ blockquote.pullquote.right {
     background: transparent;
   }
   .hello-about h1 {
-    color: #ffffff;
+    color: #4b0082; /* 深紫色 */
     margin: 0;
     text-align: center;
     font: inherit;
@@ -7867,8 +7913,20 @@ blockquote.pullquote.right {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold; /* 加粗 */
+    -webkit-text-stroke: 1px #dda0dd; /* 淡紫色描边 */
   }
-
+  .hello-about h1 {
+    text-shadow: 
+      0 0 5px #e675e6, 
+      0 0 10px #e675e6, 
+      0 0 15px #e675e6, 
+      0 0 20px #7D26CD, 
+      0 0 30px #7D26CD, 
+      0 0 40px #7D26CD, 
+      0 0 55px #7D26CD, 
+      0 0 75px #7D26CD;
+  }
   
   .cursor {
     position: absolute;
