@@ -7453,7 +7453,7 @@ blockquote.pullquote.right {
     color: rgb(0, 0, 0);
     text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 7px rgb(233, 233, 233), 0 0 10px rgb(217, 217, 217);
     font-weight: bold;
-    font-size: 5.5vh;
+    font-size: 5vh;
   }
   .author-content-item .author-content-item-tips {
     opacity: 0.8;
@@ -7484,7 +7484,7 @@ blockquote.pullquote.right {
     color: rgb(0, 0, 0);
     text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 7px rgb(233, 233, 233), 0 0 10px rgb(217, 217, 217);
     font-weight: bold;
-    font-size: 6vh;
+    font-size: 5vh;
   }
   .author-content-item.drawing-content .drawing-content-title {
     display: flex;
