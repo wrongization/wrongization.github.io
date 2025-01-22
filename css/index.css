@@ -7834,24 +7834,23 @@ blockquote.pullquote.right {
     white-space: nowrap;
   }
 .hello-about {
-    margin: 20px auto;
-    border-radius: 24px;
-    background: var(--anzhiyu-card-bg);
-    border: var(--style-border-always);
-    box-shadow: var(--anzhiyu-shadow-border);
-    position: relative;
-    overflow: hidden;
-    user-select: none;
-    height: 45vh;
-  }
+  margin: 20px auto 0 auto;
+  border-radius: 24px;
+  background: url(../../../img/ye.webp) center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: var(--style-border-always);
+  box-shadow: var(--anzhiyu-shadow-border);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  height: 45vh;
+}
   
   .shapes {
     position: relative;
     height: 45vh;
     width: 100%;
-    background: url(../../../img/ye.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
     overflow: hidden;
   }
   
