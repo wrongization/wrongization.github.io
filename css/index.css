@@ -2616,9 +2616,9 @@ maxWidth1200()
     width: calc(50% - 10px);
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 720px) {
   .flexcard-flink-list > a {
-    width: calc(98%);
+    width: calc(90% - 10px);
   }
 }
 [data-theme=dark] .flexcard-flink-list a .info,
@@ -6960,7 +6960,7 @@ blockquote.pullquote.right {
   .aboutsiteTips .mask span:nth-child(4) {
     background-image: linear-gradient(45deg, #fa7671 50%, #f45f7f);
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 720px) {
     .author-content-item.map {
       margin-bottom: 0;
     }
@@ -7695,7 +7695,7 @@ blockquote.pullquote.right {
     left: 0;
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 788px) {
     #gitcalendar {
       display: none;
     }
@@ -7744,10 +7744,10 @@ blockquote.pullquote.right {
       width: 100% !important;
     }
     .layout > div:first-child:not(.recent-posts) {
-      /* border-radius: 0; */
-      padding: 0 1rem !important;
+      /* border-radius: 0; 背景bug 透明bug 屏幕宽度 分栏 透明文字背景 文章透明bug 手机界面 788px 小界面 边距*/
+      padding: 2rem 4rem !important;
       box-shadow: none !important;
-      background: var(--anzhiyu-background);
+      background: var(--card-bg);
     }
     .author-content-item .card-content .banner-button-group .banner-button-text {
       display: none;
@@ -7777,11 +7777,7 @@ blockquote.pullquote.right {
     }
   }
   
-  @media screen and (min-width: 768px) and (max-width: 896px) {
-    .author-content-item.like-ztmy .content-bottom .tips {
-      display: none;
-    }
-  }
+
   
   /* 赞赏的css */
   
