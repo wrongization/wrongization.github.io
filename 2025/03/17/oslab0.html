@@ -1,0 +1,299 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA-OS-LAB0 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BUAA OS LAB0 实验报告ThinkingThinking 0.1Q:   • 在前述已初始化的~&#x2F;learnGit 目录下，创建一个名为 README.txt 的文件。执 行命令git status &gt; Untracked.txt（其中的 &gt; 为输出重定向，我们将在 0.6.3 中 详细介绍）。• 在README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA-OS-LAB0">
+<meta property="og:url" content="https://wrongization.site/2025/03/17/oslab0.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="BUAA OS LAB0 实验报告ThinkingThinking 0.1Q:   • 在前述已初始化的~&#x2F;learnGit 目录下，创建一个名为 README.txt 的文件。执 行命令git status &gt; Untracked.txt（其中的 &gt; 为输出重定向，我们将在 0.6.3 中 详细介绍）。• 在README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wrongization.site/img/cover/oslab0/oslab0.webp">
+<meta property="article:published_time" content="2025-03-17T12:55:10.000Z">
+<meta property="article:modified_time" content="2025-03-17T13:03:53.675Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="os">
+<meta property="article:tag" content="lab0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wrongization.site/img/cover/oslab0/oslab0.webp"><link rel="shortcut icon" href="/img/logo.webp"><link rel="canonical" href="https://wrongization.site/2025/03/17/oslab0.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family= broadway|华文中宋|Titillium Web|PingFang SC|Hiragino Sans GB|Microsoft JhengHei|Microsoft YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: wrongization","info":"复制和转载请标明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA-OS-LAB0',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2025-03-17 21:03:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">13</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cover/oslab0/oslab0.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BUAA-OS-LAB0</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2025-03-17T12:55:10.000Z" title="创建 2025-03-17 20:55:10">2025-03-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-03-17T13:03:53.675Z" title="更新 2025-03-17 21:03:53">2025-03-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-os/">buaa-os</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-os/lab0/">lab0</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>6分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-series"><h3>os-系列：</h3><li><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a></li></div><article class="post-content" id="article-container"><h1 id="BUAA-OS-LAB0-实验报告"><a href="#BUAA-OS-LAB0-实验报告" class="headerlink" title="BUAA OS LAB0 实验报告"></a>BUAA OS LAB0 实验报告</h1><h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="Thinking-0-1"><a href="#Thinking-0-1" class="headerlink" title="Thinking 0.1"></a>Thinking 0.1</h3><p>Q: </p>
+<blockquote>
+<p>• 在前述已初始化的~/learnGit 目录下，创建一个名为 README.txt 的文件。执 行命令git status &gt; Untracked.txt（其中的 &gt; 为输出重定向，我们将在 0.6.3 中 详细介绍）。<br>• 在README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行命令 git status &gt; Stage.txt。 • 提交README.txt，并在提交说明里写入自己的学号。<br>• 执行命令cat Untracked.txt 和 cat Stage.txt，对比两次运行的结果，体会 README.txt 两次所处位置的不同。<br>• 修改README.txt 文件，再执行命令git status &gt; Modified.txt。<br>• 执行命令cat Modified.txt，观察其结果和第一次执行 add 命令之前的 status 是 否一样，并思考原因。</p>
+</blockquote>
+<p>A: </p>
+<p>分别处于未追踪，待提交</p>
+<p>commit后处于已提交的状态，status里不可见</p>
+<p>修改后处于尚未暂存但已修改，未add前未追踪，因此会显示未追踪，add后进行追踪，再进行修改，因此处于尚未暂存但已修改。</p>
+<h3 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h3><p>Q: </p>
+<blockquote>
+<p>仔细看看0.10，思考一下箭头中的add thefile、stage thefile和 commit分别对应的是Git里的哪些命令呢？</p>
+</blockquote>
+<p>A:</p>
+<p>add the file–&gt;git add<br>stage the file–&gt;git add<br>commit–&gt;git commit</p>
+<h3 id="Thinking-0-3"><a href="#Thinking-0-3" class="headerlink" title="Thinking 0.3"></a>Thinking 0.3</h3><p>Q: </p>
+<p>1.代码文件print.c被错误删除时，应当使用什么命令将其恢复？ </p>
+<p>2.代码文件print.c被错误删除后，执行了gitrmprint.c命令，此时应当 使用什么命令将其恢复？ </p>
+<p>3.无关文件hello.txt已经被添加到暂存区时，如何在不删除此文件的前提下 将其移出暂存区？</p>
+<p>A:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout-- print.c</span><br><span class="line">git reset --hard HEAD print.c</span><br><span class="line">git restore --staged print.c</span><br></pre></td></tr></table></figure>
+<h3 id="Thinking-0-4"><a href="#Thinking-0-4" class="headerlink" title="Thinking 0.4"></a>Thinking 0.4</h3><p>Q:</p>
+<blockquote>
+<p>•找到在/home/22xxxxxx/learnGit下刚刚创建的README.txt文件，若不存 在则新建该文件。<br>•在文件里加入Testing 1，gitadd，gitcommit，提交说明记为1。<br>•模仿上述做法，把1分别改为2和3，再提交两次。<br>•使用gitlog命令查看提交日志，看是否已经有三次提交，记下提交说明为 3的哈希值a。<br>•进行版本回退。执行命令gitreset—hardHEAD^后，再执行gitlog，观 察其变化。<br>•找到提交说明为1的哈希值，执行命令gitreset—hard后，再执 行gitlog，观察其变化。<br>•现在已经回到了旧版本，为了再次回到新版本，执行gitreset—hard ，再执行git log，观察其变化。</p>
+</blockquote>
+<p>A:</p>
+<p>9fe0cdd55bc867b9e813479b5e3a0fb132430656</p>
+<p>git log每次只会显示其所在位置前的日志。</p>
+<h3 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h3><p>Q:</p>
+<blockquote>
+<p>观察以下操作结果<br>• echo first<br>• echo second &gt; output.txt<br>• echo third &gt; output.txt<br>• echo forth &gt;&gt; output.txt</p>
+</blockquote>
+<p>A:</p>
+<p>输出到屏幕first</p>
+<p>输出到output second</p>
+<p>覆盖output third</p>
+<p>追加output forth</p>
+<h3 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h3><p>Q:</p>
+<blockquote>
+<p>使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为test）， 将创建该文件的命令序列保存在command文件中，并将test文件作为批处理文件运行，将 运行结果输出至result文件中。给出command文件和result文件的内容，并对最后的结 果进行解释说明（可以从test文件的内容入手）. 具体实现的过程中思考下列问题: echo echo Shell Start 与 echo <code>echo Shell Start</code> 效果是否有区别; echo echo $c&gt;file1 与echo <code>echo $c&gt;file1</code> 效果是否有区别.</p>
+</blockquote>
+<p>A:</p>
+<p><code>command</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo Shell Start&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo set a = 1&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;a=1&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo set b = 2&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;b=2&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo set c = a+b&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;c=\$[\$a+\$b]&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo c = \$c&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo save c to ./file1&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo \$c&gt;file1&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo save b to ./file2&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo \$b&gt;file2&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo save a to ./file3&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo \$a&gt;file3&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo save file1 file2 file3 to file4&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;cat file1&gt;file4&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;cat file2&gt;&gt;file4&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;cat file3&gt;&gt;file4&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;echo save file4 to ./result&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;cat file4&gt;&gt;result&quot;</span> &gt;&gt; <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p><code>result</code></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>test中变量设置为a=1,b=2c=3</p>
+<p>之后分别存入file1，file2，file3</p>
+<p>然后利用cat指令将其顺序输入file4</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo Shell Start</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> `<span class="built_in">echo</span> Shell Start`</span><br></pre></td></tr></table></figure>
+<p>两者完全相同</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="built_in">echo</span> <span class="variable">$c</span>&gt;file1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> `<span class="built_in">echo</span> <span class="variable">$c</span>&gt;file1`</span><br></pre></td></tr></table></figure>
+<p>第一个实现将<code>echo $c&gt;file1</code>输出</p>
+<p>第二个实现输出<code>echo $c&gt;file1</code>的结果</p>
+<h2 id="lab0难点"><a href="#lab0难点" class="headerlink" title="lab0难点"></a>lab0难点</h2><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>命令参数的读入，读入后的引用，makefile初步，复制指令的使用</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>Shell的循环执行，目录的创建和删除</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>grep 的匹配 -n输出行号</p>
+<p>awk实现分割输出，或利用sed正则匹配</p>
+<p>grep -n “$2” “$1” |awk -F: ‘{print $1}’ &gt;”$3”</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>make -C code all</p>
+<p>-C 实现打开子目录code的子makefile</p>
+<p>gcc -I../include -c fibo.c -o fibo.o</p>
+<p>-I../include实现跨目录头文件引入</p>
+<h2 id="实验体会总结"><a href="#实验体会总结" class="headerlink" title="实验体会总结"></a>实验体会总结</h2><p>本次实验较为简单，主要是为之后的实验熟悉操作，这里列出了一些常用经验作为实验总结。</p>
+<h3 id="1-ehco"><a href="#1-ehco" class="headerlink" title="1.ehco"></a>1.ehco</h3><p>输出中有字母和符号（不包含变量）时需要用引号包含</p>
+<h3 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="2.文件操作"></a>2.文件操作</h3><p>用vim编辑完成后，按 ESC进行输入：</p>
+<p>:wq 保存并退出</p>
+<p>:q! 强制退出不保存</p>
+<p>:e! 放弃所有修改</p>
+<h3 id="3-批处理"><a href="#3-批处理" class="headerlink" title="3.批处理"></a>3.批处理</h3><p>1）新建一个文件</p>
+<p>touch test.sh</p>
+<p>2）在里面编写脚本</p>
+<h1 id="bin-sh"><a href="#bin-sh" class="headerlink" title="!/bin/sh"></a>!/bin/sh</h1><p>……</p>
+<p>3）执行</p>
+<p>./test.sh 或source test.sh 或bash/sh test.sh</p>
+<h3 id="4-单引号、双引号与反引号"><a href="#4-单引号、双引号与反引号" class="headerlink" title="4.单引号、双引号与反引号"></a>4.单引号、双引号与反引号</h3><p>1）双引号能够识别变量；单引号是不能识别变量，只会原样输出</p>
+<p>2）双引号能够实现转义（类似于“*”）；只会原样输出，单引号是不能转义的</p>
+<p>3）当在脚本中需要执行一些指令并且将执行的结果赋给变量的时候需要使用“反引号”</p>
+<h3 id="5-可执行文件的理解"><a href="#5-可执行文件的理解" class="headerlink" title="5.可执行文件的理解"></a>5.可执行文件的理解</h3><p>c语言的编译过程分为：预处理，编译，汇编，链接</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>所处阶段</th>
+<th>执行操作</th>
+<th>生成文件</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预处理</td>
+<td>展开头文件/宏替换/去掉注释/条件编译</td>
+<td>.i</td>
+<td>gcc -E</td>
+</tr>
+<tr>
+<td>编译</td>
+<td>检查语法，生成汇编</td>
+<td>.s</td>
+<td>gcc -S</td>
+</tr>
+<tr>
+<td>汇编</td>
+<td>汇编代码转换机器码</td>
+<td>.o</td>
+<td>gcc -c</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>链接到一起生成可执行程序</td>
+<td>.out</td>
+<td>gcc *.o</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="6-git"><a href="#6-git" class="headerlink" title="6.git"></a>6.git</h3><p>git restore —staged file=将暂存返回到工作区</p>
+<p>git restore file =git checkout — file =恢复文件为上一次保存的add的状态</p>
+<p>git reset HEAD撤销暂存（本质是恢复暂存区为该提交初始状态）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.site">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>链接: </span><span class="post-copyright-info"><a href="https://wrongization.site/2025/03/17/oslab0.html">https://wrongization.site/2025/03/17/oslab0.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用 <a href=“https://creativecommons.org/licenses/by-nc-sa/4.0/”>CC BY-NC-SA 4.0 许可</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/os/">os</a><a class="post-meta__tags" href="/tags/lab0/">lab0</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/oslab0/oslab0.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/01/21/cangjie.html" title="仓颉语言+vscode配置"><img class="cover" src="/img/cover/cangjie/cangjie.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">仓颉语言+vscode配置</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/logo.webp" onerror="this.onerror=null;this.src='/img/gif404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">BUAAer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">About界面更新了，记得看看呦！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BUAA-OS-LAB0-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">BUAA OS LAB0 实验报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Thinking"><span class="toc-number">1.1.</span> <span class="toc-text">Thinking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">Thinking 0.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-2"><span class="toc-number">1.1.2.</span> <span class="toc-text">Thinking 0.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-3"><span class="toc-number">1.1.3.</span> <span class="toc-text">Thinking 0.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-4"><span class="toc-number">1.1.4.</span> <span class="toc-text">Thinking 0.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-5"><span class="toc-number">1.1.5.</span> <span class="toc-text">Thinking 0.5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-0-6"><span class="toc-number">1.1.6.</span> <span class="toc-text">Thinking 0.6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lab0%E9%9A%BE%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">lab0难点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#T1"><span class="toc-number">1.2.1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T2"><span class="toc-number">1.2.2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T3"><span class="toc-number">1.2.3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T4"><span class="toc-number">1.2.4.</span> <span class="toc-text">T4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BD%93%E4%BC%9A%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">实验体会总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ehco"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.ehco</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.批处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bin-sh"><span class="toc-number">2.</span> <span class="toc-text">!&#x2F;bin&#x2F;sh</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8D%95%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8C%E5%BC%95%E5%8F%B7%E4%B8%8E%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-number">2.0.1.</span> <span class="toc-text">4.单引号、双引号与反引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.0.2.</span> <span class="toc-text">5.可执行文件的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-git"><span class="toc-number">2.0.3.</span> <span class="toc-text">6.git</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img src="/img/cover/oslab0/oslab0.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB0"></a><div class="content"><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a><time datetime="2025-03-17T12:55:10.000Z" title="创建 2025-03-17 20:55:10">2025-03-17</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img src="/img/cover/oslab0/oslab0.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB0"/></a><div class="content"><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a><time datetime="2025-03-17T12:55:10.000Z" title="创建 2025-03-17 20:55:10">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/21/cangjie.html" title="仓颉语言+vscode配置"><img src="/img/cover/cangjie/cangjie.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="仓颉语言+vscode配置"/></a><div class="content"><a class="title" href="/2025/01/21/cangjie.html" title="仓颉语言+vscode配置">仓颉语言+vscode配置</a><time datetime="2025-01-21T10:33:21.000Z" title="创建 2025-01-21 18:33:21">2025-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/16/p7cpu.html" title="P7-verilog五层流水线CPU（全指令）"><img src="/img/cover/p7cpu/p7cpu.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="P7-verilog五层流水线CPU（全指令）"/></a><div class="content"><a class="title" href="/2024/12/16/p7cpu.html" title="P7-verilog五层流水线CPU（全指令）">P7-verilog五层流水线CPU（全指令）</a><time datetime="2024-12-16T13:21:31.000Z" title="创建 2024-12-16 21:21:31">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/p6cpu.html" title="P6-verilog五层流水线CPU（全指令）"><img src="/img/cover/p6cpu/p6cpu.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="P6-verilog五层流水线CPU（全指令）"/></a><div class="content"><a class="title" href="/2024/12/02/p6cpu.html" title="P6-verilog五层流水线CPU（全指令）">P6-verilog五层流水线CPU（全指令）</a><time datetime="2024-12-02T14:17:49.000Z" title="创建 2024-12-02 22:17:49">2024-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/11/p5cpu.html" title="P5-verilog五层流水线CPU（简化指令）"><img src="/img/cover/p5cpu/p5cpu.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="P5-verilog五层流水线CPU（简化指令）"/></a><div class="content"><a class="title" href="/2024/11/11/p5cpu.html" title="P5-verilog五层流水线CPU（简化指令）">P5-verilog五层流水线CPU（简化指令）</a><time datetime="2024-11-11T07:05:40.000Z" title="创建 2024-11-11 15:05:40">2024-11-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wrongization</div><div class="footer_custom_text"><span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> <a target="_blank"href="https://v6.51.la/land/3L1PzYyEGNZiFQyL"><img src="https://sdk.51.la/icon/1-1.png" title="本站采用51.LA统计"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="打开/关闭夜间模式"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><div class="js-pjax"></div><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"3L1PzYyEGNZiFQyL",ck:"3L1PzYyEGNZiFQyL"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> new LingQue.Monitor().init({id:"3L1Q2CzO5ktWU3Sd"});</script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><linkrel="stylesheet"href="http://aciano.top/redirect/?target=https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
