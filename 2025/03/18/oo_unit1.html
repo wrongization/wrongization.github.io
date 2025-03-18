@@ -1,0 +1,314 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>oo_unit1 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OO Unit1 Summary基于度量的代码分析与迭代过程 注：  CogC是认知复杂度，衡量代码的难以理解的程度，CogC说明代码比较难以理解。 ev(G)是基本复杂度，衡量非结构化程度，ev(G)高意味着难以模块化和维护。 iv(G)是模块设计复杂度，衡量模块的调用关系，iv(G)高意味着模块之间的耦合性高，难以隔离和复用。 v(G)是圈复杂度，衡量结构的复杂程度，v(G)是说明代码难以测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oo_unit1">
+<meta property="og:url" content="https://wrongization.site/2025/03/18/oo_unit1.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="OO Unit1 Summary基于度量的代码分析与迭代过程 注：  CogC是认知复杂度，衡量代码的难以理解的程度，CogC说明代码比较难以理解。 ev(G)是基本复杂度，衡量非结构化程度，ev(G)高意味着难以模块化和维护。 iv(G)是模块设计复杂度，衡量模块的调用关系，iv(G)高意味着模块之间的耦合性高，难以隔离和复用。 v(G)是圈复杂度，衡量结构的复杂程度，v(G)是说明代码难以测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wrongization.site/img/cover/oo_unit1/oo_unit1.webp">
+<meta property="article:published_time" content="2025-03-18T09:59:12.000Z">
+<meta property="article:modified_time" content="2025-03-18T10:06:56.690Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="oo">
+<meta property="article:tag" content="unit1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wrongization.site/img/cover/oo_unit1/oo_unit1.webp"><link rel="shortcut icon" href="/img/logo.webp"><link rel="canonical" href="https://wrongization.site/2025/03/18/oo_unit1.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family= broadway|华文中宋|Titillium Web|PingFang SC|Hiragino Sans GB|Microsoft JhengHei|Microsoft YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: wrongization","info":"复制和转载请标明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'oo_unit1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2025-03-18 18:06:56'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cover/oo_unit1/oo_unit1.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">oo_unit1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2025-03-18T09:59:12.000Z" title="创建 2025-03-18 17:59:12">2025-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-03-18T10:06:56.690Z" title="更新 2025-03-18 18:06:56">2025-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-oo/">buaa-oo</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-oo/unit1/">unit1</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>11分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-series"><h3>oo-系列：</h3><li><a class="title" href="/2025/03/18/oo_unit1.html" title="oo_unit1">oo_unit1</a></li></div><article class="post-content" id="article-container"><h1 id="OO-Unit1-Summary"><a href="#OO-Unit1-Summary" class="headerlink" title="OO Unit1 Summary"></a>OO Unit1 Summary</h1><h2 id="基于度量的代码分析与迭代过程"><a href="#基于度量的代码分析与迭代过程" class="headerlink" title="基于度量的代码分析与迭代过程"></a>基于度量的代码分析与迭代过程</h2><blockquote>
+<p>注：</p>
+<ul>
+<li><code>CogC</code>是认知复杂度，衡量代码的难以理解的程度，<code>CogC</code>说明代码比较难以理解。</li>
+<li><code>ev(G)</code>是基本复杂度，衡量非结构化程度，<code>ev(G)</code>高意味着难以模块化和维护。</li>
+<li><code>iv(G)</code>是模块设计复杂度，衡量模块的调用关系，<code>iv(G)</code>高意味着模块之间的耦合性高，难以隔离和复用。</li>
+<li><code>v(G)</code>是圈复杂度，衡量结构的复杂程度，<code>v(G)</code>是说明代码难以测试和维护。</li>
+</ul>
+</blockquote>
+<h3 id="hw1"><a href="#hw1" class="headerlink" title="hw1"></a>hw1</h3><h4 id="重点思路及迭代过程："><a href="#重点思路及迭代过程：" class="headerlink" title="重点思路及迭代过程："></a>重点思路及迭代过程：</h4><blockquote>
+<ul>
+<li>修改项的定义，实现将表达式分为不剩下符号的一个个项</li>
+<li><code>term</code> ——&gt;<code>[+-]&#123;0,2&#125;</code> <code>factor</code> 修改定义实现多余符号匹配</li>
+<li>项符号去多余判断符号，累加</li>
+<li>因子，累乘，最后结果符号设置为项</li>
+<li>原子组和慵懒防止递归爆炸</li>
+<li>递归处理表达式因子，正则每次匹配内层，但是有特殊情况如下</li>
+<li><code>((x-1))*((x-1))</code>，判断匹配结果表达式后有*取消计算，防止错误匹配的表达式因子</li>
+</ul>
+</blockquote>
+<h4 id="类图："><a href="#类图：" class="headerlink" title="类图："></a>类图：</h4><img src="/2025/03/18/oo_unit1/hw1-1742292209260-1.svg" class="" title="hw1">
+<p><code>PatternString</code>类存储所有需要使用的正则表达式，防止重复声明，<code>Simplify</code>为顶层化简函数，内含有化简表达式、化简项、化简因子的方法逐层递归下降，重新定义项的符号，通过关于term的两个sign方法修复符号，化简通过统一转换为<code>Poly</code>类实现，put方法多态匹配多种待转化字符串或者基础项，通过<code>Tostring</code>输出。</p>
+<h4 id="各个类以及代码行数："><a href="#各个类以及代码行数：" class="headerlink" title="各个类以及代码行数："></a>各个类以及代码行数：</h4><p>主要行数集中在<code>poly</code>和<code>simplify</code>，可见其臃肿。</p>
+<img src="/2025/03/18/oo_unit1/hw1line.webp" class="" title="hw1line">
+<h4 id="经典OO度量复杂度分析："><a href="#经典OO度量复杂度分析：" class="headerlink" title="经典OO度量复杂度分析："></a>经典OO度量复杂度分析：</h4><p>可以看出由于没有将<code>Simplify</code>类较好的分离，复杂度直接爆炸。<code>Poly</code>类也由于多种put方法的存在导致其复杂度较高，其内部有许多高度相似的地方重复定义，可以合并。</p>
+<img src="/2025/03/18/oo_unit1/class.webp" class="" title="class">
+<p>由于使用了正则，需要去掉多余符号和对多层括号的错误匹配进行筛选，因此书写了很多复杂的判断函数，Poly转化字符串的函数也没有分开导致过于复杂。</p>
+
+<h4 id="bug分析："><a href="#bug分析：" class="headerlink" title="bug分析："></a>bug分析：</h4><p>第一次作业比较简单，通过了全部强测试，唯一遇到的问题就是<code>((x-1))*((x-1))</code>的错误提前化简，需要注意。</p>
+<p>对于hack，可以重点从<code>x^0</code> ,<code>x ^00001</code> ,<code>x^000</code>,<code>x^10</code>等可能由于直接替换字符串导致的优化问题。</p>
+<h3 id="hw2"><a href="#hw2" class="headerlink" title="hw2"></a>hw2</h3><h4 id="重点思路及迭代过程：-1"><a href="#重点思路及迭代过程：-1" class="headerlink" title="重点思路及迭代过程："></a>重点思路及迭代过程：</h4><blockquote>
+<ul>
+<li>sin慵懒匹配防止跨项（或者筛选不含<code>&lt;&gt;</code>的）</li>
+<li>最外层换为<code>&lt;&gt;</code>,内层处理完后换成<code>&amp;%</code>，防止匹配过短错误</li>
+<li><code>sin^n*cos^m</code>     <code>factor---&gt;(n,m)</code></li>
+<li>函数递归，先替换后代入子函数</li>
+<li>将加号后单独化简，再加到表达式后面</li>
+<li><code>x^0</code>输出换为<code>x^z</code>后按顺序换<code>*x^z</code> <code>x^z*</code> <code>x^z</code></li>
+<li>自定义递推读取<code>fn</code> <code>f0</code> <code>f1</code>  ，括号换为[ ]换x/y为a/b后根据映射换位实参，之后递归调用</li>
+<li>+后面丢入化简函数，防止四个符号加正数字(或者三个加非数字因子)</li>
+<li>采用<code>hashcode</code>区分不同<code>mono</code>，采用递推计算，递推素数取<code>1&lt;&lt;17-1</code>,<code>hashmap</code>转为<code>string</code></li>
+<li>定义<code>mono</code>为最小单位：</li>
+</ul>
+</blockquote>
+<script type="math/tex; mode=display">
+a*x^b*\prod_{factor} sin(factor)^{n_{factor}}*cos(factor)^{m_{factor}}</script><blockquote>
+<ul>
+<li>采用<code>hashcode</code>作为唯一标识，定义为<code>hashmap</code>字符串的<code>hascode</code></li>
+</ul>
+</blockquote>
+<h4 id="类图：-1"><a href="#类图：-1" class="headerlink" title="类图："></a>类图：</h4><img src="/2025/03/18/oo_unit1/2.svg" class="" width="2">
+<p>新增加处理自定义递推函数的<code>Func</code>类和处理三角运算的<code>Mono</code>类，以及正则有关预处理修改定义的方法类<code>Presimp</code>，通过<code>Presimp</code>处理输入为修改后的定义，调用自定义推推函数<code>Func</code>类处理替换得到未化简的式子，调用<code>Simplify</code>化简，<code>Poly</code>中修改为存储<code>Mono</code>项以实现三角因子的存储和运算。</p>
+<h4 id="各个类以及代码行数：-1"><a href="#各个类以及代码行数：-1" class="headerlink" title="各个类以及代码行数："></a>各个类以及代码行数：</h4><img src="/2025/03/18/oo_unit1/hw2line.webp" class="" title="hw2line">
+<h4 id="经典OO度量复杂度分析：-1"><a href="#经典OO度量复杂度分析：-1" class="headerlink" title="经典OO度量复杂度分析："></a>经典OO度量复杂度分析：</h4><p>加入自定义递推函数后，为了处理各种括号的外层替换和换回，新添加了<code>presimp</code>预处理，<code>poly</code>的复杂度有所下降，但是<code>func</code>和<code>presimp</code>依然爆炸。</p>
+<img src="/2025/03/18/oo_unit1/class-1742292361985-22.webp" class="" title="class">
+<p>仅仅展示新添的，可以看出<code>Tostring</code>方法过于复杂，原因是中间用了大量分支判断</p>
+<img src="/2025/03/18/oo_unit1/method.webp" class="" title="method">
+<h4 id="bug分析：-1"><a href="#bug分析：-1" class="headerlink" title="bug分析："></a>bug分析：</h4><p>第二次作业为了优化性能问题，采用了<code>hashcode</code>映射sin/cos内部的因子和上方的项组成的<code>hashmap</code>，此处必须使用<code>tostring</code>方法获取<code>hashcode</code>，否则<code>hashmap</code>的<code>hashcode</code>如果不重写，会出现<code>sin(x)*sin(2*x)^2</code> 和 <code>sin(2*x)*sin(x)^2</code>相同的问题。</p>
+<p>hack时从多层括号出发重点测试复杂的多余括号，以及自定义递推函数的参数可以多交换测试，尽量保证样例里出现三角、幂次、常数的多种情况，<strong>本次一个大坑是<code>fn</code>后的<code>+ 表达式</code></strong>，加号不算作表达式内的符号，如果不做处理， <code>+++ -1</code> 、<code>+ - - x</code>,都会出现问题</p>
+<h3 id="hw3"><a href="#hw3" class="headerlink" title="hw3"></a>hw3</h3><h4 id="重点思路及迭代过程：-2"><a href="#重点思路及迭代过程：-2" class="headerlink" title="重点思路及迭代过程："></a>重点思路及迭代过程：</h4><blockquote>
+<p>思考化简顺序：</p>
+<ul>
+<li><p>1.easy（input)<br>换外层括号，循环替换g/h<br>easy -&gt;替换x,y-&gt;easy(contain)-&gt;没有g/h返回</p>
+</li>
+<li><p>2.funcreplace<br>func-&gt;替换x,y-&gt;替换 “+” 后面的easy(expr)-&gt;(simplify(expr))</p>
+</li>
+</ul>
+<p>f0 f1替换x,y-&gt;替换easy(expr),防止f0 f1 定义里有g/h</p>
+<ul>
+<li><p>3.simplify<br>dx(k)   -&gt;simp</p>
+</li>
+<li><p>4.dx(k)-&gt;换最外层dx括号为[ ]<br>查找替换k含有dx()的因子p为dx(p)，循环直到没有dx-&gt;没有dx返回原值的导数</p>
+</li>
+<li><p>5.保证expr输入为最简单表达式<br>dx(expr)-&gt; derive term  链式法则-&gt; derive factor 为poly 乘法法则-&gt;poly 中 derive mono返回一个poly</p>
+</li>
+<li><p>6.derive mono</p>
+</li>
+</ul>
+<p>乘法法则，对应sincos内部factor调用 simplify ( “dx( factor )” )</p>
+<p>返回值siancos括号换为自定义&lt;&gt;防止polyput不识别</p>
+</blockquote>
+<h4 id="类图：-2"><a href="#类图：-2" class="headerlink" title="类图："></a>类图：</h4><img src="/2025/03/18/oo_unit1/hw3-1742292387708-25.svg" class="" title="hw3">
+<p>新添<code>Derivative</code>求导方法类，<code>Func</code>中新添加自定义简单函数化简，实质上是自定义递推函数<code>f0``f1</code>的函数稍微修改。求导方法放入<code>Simplify</code>顶层方法内，调用函数<code>Func</code>类处理自定义递推函数和自定义简单函数，替换得到未化简的式子，调用<code>Simplify</code>化简并且求导，<code>Poly</code>中以<code>Mono</code>为最底层求导因子逐层下降，<code>Mono</code>类实现求导方法，返回一个<code>Poly</code>类（同上机实验的思考），对<code>Mono</code>类的求导只需要操作系数和幂次再乘以因子求导。</p>
+<h4 id="各个类以及代码行数：-2"><a href="#各个类以及代码行数：-2" class="headerlink" title="各个类以及代码行数："></a>各个类以及代码行数：</h4><p>四大功能的行数最多，代码较为冗杂。</p>
+<img src="/2025/03/18/oo_unit1/hw3line.webp" class="" title="hw3line">
+<h4 id="经典OO度量复杂度分析：-2"><a href="#经典OO度量复杂度分析：-2" class="headerlink" title="经典OO度量复杂度分析："></a>经典OO度量复杂度分析：</h4><p>不出意外的复杂度爆炸，正则的使用造成了大量处理函数的书写和情况的考虑，造成了不必要的复杂度增长。</p>
+<img src="/2025/03/18/oo_unit1/class-1742292410790-28.webp" class="" title="class">
+<p>标红的都为为了正则写的处理函数，基本都是面向过程，因此复杂度极高。</p>
+<img src="/2025/03/18/oo_unit1/method2.webp" class="" title="method2">
+<h4 id="bug分析：-2"><a href="#bug分析：-2" class="headerlink" title="bug分析："></a>bug分析：</h4><p>第三次作业迭代开发较为简单，自定义简单函数可以直接套用递推函，这次出错主要问题在于忘记了F0F1中也可能含有自定义简单函数，白白错了很多点，实际上只需要两行就可以修改。</p>
+<p>hack时重点放在求导上可能出现的多层函数求导问题，以及递归函数中出现的简单函数的解析（自己就踩了坑），不出所料许多人都犯了这个问题，多层求导关于三角很多人也对内部处理不正确。</p>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>通过第一单元的训练，我在多个方面都获得了很大的收获：</p>
+<p>通过第一次到第二次作业的过渡和遇到的问题，我加深了对正则表达式的理解，学到了慵懒匹配原子组等正则方法，同时用正则遇到的许多问题也使我对多种情况的处理和多层括号的理解进一步加深。</p>
+<p>这一单元也遇到了许多问题，第一次作业不知道出于什么心理没有选择普通的递归下降方法，而是采用了正则匹配，这使我相比其他人多考虑了许多情况和多遇到了许多bug，浪费了许多时间，但是当我遇到一个看似不可能解决的多层括号问题，而想出替换括号方法绕开的时候，那种发现新大陆一般的心情也许别人无法感受到。</p>
+<p>这次唯一的优点是使用了多态的方法，大大简化了转化POLY的代码结构复杂度，每部分只需要下降到最小因子即可，但是缺点也是代码及其冗长，应该进一步合并重复代码段优化复杂度。</p>
+<p>看之前学长的博客，说使用正则会遇到各种各样的问题，作业过程中确实遇到了许多问题（但是也不是完全不能做？），这些问题本身都可以避免，希望在第二单元中可以写出架构更加美观的代码，在第一次作业中就考虑好架构，为之后的作业留下空间，而不是像这次一样打补丁。</p>
+<p>还有三个单元，希望自己接下来能够再接再厉</p>
+<h2 id="未来建议"><a href="#未来建议" class="headerlink" title="未来建议"></a>未来建议</h2><p>个人认为课程组这次的迭代顺序可以略微调整，将自定义简单函数提到自定义递推函数前，这样不仅符合认知，也能更好地锻炼迭代能力，同时优化自定义递推函数后加的表达式，个人认为<code>+ 表达式</code>这种定义除了徒增处理复杂度没有任何意义，如果说考察学生的细节思考能力也完全没有必要从这里入手。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>正则匹配的patternstring，留给之后的正则仙人少走一些弯路（虽然正则也算弯路罢了）</p>
+<p>修改了项的定义以匹配正确多个符号，修改一些括号以保证只匹配最外层。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PatternString</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternNum</span> <span class="operator">=</span> <span class="string">&quot;[+-]?\\d+&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternSpace</span> <span class="operator">=</span> <span class="string">&quot;\\s*+&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternPownum</span> <span class="operator">=</span> <span class="string">&quot;[/^]\\s*[+]?\\d+&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternPow</span> <span class="operator">=</span> <span class="string">&quot;[xy](?&gt;\\s*[/^]\\s*\\+?\\d+)?&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternSin</span> <span class="operator">=</span> <span class="string">&quot;sin&quot;</span> + patternSpace + <span class="string">&quot;&lt;&quot;</span></span><br><span class="line">        + patternSpace + <span class="string">&quot;[^&lt;&gt;]+?&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;&gt;&quot;</span> + <span class="string">&quot;(?&gt;&quot;</span> + patternSpace + patternPownum + <span class="string">&quot;)?&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternCos</span> <span class="operator">=</span> <span class="string">&quot;cos&quot;</span> + patternSpace + <span class="string">&quot;&lt;&quot;</span></span><br><span class="line">        + patternSpace + <span class="string">&quot;[^&lt;&gt;]+?&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;&gt;&quot;</span> + <span class="string">&quot;(?&gt;&quot;</span> + patternSpace + patternPownum + <span class="string">&quot;)?&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternSincos</span> <span class="operator">=</span> <span class="string">&quot;(&quot;</span> + patternSin + <span class="string">&quot;|&quot;</span> + patternCos + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternFunc</span> <span class="operator">=</span></span><br><span class="line">        <span class="string">&quot;f\\&#123;&quot;</span> + <span class="string">&quot;([0-9]|(n-1)|(n-2))&quot;</span> + <span class="string">&quot;&#125;&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;\\[&quot;</span> + patternSpace + <span class="string">&quot;[\\S\\s]+?&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;(?&gt;&quot;</span> + <span class="string">&quot;,&quot;</span> + patternSpace + <span class="string">&quot;[\\S\\s]+?&quot;</span> + patternSpace + <span class="string">&quot;)?&quot;</span> + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternEasyfunc</span> <span class="operator">=</span></span><br><span class="line">        <span class="string">&quot;[gh]&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;\\[&quot;</span> + patternSpace + <span class="string">&quot;[\\S\\s]+?&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;(?&gt;&quot;</span> + <span class="string">&quot;,&quot;</span> + patternSpace + <span class="string">&quot;[\\S\\s]+?&quot;</span> + patternSpace + <span class="string">&quot;)?&quot;</span> + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternDerive</span> <span class="operator">=</span></span><br><span class="line">        <span class="string">&quot;dx&quot;</span> + patternSpace +</span><br><span class="line">        <span class="string">&quot;\\[&quot;</span> + patternSpace + <span class="string">&quot;[\\S\\s]+?&quot;</span> + patternSpace + <span class="string">&quot;]&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternVar</span> <span class="operator">=</span> <span class="string">&quot;(&quot;</span> + patternPow + <span class="string">&quot;|&quot;</span></span><br><span class="line">        + patternSincos + <span class="string">&quot;|&quot;</span> + patternFunc + <span class="string">&quot;)&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternNormalFactors</span> <span class="operator">=</span> <span class="string">&quot;(&quot;</span> + patternNum + <span class="string">&quot;|&quot;</span> + patternVar + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternNormalTerm</span> <span class="operator">=</span></span><br><span class="line">        <span class="string">&quot;([+-]&quot;</span> + patternSpace + <span class="string">&quot;)&#123;0,2&#125;&quot;</span> + patternNormalFactors</span><br><span class="line">        + <span class="string">&quot;(?&gt;&quot;</span> + patternSpace + <span class="string">&quot;\\*&quot;</span> + patternSpace + patternNormalFactors + <span class="string">&quot;)*&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternNormalExpr</span> <span class="operator">=</span></span><br><span class="line">        patternSpace + patternNormalTerm + patternSpace</span><br><span class="line">        + <span class="string">&quot;(?&gt;&quot;</span> + patternNormalTerm + patternSpace + <span class="string">&quot;)*&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternFactorExpr</span> <span class="operator">=</span> <span class="string">&quot;\\(&quot;</span> + patternNormalExpr + <span class="string">&quot;\\)&quot;</span></span><br><span class="line">        + <span class="string">&quot;(?&gt;&quot;</span> + patternSpace + patternPownum + <span class="string">&quot;)?&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternFactors</span> <span class="operator">=</span></span><br><span class="line">        <span class="string">&quot;(&quot;</span> + patternNum + <span class="string">&quot;|&quot;</span> + patternVar + <span class="string">&quot;|&quot;</span> + patternFactorExpr + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternTerm</span> <span class="operator">=</span> <span class="string">&quot;([+-]&quot;</span> + patternSpace + <span class="string">&quot;)&#123;0,2&#125;&quot;</span></span><br><span class="line">        + patternFactors + <span class="string">&quot;(?&gt;&quot;</span> + patternSpace + <span class="string">&quot;\\*&quot;</span> + patternSpace + patternFactors + <span class="string">&quot;)*&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternExpr</span> <span class="operator">=</span> patternSpace</span><br><span class="line">        + <span class="string">&quot;(?&gt;&quot;</span> + patternTerm + patternSpace + <span class="string">&quot;)+&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">patternxandy</span> <span class="operator">=</span> <span class="string">&quot;[xy]&quot;</span> + patternSpace</span><br><span class="line">        + <span class="string">&quot;(?&gt;&quot;</span> + <span class="string">&quot;,&quot;</span> + patternSpace + <span class="string">&quot;[xy]&quot;</span> + <span class="string">&quot;)?&quot;</span>;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Expr</span> <span class="operator">=</span> Pattern.compile(patternExpr);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Term</span> <span class="operator">=</span> Pattern.compile(patternTerm);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Factors</span> <span class="operator">=</span> Pattern.compile(patternFactors);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">KuoFactorExpr</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;\\(&quot;</span> + patternNormalExpr + <span class="string">&quot;\\)&quot;</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">NormalTerm</span> <span class="operator">=</span> Pattern.compile(patternNormalTerm);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">NormalFactors</span> <span class="operator">=</span> Pattern.compile(patternNormalFactors);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Pownum</span> <span class="operator">=</span> Pattern.compile(patternPownum);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Num</span> <span class="operator">=</span> Pattern.compile(patternNum);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Func</span> <span class="operator">=</span> Pattern.compile(patternFunc);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Easyfunc</span> <span class="operator">=</span> Pattern.compile(patternEasyfunc);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">xandy</span> <span class="operator">=</span> Pattern.compile(patternxandy);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Pattern</span> <span class="variable">Derive</span> <span class="operator">=</span> Pattern.compile(patternDerive);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.site">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>链接: </span><span class="post-copyright-info"><a href="https://wrongization.site/2025/03/18/oo_unit1.html">https://wrongization.site/2025/03/18/oo_unit1.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用 <a href=“https://creativecommons.org/licenses/by-nc-sa/4.0/”>CC BY-NC-SA 4.0 许可</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/oo/">oo</a><a class="post-meta__tags" href="/tags/unit1/">unit1</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/oo_unit1/oo_unit1.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img class="cover" src="/img/cover/oslab0/oslab0.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">BUAA-OS-LAB0</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/logo.webp" onerror="this.onerror=null;this.src='/img/gif404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">BUAAer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">About界面更新了，记得看看呦！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OO-Unit1-Summary"><span class="toc-number">1.</span> <span class="toc-text">OO Unit1 Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%BA%A6%E9%87%8F%E7%9A%84%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%BF%AD%E4%BB%A3%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">基于度量的代码分析与迭代过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hw1"><span class="toc-number">1.1.1.</span> <span class="toc-text">hw1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%BF%AD%E4%BB%A3%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">重点思路及迭代过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE%EF%BC%9A"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">类图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E7%B1%BB%E4%BB%A5%E5%8F%8A%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%EF%BC%9A"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">各个类以及代码行数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8OO%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">经典OO度量复杂度分析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">bug分析：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hw2"><span class="toc-number">1.1.2.</span> <span class="toc-text">hw2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%BF%AD%E4%BB%A3%E8%BF%87%E7%A8%8B%EF%BC%9A-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">重点思路及迭代过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE%EF%BC%9A-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">类图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E7%B1%BB%E4%BB%A5%E5%8F%8A%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%EF%BC%9A-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">各个类以及代码行数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8OO%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">经典OO度量复杂度分析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">bug分析：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hw3"><span class="toc-number">1.1.3.</span> <span class="toc-text">hw3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%BF%AD%E4%BB%A3%E8%BF%87%E7%A8%8B%EF%BC%9A-2"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">重点思路及迭代过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9B%BE%EF%BC%9A-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">类图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E7%B1%BB%E4%BB%A5%E5%8F%8A%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%EF%BC%9A-2"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">各个类以及代码行数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8OO%E5%BA%A6%E9%87%8F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%9A-2"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">经典OO度量复杂度分析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%EF%BC%9A-2"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">bug分析：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">未来建议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">附录</span></a></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/oo_unit1.html" title="oo_unit1"><img src="/img/cover/oo_unit1/oo_unit1.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="oo_unit1"></a><div class="content"><a class="title" href="/2025/03/18/oo_unit1.html" title="oo_unit1">oo_unit1</a><time datetime="2025-03-18T09:59:12.000Z" title="创建 2025-03-18 17:59:12">2025-03-18</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/oo_unit1.html" title="oo_unit1"><img src="/img/cover/oo_unit1/oo_unit1.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="oo_unit1"/></a><div class="content"><a class="title" href="/2025/03/18/oo_unit1.html" title="oo_unit1">oo_unit1</a><time datetime="2025-03-18T09:59:12.000Z" title="创建 2025-03-18 17:59:12">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img src="/img/cover/oslab0/oslab0.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB0"/></a><div class="content"><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a><time datetime="2025-03-17T12:55:10.000Z" title="创建 2025-03-17 20:55:10">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/21/cangjie.html" title="仓颉语言+vscode配置"><img src="/img/cover/cangjie/cangjie.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="仓颉语言+vscode配置"/></a><div class="content"><a class="title" href="/2025/01/21/cangjie.html" title="仓颉语言+vscode配置">仓颉语言+vscode配置</a><time datetime="2025-01-21T10:33:21.000Z" title="创建 2025-01-21 18:33:21">2025-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/16/p7cpu.html" title="P7-verilog五层流水线CPU（全指令）"><img src="/img/cover/p7cpu/p7cpu.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="P7-verilog五层流水线CPU（全指令）"/></a><div class="content"><a class="title" href="/2024/12/16/p7cpu.html" title="P7-verilog五层流水线CPU（全指令）">P7-verilog五层流水线CPU（全指令）</a><time datetime="2024-12-16T13:21:31.000Z" title="创建 2024-12-16 21:21:31">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/p6cpu.html" title="P6-verilog五层流水线CPU（全指令）"><img src="/img/cover/p6cpu/p6cpu.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="P6-verilog五层流水线CPU（全指令）"/></a><div class="content"><a class="title" href="/2024/12/02/p6cpu.html" title="P6-verilog五层流水线CPU（全指令）">P6-verilog五层流水线CPU（全指令）</a><time datetime="2024-12-02T14:17:49.000Z" title="创建 2024-12-02 22:17:49">2024-12-02</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wrongization</div><div class="footer_custom_text"><span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> <a target="_blank"href="https://v6.51.la/land/3L1PzYyEGNZiFQyL"><img src="https://sdk.51.la/icon/1-1.png" title="本站采用51.LA统计"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="打开/关闭夜间模式"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"3L1PzYyEGNZiFQyL",ck:"3L1PzYyEGNZiFQyL"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> new LingQue.Monitor().init({id:"3L1Q2CzO5ktWU3Sd"});</script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><linkrel="stylesheet"href="http://aciano.top/redirect/?target=https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
