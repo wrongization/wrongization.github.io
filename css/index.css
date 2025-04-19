@@ -1439,7 +1439,7 @@ canvas:not(#ribbon-canvas),
   --font-color: #4c4948;
   --hr-border: #be8eea;
   --hr-before-color: #a461e2;
-  --search-bg: #f6f8fa;
+  --search-bg: rgba(255,255,255,0.8);
   --search-input-color: #4c4948;
   --search-a-color: #4c4948;
   --preloader-bg: #7d26cd;
@@ -1451,7 +1451,7 @@ canvas:not(#ribbon-canvas),
   --tab-button-active-bg: #fff;
   --card-bg: #fff;
   --sidebar-bg: #f6f8fa;
-  --btn-hover-color: #ff7242;
+  --btn-hover-color: #ba4ee9;
   --btn-color: #fff;
   --btn-bg: #7d26cd;
   --text-bg-hover: rgba(125,38,205,0.7);
@@ -1459,13 +1459,13 @@ canvas:not(#ribbon-canvas),
   --dark-grey: #cacaca;
   --white: #fff;
   --text-highlight-color: #1f2d3d;
-  --blockquote-color: #6a737d;
+  --blockquote-color: #596470;
   --blockquote-bg: rgba(125,38,205,0.1);
   --reward-pop: #f5f5f5;
   --toc-link-color: #666261;
   --card-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.05);
   --card-hover-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.09);
-  --pseudo-hover: #ff7242;
+  --pseudo-hover: #ba4ee9;
   --headline-presudo: #a0a0a0;
   --scrollbar-color: #7d26cd;
   --default-bg-color: #7d26cd;
@@ -1546,7 +1546,7 @@ table {
   empty-cells: show;
 }
 table thead {
-  background: rgba(153,169,191,0.1);
+  background: rgba(125,38,205,0.1);
 }
 table th,
 table td {
@@ -1567,7 +1567,7 @@ button {
   touch-action: manipulation;
 }
 a {
-  color: #99a9bf;
+  color: #2b84d7;
   text-decoration: none;
   word-wrap: break-word;
   -webkit-transition: all 0.2s;
@@ -5079,7 +5079,7 @@ h1.page-title + .tag-cloud-list {
 #waline-wrap {
   --waline-font-size: 1.1em;
   --waline-theme-color: #7d26cd;
-  --waline-active-color: #ff7242;
+  --waline-active-color: #ba4ee9;
 }
 #waline-wrap .wl-comment-actions > button:not(last-child) {
   padding-right: 4px;
