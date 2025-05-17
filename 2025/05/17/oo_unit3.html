@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA-OO-unit3 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OO Unit3 Summary 架构设计梳理： HW9: 重点架构设计： 第一次作业整体上难度不大，但是需要对jml的实现细节考虑周全，对于一些开销较大的方法需要动态维护以降低时间复杂度，容器尽量使用HashMap等速度较快的。以下列出一些重点方法的实现。 iscircle: 采用朴素bfs加一个visited的map实现去重访问。 queryTripleSum	: 采用动态维护，对于添加关系和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA-OO-unit3">
+<meta property="og:url" content="https://wrongization.site/2025/05/17/oo_unit3.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="OO Unit3 Summary 架构设计梳理： HW9: 重点架构设计： 第一次作业整体上难度不大，但是需要对jml的实现细节考虑周全，对于一些开销较大的方法需要动态维护以降低时间复杂度，容器尽量使用HashMap等速度较快的。以下列出一些重点方法的实现。 iscircle: 采用朴素bfs加一个visited的map实现去重访问。 queryTripleSum	: 采用动态维护，对于添加关系和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wrongization.site/img/cover/oo_unit3/oo_unit3.webp">
+<meta property="article:published_time" content="2025-05-17T11:37:18.000Z">
+<meta property="article:modified_time" content="2025-05-17T11:38:34.721Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="oo">
+<meta property="article:tag" content="unit3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wrongization.site/img/cover/oo_unit3/oo_unit3.webp"><link rel="shortcut icon" href="/img/logo.webp"><link rel="canonical" href="https://wrongization.site/2025/05/17/oo_unit3.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family= broadway|华文中宋|Titillium Web|PingFang SC|Hiragino Sans GB|Microsoft JhengHei|Microsoft YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: wrongization","info":"复制和转载请标明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA-OO-unit3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2025-05-17 19:38:34'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cover/oo_unit3/oo_unit3.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BUAA-OO-unit3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2025-05-17T11:37:18.000Z" title="创建 2025-05-17 19:37:18">2025-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-05-17T11:38:34.721Z" title="更新 2025-05-17 19:38:34">2025-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-oo/">buaa-oo</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-oo/unit3/">unit3</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>8分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-series"><h3>oo-系列：</h3><li><a class="title" href="/2025/05/17/oo_unit3.html" title="BUAA-OO-unit3">BUAA-OO-unit3</a></li><li><a class="title" href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2">BUAA-OO-unit2</a></li><li><a class="title" href="/2025/03/18/oo_unit1.html" title="BUAA-OO-unit1">BUAA-OO-unit1</a></li></div><article class="post-content" id="article-container"><h1>OO Unit3 Summary</h1>
+<h2 id="架构设计梳理：">架构设计梳理：</h2>
+<h3 id="HW9">HW9:</h3>
+<h4 id="重点架构设计：">重点架构设计：</h4>
+<p>第一次作业整体上难度不大，但是需要对jml的实现细节考虑周全，对于一些开销较大的方法需要动态维护以降低时间复杂度，容器尽量使用<code>HashMap</code>等速度较快的。以下列出一些重点方法的实现。</p>
+<p><code>iscircle</code>:</p>
+<p>采用朴素<code>bfs</code>加一个<code>visited</code>的<code>map</code>实现去重访问。</p>
+<p><code>queryTripleSum	</code>:</p>
+<p>采用动态维护，对于添加关系和删除关系，相当于增加或者删除了两人的公共好友数量的三元环。</p>
+<p><code>queryBestAcquaintance:</code></p>
+<p>加入时动态维护最大值，删除时如果删除了最大值重新遍历得到最大值。</p>
+<p><code>getAgeavg/var</code></p>
+<p>方差和平均数动态维护,注意方差的书写需要考虑整除带来的影响</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (agesquaresum - <span class="number">2</span> * agesum * mean + n * mean * mean) / n;</span><br></pre></td></tr></table></figure>
+<h4 id="bug分析和遇到的问题：">bug分析和遇到的问题：</h4>
+<p>第一次测试和舍友对拍了许多测试点，公测功能没出现问题，性能卡了一个点，原因是<code>queryTripleSum</code>一开始采用一种将无向图根据度数转换为有向图的方法，复杂度为O($n\sqrt{n}$)，且在稠密图会退化为O($n^2$)。</p>
+<h4 id="互测：">互测：</h4>
+<p>互测重点从100人的完全图入手，大量询问<code>queryTripleSum</code>卡性能。对于功能测试使用测评机大量测试。</p>
+<h3 id="HW10">HW10:</h3>
+<h4 id="重点架构设计：-v2">重点架构设计：</h4>
+<p><code>query_shortest_path</code>：</p>
+<p>采用朴素<code>bfs</code>加一个<code>visited</code>的<code>map</code>实现去重访问。</p>
+<p><code>query_best_contributor</code>：</p>
+<p>动态维护,同<code>queryBestAcquaintance</code></p>
+<p><code>received_articles</code>：<br>
+<code>arraylist</code>顺序存，倒叙输出，实现按照时间顺序输出。</p>
+<p><code>query_tag_value_sum</code>：</p>
+<p>对每个<code>person</code>在不同<code>tag</code>中的，情况缓存为一个<code>map</code>，索引为其<code>ownerid</code> 和 <code>tagid</code>的字符串拼接的<code>hash</code>，防止不同人中的相同<code>tagid</code>，键值为<code>bool</code>。在循环遍历相加时，使用缓存减少计算复杂度，在加入删除时置为<code>true</code>，计算过一次最新值后置为<code>false</code>，当修改两个人之间的关系（增加删除修改），将两人的<code>map</code>里所有元素（实际上共存tag，为了简化逻辑直接饱和覆盖）都置为<code>true</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getValueSum</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (persons.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">valuesum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        HashSet&lt;Integer&gt; personIds = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;(persons.keySet());</span><br><span class="line">        <span class="keyword">for</span> (Person p : persons.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!p.getfortagischange(ownerid,id)) &#123;</span><br><span class="line">                valuesum += valuesummap.get(p);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">singlevaluesum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (HashMap.Entry&lt;Integer, Integer&gt; entry : p.getValues().entrySet()) &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">otherId</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">                    <span class="keyword">if</span> (personIds.contains(otherId)) &#123;</span><br><span class="line">                        singlevaluesum += entry.getValue();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                valuesum += singlevaluesum;</span><br><span class="line">                valuesummap.put(p,singlevaluesum);</span><br><span class="line">                p.tagchange(ownerid,id,<span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> valuesum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="bug分析和遇到的问题：-v2">bug分析和遇到的问题：</h4>
+<p>第二次作业公测挂了两个点，原因是<code>modifyRelation</code>方法对于<code>value</code>减小到小于等于0之后删除关系时没有更新<code>map</code>，因而导致错误，增加两行后修复。</p>
+<h4 id="互测：-v2">互测：</h4>
+<p>互测重点从100人的完全图入手，大量询问<code>query_tag_value_sum</code>卡性能。对于功能测试使用测评机大量测试。</p>
+<h3 id="HW11">HW11:</h3>
+<h4 id="重点架构设计：-v3">重点架构设计：</h4>
+<p><code>queryReceivedMessages</code>：<br>
+<code>arraylist</code>顺序存，倒叙输出，实现按照时间顺序输出。</p>
+<p><code>deleteColdEmoji</code>：<br>
+采用堆维护<code>EmojiHeatList</code>，删除时间减少很多</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> PriorityQueue&lt;Integer&gt; emojiHeap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(</span><br><span class="line">        Comparator.comparingInt(emojiHeatList::get));</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">while</span> (!emojiHeap.isEmpty() &amp;&amp; emojiHeatList.get(emojiHeap.peek()) &lt; limit) &#123;</span><br><span class="line">            emojiHeatList.remove(emojiHeap.poll());</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>注意红包均分时除数为零的情况和整除的正确计算方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (message <span class="keyword">instanceof</span> RedEnvelopeMessageInterface) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tag.getSize() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">RedEnvelopeMessageInterface</span> <span class="variable">redEnvelopeMessage</span> <span class="operator">=</span></span><br><span class="line">            (RedEnvelopeMessageInterface) message;</span><br><span class="line">        <span class="type">int</span> <span class="variable">money</span> <span class="operator">=</span> redEnvelopeMessage.getMoney() / tag.getSize();</span><br><span class="line">        person1.addMoney(-money * tag.getpersons().size());</span><br><span class="line">        <span class="keyword">for</span> (Person p : tag.getpersons().values()) &#123;</span><br><span class="line">            p.addMoney(money); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>queryReceivedArticles</code>:</p>
+<p>通过构造大量同一账号下的用户和文章，删除文章可能导致<code>CTLE</code>但是第二次作业并没有出现这样的强测点，同时发现由于转发消息的存在可能出现重复文章。</p>
+<p>给出一种解决方案：</p>
+<p>使用时间戳记录每个文章，封装一个含有<code>id</code>和<code>time</code>的<code>article</code>类，利用关于时间戳的双向链表维护文章顺序，<code>removearticle</code>更新有效时间戳，尝试获取文章时顺带删除已经移除的<code>id</code>，时间是无效的文章，类似于延迟删除。同一组测试样例时间从50s降至3s。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title function_">getReceivedArticles</span><span class="params">()</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Article&gt; del = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (!articleHeap.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Article a : <span class="built_in">this</span>.articleHeap) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">aid</span> <span class="operator">=</span> a.getId();</span><br><span class="line">                <span class="keyword">if</span> (articles.contains(aid) &amp;&amp;</span><br><span class="line">                    (a.getTime() &gt;= articletime.getOrDefault(aid,<span class="number">0</span>))) &#123;</span><br><span class="line">                    result.add(aid);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    del.add(a);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Article a : del) &#123;</span><br><span class="line">            articleHeap.remove(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title function_">queryReceivedArticles</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Article&gt; del = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (!articleHeap.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Article a : <span class="built_in">this</span>.articleHeap) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">aid</span> <span class="operator">=</span> a.getId();</span><br><span class="line">                <span class="keyword">if</span> (articles.contains(aid) &amp;&amp;</span><br><span class="line">                    (a.getTime() &gt;= articletime.getOrDefault(aid,<span class="number">0</span>))) &#123;</span><br><span class="line">                    result.add(aid);</span><br><span class="line">                    x++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    del.add(a);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (x == <span class="number">5</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Article a : del) &#123;</span><br><span class="line">            articleHeap.remove(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteReceivedArticle</span><span class="params">(<span class="type">int</span> articleId)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.articles.remove(articleId);</span><br><span class="line">        <span class="built_in">this</span>.articletime.put(articleId, time);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">receiveArticle</span><span class="params">(<span class="type">int</span> articleId)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.articles.add(articleId);</span><br><span class="line">        <span class="built_in">this</span>.articleHeap.addFirst(<span class="keyword">new</span> <span class="title class_">Article</span>(articleId, time));</span><br><span class="line">        <span class="built_in">this</span>.articletime.putIfAbsent(articleId, time);</span><br><span class="line">        time++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="bug分析和遇到的问题：-v3">bug分析和遇到的问题：</h4>
+<p>在强测中没有遇到bug，互测也成功满分。</p>
+<h4 id="互测：-v3">互测：</h4>
+<p>互测主要测试message相关的操作</p>
+<h2 id="测试">测试</h2>
+<p>对于测试，常见的测试有如下方面：</p>
+<h3 id="1-单元测试（Unit-Testing）">1. <strong>单元测试（Unit Testing）</strong></h3>
+<ul>
+<li><strong>核心目标</strong>：验证代码中最小的可测试单元（如函数、类、方法）是否按预期工作。对应到这单元就是JUNIT测试。</li>
+</ul>
+<hr>
+<h3 id="2-功能测试（Functional-Testing）">2. <strong>功能测试（Functional Testing）</strong></h3>
+<ul>
+<li><strong>核心目标</strong>：验证系统的功能是否符合需求规格（从用户视角测试完整流程）。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>黑盒测试：不关注内部实现，只关注是否实现了jml的功能实现。</li>
+<li>覆盖所有可能场景，尽可能涵盖jml规定的异常情况，观察功能实现是否正确。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-集成测试（Integration-Testing）">3. <strong>集成测试（Integration Testing）</strong></h3>
+<ul>
+<li><strong>核心目标</strong>：验证多个模块或服务协同工作时的交互是否正确，可设计不同方法之间的交互数据。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>逐步集成：可能采用自顶向下或自底向上的策略。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-压力测试（Stress-Testing）">4. <strong>压力测试（Stress Testing）</strong></h3>
+<ul>
+<li><strong>核心目标</strong>：评估系统在极端负载下的表现（大数据量、边界条件），发现性能瓶颈。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>关注指标：响应时间、吞吐量、资源占用率（CPU/内存）、错误率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="5-回归测试（Regression-Testing）">5. <strong>回归测试（Regression Testing）</strong></h3>
+<ul>
+<li><strong>核心目标</strong>：确保代码修改（如修复 Bug、新增功能）不会破坏现有功能，可在每个新作业实现后测试前一单元功能是否仍然正确实现。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>重复执行：针对已有功能的测试用例重新运行。</li>
+<li>自动化优先：依赖自动化测试快速覆盖。</li>
+</ul>
+</li>
+</ul>
+<h2 id="JUNIT">JUNIT:</h2>
+<p>规格的格式在某种意义上指明了测试的思路，规格的层次和不同分支可以看作测试时需要测试的不同情况，构造JUNIT测试时可以层层递进，依据jml的层次设计具体的测试，同时针对可能性较多的测试，采用参数化测试是一个不错的方法，能够更好地覆盖所有情况。对于异常的处理，依据jml书写不同情况的异常判断异常是否都被正确处理是十分必要的。</p>
+<h2 id="规格和实现：">规格和实现：</h2>
+<p>jml规格只是规定了你应该实现的功能，对于具体的实现一般不作限制，因此在保证功能不改变的情况下，可以使用不同的数据结构实现效率的提升或者功能的优化，同时也要注意实现过程中是否无意识改变了功能或者不变式约束，以防造成错误。</p>
+<h2 id="大模型：">大模型：</h2>
+<p>关于大模型使用，如果直接使用其生成所有代码，可能导致功能实现缺失、性能过于低效等问题，应当使用其填充结构，或者生成结构以达到生成清晰代码逻辑的作用；对于冗杂的jml，也可以使用大模型帮助梳理jml层次结构，帮助我们书写具体实现；对于JUNIT测试，大模型可根据jml的要求生成全面的简单测试样例，对于基础功能实现的测试十分方便；同时对于性能问题可以询问大模型有无更好的实现逻辑或者数据结构，帮助我们优化代码速度。</p>
+<h2 id="学习体会：">学习体会：</h2>
+<p>通过本单元的学习，我对规格化设计有了一个基本的认识，体会到了依据规格设计代码带来的便利和周密，同时为了检测实现的正确性，这单元我进行了大量的测试，这也帮助我对代码的测试有了更加深刻的认识，同时为了优化效率，我学习了几个新的数据结构和思想，对我编程能力的提升也有帮助。最后在本单元使用了大模型作为辅助，使我对大模型在未来学习工作中应当如何使用有了更加清晰的认识。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.site">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>链接: </span><span class="post-copyright-info"><a href="https://wrongization.site/2025/05/17/oo_unit3.html">https://wrongization.site/2025/05/17/oo_unit3.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用 <a href=“https://creativecommons.org/licenses/by-nc-sa/4.0/”>CC BY-NC-SA 4.0 许可</a>。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/oo/">oo</a><a class="post-meta__tags" href="/tags/unit3/">unit3</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/oo_unit3/oo_unit3.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4"><img class="cover" src="/img/cover/oslab4/oslab4.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">BUAA-OS-LAB4</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关文章</span></div><div class="relatedPosts-list"><div><a href="/2025/03/18/oo_unit1.html" title="BUAA-OO-unit1"><img class="cover" src="/img/cover/oo_unit1/oo_unit1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-18</div><div class="title">BUAA-OO-unit1</div></div></a></div><div><a href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2"><img class="cover" src="/img/cover/oo_unit2/oo_unit2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-15</div><div class="title">BUAA-OO-unit2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/logo.webp" onerror="this.onerror=null;this.src='/img/gif404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">BUAAer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">About界面更新了，记得看看呦！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">OO Unit3 Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A2%B3%E7%90%86%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">架构设计梳理：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HW9"><span class="toc-number">1.1.1.</span> <span class="toc-text">HW9:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">重点架构设计：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%E5%92%8C%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">bug分析和遇到的问题：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%B5%8B%EF%BC%9A"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">互测：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HW10"><span class="toc-number">1.1.2.</span> <span class="toc-text">HW10:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%9A-v2"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">重点架构设计：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%E5%92%8C%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A-v2"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">bug分析和遇到的问题：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%B5%8B%EF%BC%9A-v2"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">互测：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HW11"><span class="toc-number">1.1.3.</span> <span class="toc-text">HW11:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%9A-v3"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">重点架构设计：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bug%E5%88%86%E6%9E%90%E5%92%8C%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A-v3"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">bug分析和遇到的问题：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%B5%8B%EF%BC%9A-v3"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">互测：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%EF%BC%88Unit-Testing%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 单元测试（Unit Testing）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95%EF%BC%88Functional-Testing%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 功能测试（Functional Testing）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%EF%BC%88Integration-Testing%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 集成测试（Integration Testing）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%EF%BC%88Stress-Testing%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 压力测试（Stress Testing）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95%EF%BC%88Regression-Testing%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. 回归测试（Regression Testing）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUNIT"><span class="toc-number">1.3.</span> <span class="toc-text">JUNIT:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%92%8C%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">规格和实现：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">大模型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E4%BD%93%E4%BC%9A%EF%BC%9A"><span class="toc-number">1.6.</span> <span class="toc-text">学习体会：</span></a></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/17/oo_unit3.html" title="BUAA-OO-unit3"><img src="/img/cover/oo_unit3/oo_unit3.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit3"></a><div class="content"><a class="title" href="/2025/05/17/oo_unit3.html" title="BUAA-OO-unit3">BUAA-OO-unit3</a><time datetime="2025-05-17T11:37:18.000Z" title="创建 2025-05-17 19:37:18">2025-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2"><img src="/img/cover/oo_unit2/oo_unit2.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit2"></a><div class="content"><a class="title" href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2">BUAA-OO-unit2</a><time datetime="2025-04-15T13:14:12.000Z" title="创建 2025-04-15 21:14:12">2025-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/oo_unit1.html" title="BUAA-OO-unit1"><img src="/img/cover/oo_unit1/oo_unit1.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit1"></a><div class="content"><a class="title" href="/2025/03/18/oo_unit1.html" title="BUAA-OO-unit1">BUAA-OO-unit1</a><time datetime="2025-03-18T09:59:12.000Z" title="创建 2025-03-18 17:59:12">2025-03-18</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/17/oo_unit3.html" title="BUAA-OO-unit3"><img src="/img/cover/oo_unit3/oo_unit3.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit3"/></a><div class="content"><a class="title" href="/2025/05/17/oo_unit3.html" title="BUAA-OO-unit3">BUAA-OO-unit3</a><time datetime="2025-05-17T11:37:18.000Z" title="创建 2025-05-17 19:37:18">2025-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4"><img src="/img/cover/oslab4/oslab4.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB4"/></a><div class="content"><a class="title" href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4">BUAA-OS-LAB4</a><time datetime="2025-05-07T12:35:18.000Z" title="创建 2025-05-07 20:35:18">2025-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2"><img src="/img/cover/oo_unit2/oo_unit2.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit2"/></a><div class="content"><a class="title" href="/2025/04/15/oo_unit2.html" title="BUAA-OO-unit2">BUAA-OO-unit2</a><time datetime="2025-04-15T13:14:12.000Z" title="创建 2025-04-15 21:14:12">2025-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3"><img src="/img/cover/oslab3/oslab3.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB3"/></a><div class="content"><a class="title" href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3">BUAA-OS-LAB3</a><time datetime="2025-04-10T07:19:46.000Z" title="创建 2025-04-10 15:19:46">2025-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/29/oslab2.html" title="BUAA-OS-LAB2"><img src="/img/cover/oslab2/oslab2.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB2"/></a><div class="content"><a class="title" href="/2025/03/29/oslab2.html" title="BUAA-OS-LAB2">BUAA-OS-LAB2</a><time datetime="2025-03-29T09:46:54.000Z" title="创建 2025-03-29 17:46:54">2025-03-29</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wrongization</div><div class="footer_custom_text"><span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> <a target="_blank"href="https://v6.51.la/land/3L1PzYyEGNZiFQyL"><img src="https://sdk.51.la/icon/1-1.png" title="本站采用51.LA统计"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="打开/关闭夜间模式"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/node-snackbar/0.1.16/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"3L1PzYyEGNZiFQyL",ck:"3L1PzYyEGNZiFQyL"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> new LingQue.Monitor().init({id:"3L1Q2CzO5ktWU3Sd"});</script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><linkrel="stylesheet"href="http://aciano.top/redirect/?target=https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
