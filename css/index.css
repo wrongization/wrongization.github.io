@@ -7471,7 +7471,7 @@ blockquote.pullquote.right {
   }
   [data-theme="dark"] .author-content-item.maxim {
     background: url(../../../img/fumo_night.webp);
-    background-size: 100%;
+    background-size: cover;
   } 
   .author-content-item.maxim {
     width: 39%;
@@ -7501,12 +7501,12 @@ blockquote.pullquote.right {
 
 
   [data-theme="dark"] .author-content-item.drawing-content {
-    background: url(../../../img/2024.webp);
+    background: url(../../../img/dayetan.webp);
     background-size: 100%;
   } 
   .author-content-item.drawing-content {
     width: 59%;
-    background: url(../../../img/daoyetan.webp) no-repeat top;
+    background: url(../../../img/2024.webp) no-repeat top;
     background-size: cover;
     height: 40vh;
     overflow: hidden;
