@@ -6,10 +6,3 @@
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
-  font-family: 'broadway';
-  src: url('/font/broadway.ttf') format('truetype');
-  font-display: swap;
-  font-weight: normal;
-  font-style: normal;
-}
