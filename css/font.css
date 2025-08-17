@@ -1,7 +1,7 @@
 /*maple字体*/
 @font-face {
   font-family: 'maple';
-  src: url('/font/maple.woff2') format('woff2');
+  src: url('/font/maple.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
