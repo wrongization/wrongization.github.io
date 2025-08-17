@@ -153,9 +153,80 @@
         }
       }
       detectApple()
-    })(window)</script><link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css' /><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div></div></div><script>(()=>{
+    })(window)</script><link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css' /><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div><!-- 新的精美加载条--><div class="progress-bar"><div class="progress-track"><div class="progress-fill"></div><div class="progress-glow"></div></div><div class="progress-text">正在向夜晚奔去...</div></div></div></div><script>(() => {
   const $loadingBox = document.getElementById('loading-box')
   const $body = document.body
+  const $progressBar = $loadingBox.querySelector('.progress-bar')
+  const $progressFill = $loadingBox.querySelector('.progress-fill')
+  const $progressText = $loadingBox.querySelector('.progress-text')
+  let determinateActivated = false
+
+  function setProgress(p) {
+    const pct = Math.min(100, Math.max(0, p))
+    if (!determinateActivated) {
+      determinateActivated = true
+      $progressBar.classList.add('determinate')
+      $progressFill.style.animation = '' // stop indeterminate slide
+    }
+    $progressBar.style.setProperty('--progress-pct', pct + '%')
+    $progressFill.style.width = pct + '%'
+    if ($progressText) $progressText.setAttribute('data-percent', pct.toFixed(0) + '%')
+  }
+
+  function calcAssets() {
+    // 收集需要跟踪的资源：逐个图片 + 字体(整体一次) + window load 作为最终保险
+    const imgs = Array.from(document.images || [])
+    const trackers = []
+    // 图片单独计数
+    imgs.forEach(img => {
+      trackers.push(new Promise(res => {
+        if (img.complete && img.naturalWidth) return res()
+        img.addEventListener('load', res, { once: true })
+        img.addEventListener('error', res, { once: true })
+      }))
+    })
+    // 字体
+    if (document.fonts && document.fonts.ready) {
+      trackers.push(document.fonts.ready.catch(() => {}))
+    }
+    // window load 事件（确保所有资源完成，包括可能的脚本/样式懒加载）
+    trackers.push(new Promise(res => {
+      if (document.readyState === 'complete') return res()
+      window.addEventListener('load', () => res(), { once: true })
+    }))
+
+    let finished = 0
+    const total = trackers.length || 1
+    const per = () => {
+      finished++
+      const pct = finished / total * 100
+      setProgress(pct)
+      if (finished >= total) {
+        setTimeout(() => preloader.endLoading(), 380)
+      }
+    }
+    trackers.forEach(p => p.then(per))
+
+    // 动态提前：如果图片较多，加载中途平滑增长（可选）
+    if (imgs.length > 8) {
+      let lastShown = 0
+      const interval = setInterval(() => {
+        if (finished >= total) return clearInterval(interval)
+        // 通过 PerformanceObserver 估算（简化：线性缓动）
+        const est = Math.min(90, lastShown + Math.random() * 4 + 1)
+        if (est > lastShown) {
+          setProgress(est)
+          lastShown = est
+        }
+      }, 450)
+      setTimeout(() => clearInterval(interval), 6000)
+    }
+
+    // 超时兜底：保证不会卡死
+    setTimeout(() => { if (!$loadingBox.classList.contains('loaded')) setProgress(100) }, 9000)
+    setTimeout(() => { if (!$loadingBox.classList.contains('loaded')) preloader.endLoading() }, 9600)
+  }
+
   const preloader = {
     endLoading: () => {
       $body.style.overflow = ''
@@ -167,13 +238,28 @@
     }
   }
 
-  preloader.initLoading()
-  window.addEventListener('load',() => { preloader.endLoading() })
-
-  if (false) {
-    document.addEventListener('pjax:send', () => { preloader.initLoading() })
-    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  function start() {
+    preloader.initLoading()
+    determinateActivated = false
+    setProgress(0)
+    requestAnimationFrame(calcAssets)
   }
+
+  start()
+
+  // 可选 PJAX 支持：若站点启用 pjax，重新触发加载条
+  // 适配常见 pjax / instant.page / swup 事件，可按需精简
+  const pjaxEvents = ['pjax:send','pjax:complete','swup:animationInStart','swup:contentReplaced']
+  pjaxEvents.forEach(ev => {
+    document.addEventListener(ev, e => {
+      if (ev.includes('send') || ev.includes('animationIn')) {
+        start()
+      } else if (ev.includes('complete') || ev.includes('contentReplaced')) {
+        // 重新统计新页面资源
+        requestAnimationFrame(calcAssets)
+      }
+    })
+  })
 })()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">26</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cover/vscode/vscode.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vscode配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2024-08-25T13:42:34.000Z" title="创建 2024-08-25 21:42:34">2024-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-03-10T13:06:23.411Z" title="更新 2025-03-10 21:06:23">2025-03-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">软件配置</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/vscode/">vscode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>6分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>1.vscode简介</h1>
 <p>VSCode是微软出的一款轻量级编辑器，它本身只是一款文本编辑器而已，并不是一个集成开发环境(IDE)，几乎所有功能都是以插件扩展的形式所存在的。因此，我们想用它编程，不只是把vscode下载下来就行，还需要安装对应编程语言的扩展以及相应的编译器。</p>
 <h1>2.安装vscode</h1>
