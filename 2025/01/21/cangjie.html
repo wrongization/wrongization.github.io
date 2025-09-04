@@ -179,6 +179,11 @@ let tickerStart = 0
       $progressFill.style.animation = '' // stop indeterminate slide
     }
 $progressBar.style.setProperty('--progress-pct', next + '%')
+// 直接设置内联样式，确保视觉宽度与百分比一致（即使 CSS 尚未更新）
+$progressFill.style.width = next + '%'
+// 关闭动画与位移，避免出现仅一小段在滑动的视觉错觉
+$progressFill.style.animation = 'none'
+$progressFill.style.transform = 'none'
     if ($progressText) $progressText.setAttribute('data-percent', next.toFixed(0) + '%')
     currentPct = next
   }
