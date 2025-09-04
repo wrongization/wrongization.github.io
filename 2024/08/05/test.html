@@ -164,6 +164,11 @@
   const $progressText = $loadingBox.querySelector('.progress-text')
   let determinateActivated = false
 let currentPct = 0
+// 统一节拍：让进度条均匀增长（不超过 MAX_TICK_PCT），真实完成时再跳到 100%
+const MAX_TICK_PCT = 96 // 均匀增长的上限，避免未完成时到 100
+const TICK_DURATION = 5000 // 从 0 均匀增长到 MAX_TICK_PCT 的目标时长(ms)
+let tickerRAF = 0
+let tickerStart = 0
 
   function setProgress(p) {
     const pct = Math.min(100, Math.max(0, p))
@@ -179,6 +184,26 @@ let currentPct = 0
     currentPct = next
   }
 
+  function stopTicker() {
+    if (tickerRAF) {
+      cancelAnimationFrame(tickerRAF)
+      tickerRAF = 0
+    }
+  }
+
+  function startTicker() {
+    stopTicker()
+    tickerStart = performance.now()
+    const tick = (now) => {
+      if ($loadingBox.classList.contains('loaded')) return // 已结束不再推进
+      const elapsed = now - tickerStart
+      const target = Math.min(MAX_TICK_PCT, (elapsed / TICK_DURATION) * MAX_TICK_PCT)
+      setProgress(target)
+      tickerRAF = requestAnimationFrame(tick)
+    }
+    tickerRAF = requestAnimationFrame(tick)
+  }
+
   // 小工具：为 Promise 加超时上限，避免个别资源阻塞
   function withTimeout(promise, ms) {
     let timer
@@ -189,7 +214,7 @@ let currentPct = 0
     ])
   }
 
-  function calcAssets() {
+function calcAssets() {
     // 只跟踪“首屏/非懒加载”的关键图片 + 字体(限时) + DOM 就绪 + (load 限时)
     const allImgs = Array.from(document.images || [])
     const vh = window.innerHeight || 800
@@ -247,32 +272,31 @@ let currentPct = 0
       const pct = (finished / total) * 100
       setProgress(pct)
       if (finished >= total) {
-        setTimeout(() => preloader.endLoading(), 280)
+        // 真实完成：立刻到 100，并结束动画
+        stopTicker()
+        setProgress(100)
+        setTimeout(() => preloader.endLoading(), 180)
       }
     }
     trackers.forEach(p => p.then(onOneDone))
 
-    // 平滑推进：若图片较多，使用温和补偿，最多推进到 92%
-    if (allImgs.length > 8) {
-      let lastShown = 0
-      const interval = setInterval(() => {
-        if (finished >= total) return clearInterval(interval)
-        const target = Math.min(92, lastShown + 2.5 + Math.random() * 2.5)
-        if (target > lastShown) {
-          setProgress(target)
-          lastShown = target
-        }
-      }, 420)
-      setTimeout(() => clearInterval(interval), 6000)
-    }
-
     // 兜底：强制结束，避免极端情况下长时间遮挡
-    setTimeout(() => { if (!$loadingBox.classList.contains('loaded')) setProgress(100) }, 7000)
-    setTimeout(() => { if (!$loadingBox.classList.contains('loaded')) preloader.endLoading() }, 7600)
+    setTimeout(() => {
+      if (!$loadingBox.classList.contains('loaded')) {
+        stopTicker()
+        setProgress(100)
+      }
+    }, 7000)
+    setTimeout(() => {
+      if (!$loadingBox.classList.contains('loaded')) {
+        preloader.endLoading()
+      }
+    }, 7600)
   }
 
   const preloader = {
     endLoading: () => {
+stopTicker()
       $body.style.overflow = ''
       $loadingBox.classList.add('loaded')
     },
@@ -287,6 +311,7 @@ let currentPct = 0
     determinateActivated = false
 currentPct = 0
     setProgress(0)
+startTicker()
     requestAnimationFrame(calcAssets)
   }
 
@@ -344,7 +369,7 @@ currentPct = 0
 <p>这是一个链接 <a target="_blank" rel="noopener" href="https://.lowiro.com/"><font color=#7D24CD size=4><strong>**</strong></font></a><br>图片<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/logo.webp" class="" title="alt text"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/logo2.webp" class="" title="alt"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/arc.webp" class="" title="arc"><br>链接<del>616.sb</del>  <a target="_blank" rel="noopener" href="https://.lowiro.com/">https://.lowiro.com/</a>  </p>
 <p>图片链接： \<br><a target="_blank" rel="noopener" href="https://.lowiro.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/66af8204d9c307b7e9d4daa7.jpg" alt="alt text"></a>   </p>
 <script type="math/tex; mode=display">x+y/2</script>
-    <div id="aplayer-aPzBAKpz" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-BZDkxhSX" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="243454282" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="1000px" data-preload="auto" data-theme="#555"
     ></div>
 <div class="table-container">
