@@ -267,8 +267,7 @@ function calcAssets() {
     const total = trackers.length || 1
     const onOneDone = () => {
       finished++
-      const pct = (finished / total) * 100
-      setProgress(pct)
+// 在完成前不基于完成数量推进，保持由节拍器均匀增长
       if (finished >= total) {
         // 真实完成：立刻到 100，并结束动画
         stopTicker()
