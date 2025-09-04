@@ -283,10 +283,10 @@ function calcAssets() {
       if (finished >= total) {
         // 完成：先瞬到上限（如未到），短暂停留后再到 100 并打开
         stopTicker()
-        const needPadToCap = currentPct < MAX_TICK_PCT
-        if (needPadToCap) setProgress(MAX_TICK_PCT)
-        const finish = () => { setProgress(100); preloader.endLoading() }
-        if (needPadToCap) setTimeout(finish, 120)
+        const needPadToCap = currentPct < 100
+        if (needPadToCap) setProgress(100)
+        const finish = () => { preloader.endLoading() }
+        if (needPadToCap) setTimeout(finish, 100)
         else finish()
       }
     }
@@ -377,7 +377,7 @@ currentPct = 0
 <p>这是一个链接 <a target="_blank" rel="noopener" href="https://.lowiro.com/"><font color=#7D24CD size=4><strong>**</strong></font></a><br>图片<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/logo.webp" class="" title="alt text"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/logo2.webp" class="" title="alt"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/08/05/test/arc.webp" class="" title="arc"><br>链接<del>616.sb</del>  <a target="_blank" rel="noopener" href="https://.lowiro.com/">https://.lowiro.com/</a>  </p>
 <p>图片链接： \<br><a target="_blank" rel="noopener" href="https://.lowiro.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/66af8204d9c307b7e9d4daa7.jpg" alt="alt text"></a>   </p>
 <script type="math/tex; mode=display">x+y/2</script>
-    <div id="aplayer-tscucYSp" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-owZmiKtw" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="243454282" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="1000px" data-preload="auto" data-theme="#555"
     ></div>
 <div class="table-container">

@@ -281,10 +281,10 @@ function calcAssets() {
       if (finished >= total) {
         // 完成：先瞬到上限（如未到），短暂停留后再到 100 并打开
         stopTicker()
-        const needPadToCap = currentPct < MAX_TICK_PCT
-        if (needPadToCap) setProgress(MAX_TICK_PCT)
-        const finish = () => { setProgress(100); preloader.endLoading() }
-        if (needPadToCap) setTimeout(finish, 120)
+        const needPadToCap = currentPct < 100
+        if (needPadToCap) setProgress(100)
+        const finish = () => { preloader.endLoading() }
+        if (needPadToCap) setTimeout(finish, 100)
         else finish()
       }
     }
