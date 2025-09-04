@@ -165,7 +165,7 @@
 let determinateActivated = false
 let currentPct = 0
 // 进度模式：'proportional'（按资源完成比例推进）或 'ticker'（按时间匀速推进）
-const PROGRESS_MODE = 'proportional'
+const PROGRESS_MODE = 'ticker'
 // 统一节拍：让进度条均匀增长（不超过 MAX_TICK_PCT），真实完成时再跳到 100%
 const MAX_TICK_PCT = 96 // 均匀增长的上限，避免未完成时到 100
 const TICK_DURATION = 5000 // 从 0 均匀增长到 MAX_TICK_PCT 的目标时长(ms)
@@ -276,26 +276,22 @@ function calcAssets() {
         setProgress(pct)
       }
       if (finished >= total) {
-        // 真实完成：立刻到 100，并结束动画
+        // 真实完成：立刻到 100，并立即结束
         stopTicker()
         setProgress(100)
-        setTimeout(() => preloader.endLoading(), 180)
+        preloader.endLoading()
       }
     }
     trackers.forEach(p => p.then(onOneDone))
 
-    // 兜底：强制结束，避免极端情况下长时间遮挡
-setTimeout(() => {
+    // 兜底：强制结束，避免极端情况下长时间遮挡（到点即刻收起）
+    setTimeout(() => {
       if (!$loadingBox.classList.contains('loaded')) {
         stopTicker()
         setProgress(100)
-      }
-    }, 7000)
-    setTimeout(() => {
-      if (!$loadingBox.classList.contains('loaded')) {
         preloader.endLoading()
       }
-    }, 7600)
+    }, 7000)
   }
 
   const preloader = {
