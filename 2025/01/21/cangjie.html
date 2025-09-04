@@ -160,8 +160,10 @@
   const $progressBar = $loadingBox.querySelector('.progress-bar')
   const $progressFill = $loadingBox.querySelector('.progress-fill')
   const $progressText = $loadingBox.querySelector('.progress-text')
-  let determinateActivated = false
+let determinateActivated = false
 let currentPct = 0
+// 进度模式：'proportional'（按资源完成比例推进）或 'ticker'（按时间匀速推进）
+const PROGRESS_MODE = 'proportional'
 // 统一节拍：让进度条均匀增长（不超过 MAX_TICK_PCT），真实完成时再跳到 100%
 const MAX_TICK_PCT = 96 // 均匀增长的上限，避免未完成时到 100
 const TICK_DURATION = 5000 // 从 0 均匀增长到 MAX_TICK_PCT 的目标时长(ms)
@@ -188,7 +190,7 @@ $progressBar.style.setProperty('--progress-pct', next + '%')
     }
   }
 
-  function startTicker() {
+function startTicker() {
     stopTicker()
     tickerStart = performance.now()
     const tick = (now) => {
@@ -266,7 +268,11 @@ function calcAssets() {
     const total = trackers.length || 1
     const onOneDone = () => {
       finished++
-// 在完成前不基于完成数量推进，保持由节拍器均匀增长
+      if (PROGRESS_MODE === 'proportional') {
+        // 直接按比例更新，保持严格对应
+        const pct = (finished / total) * 100
+        setProgress(pct)
+      }
       if (finished >= total) {
         // 真实完成：立刻到 100，并结束动画
         stopTicker()
@@ -277,7 +283,7 @@ function calcAssets() {
     trackers.forEach(p => p.then(onOneDone))
 
     // 兜底：强制结束，避免极端情况下长时间遮挡
-    setTimeout(() => {
+setTimeout(() => {
       if (!$loadingBox.classList.contains('loaded')) {
         stopTicker()
         setProgress(100)
@@ -307,7 +313,7 @@ stopTicker()
     determinateActivated = false
 currentPct = 0
     setProgress(0)
-startTicker()
+    if (PROGRESS_MODE === 'ticker') startTicker()
     requestAnimationFrame(calcAssets)
   }
 

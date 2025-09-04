@@ -6216,22 +6216,22 @@ h1.page-title + .tag-cloud-list {
   animation: fade-wave 4s ease-in-out infinite;
 }
 #loading-box .spinner-box .progress-bar.determinate .progress-track .progress-fill {
-  -webkit-animation: gradient-flow 6s linear infinite;
-  -moz-animation: gradient-flow 6s linear infinite;
-  -o-animation: gradient-flow 6s linear infinite;
-  -ms-animation: gradient-flow 6s linear infinite;
-  animation: gradient-flow 6s linear infinite;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  -ms-animation: none;
+  animation: none;
   -webkit-transform: none !important;
   -moz-transform: none !important;
   -o-transform: none !important;
   -ms-transform: none !important;
   transform: none !important;
   width: var(--progress-pct, 0%);
-  -webkit-transition: width 0.12s linear;
-  -moz-transition: width 0.12s linear;
-  -o-transition: width 0.12s linear;
-  -ms-transition: width 0.12s linear;
-  transition: width 0.12s linear;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
 }
 #loading-box .spinner-box .progress-bar.determinate .progress-text {
   -webkit-animation: none;
