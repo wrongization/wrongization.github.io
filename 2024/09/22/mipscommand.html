@@ -1,0 +1,842 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA-CO-mips知识点 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CO初识mips知识点 寄存器地址：  伪指令  **.data：**用于预先存储数据的伪指令的开始标志。 **.text：**程序代码指令开始的标志。 **.word：**以字为单位存储数据。 **.asciiz：**以字节为单位存储字符串。 **.space：**申请若干个字节的未初始化的内存空间。  V0   的不同值 常用：    Service Code in $v0 Arguments">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA-CO-mips知识点">
+<meta property="og:url" content="https://wrongization.site/2024/09/22/mipscommand.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="CO初识mips知识点 寄存器地址：  伪指令  **.data：**用于预先存储数据的伪指令的开始标志。 **.text：**程序代码指令开始的标志。 **.word：**以字为单位存储数据。 **.asciiz：**以字节为单位存储字符串。 **.space：**申请若干个字节的未初始化的内存空间。  V0   的不同值 常用：    Service Code in $v0 Arguments">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wrongization.site/img/cover/mips/mips.webp">
+<meta property="article:published_time" content="2024-09-22T03:14:19.000Z">
+<meta property="article:modified_time" content="2025-08-12T04:55:20.750Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="co">
+<meta property="article:tag" content="mips">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wrongization.site/img/cover/mips/mips.webp"><link rel="shortcut icon" href="/img/logo.webp"><link rel="canonical" href="https://wrongization.site/2024/09/22/mipscommand.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/%E5%8D%8E%E6%96%87%E4%B8%AD%E5%AE%8B%7CTitillium%20Web%7CPingFang%20SC%7CHiragino%20Sans%20GB%7CMicrosoft%20JhengHei%7CMicrosoft%20YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: https://wrongization.site","info":"复制和转载请标明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA-CO-mips知识点',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2025-08-12 12:55:20'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://lib.baomitu.com" crossorigin><link rel="preconnect" href="https://pic.imgdb.cn" crossorigin><link rel="preload" as="font" href="/font/maple.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="/font/broadway.ttf" type="font/ttf" crossorigin><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div><!-- 新的精美加载条--><div class="progress-bar"><div class="progress-track"><div class="progress-fill"></div><div class="progress-glow"></div></div><div class="progress-text">正在向夜晚奔去...</div></div></div></div><script>(() => {
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const $progressBar = $loadingBox.querySelector('.progress-bar')
+  const $progressFill = $loadingBox.querySelector('.progress-fill')
+  const $progressText = $loadingBox.querySelector('.progress-text')
+let determinateActivated = false
+let currentPct = 0
+// 进度模式：'proportional'（按资源完成比例推进）或 'ticker'（按时间匀速推进）
+const PROGRESS_MODE = 'ticker'
+// 统一节拍：让进度条均匀增长（不超过 MAX_TICK_PCT），真实完成时再跳到 100%
+const MAX_TICK_PCT = 98 // 均匀增长的上限，避免未完成时到 100
+const TICK_DURATION = 4000 // 从 0 均匀增长到 MAX_TICK_PCT 的目标时长(ms)
+let tickerRAF = 0
+let tickerStart = 0
+
+  function setProgress(p) {
+    const pct = Math.min(100, Math.max(0, p))
+    const next = Math.max(currentPct, pct) // 只增不减，避免视觉回退
+    if (!determinateActivated) {
+      determinateActivated = true
+      $progressBar.classList.add('determinate')
+      $progressFill.style.animation = '' // stop indeterminate slide
+    }
+$progressBar.style.setProperty('--progress-pct', next + '%')
+// 直接设置内联样式，确保视觉宽度与百分比一致（即使 CSS 尚未更新）
+$progressFill.style.width = next + '%'
+// 关闭动画与位移，避免出现仅一小段在滑动的视觉错觉
+$progressFill.style.animation = 'none'
+$progressFill.style.transform = 'none'
+    if ($progressText) $progressText.setAttribute('data-percent', next.toFixed(0) + '%')
+    currentPct = next
+  }
+
+  function stopTicker() {
+    if (tickerRAF) {
+      cancelAnimationFrame(tickerRAF)
+      tickerRAF = 0
+    }
+  }
+
+function startTicker() {
+    stopTicker()
+    tickerStart = performance.now()
+    const tick = (now) => {
+      if ($loadingBox.classList.contains('loaded')) return // 已结束不再推进
+      const elapsed = now - tickerStart
+      const target = Math.min(MAX_TICK_PCT, (elapsed / TICK_DURATION) * MAX_TICK_PCT)
+      setProgress(target)
+      tickerRAF = requestAnimationFrame(tick)
+    }
+    tickerRAF = requestAnimationFrame(tick)
+  }
+
+  // 小工具：为 Promise 加超时上限，避免个别资源阻塞
+  function withTimeout(promise, ms) {
+    let timer
+    const timeout = new Promise(resolve => { timer = setTimeout(resolve, ms) })
+    return Promise.race([
+      promise.finally(() => clearTimeout(timer)),
+      timeout
+    ])
+  }
+
+function calcAssets() {
+    // 只跟踪“首屏/非懒加载”的关键图片 + 字体(限时) + DOM 就绪 + (load 限时)
+    const allImgs = Array.from(document.images || [])
+    const vh = window.innerHeight || 800
+    const isNearViewport = img => {
+      const rect = img.getBoundingClientRect ? img.getBoundingClientRect() : null
+      return rect ? rect.top < vh * 1.2 : true
+    }
+    const isLazy = img => (
+      img.loading === 'lazy' || img.getAttribute('data-src') || img.getAttribute('data-original')
+    )
+    const trackedImgs = allImgs.filter(img => {
+      // 非懒加载直接跟踪；懒加载只跟踪在视口附近的
+      if (isLazy(img)) return isNearViewport(img)
+      return true
+    })
+
+    const trackers = []
+
+    // 图片：逐个计数，并给每张上限 3.5s，避免单张图卡住
+    trackedImgs.forEach(img => {
+      const p = new Promise(resolve => {
+        if (img.complete && img.naturalWidth) return resolve()
+        const done = () => resolve()
+        const timer = setTimeout(done, 3500)
+        img.addEventListener('load', () => { clearTimeout(timer); done() }, { once: true })
+        img.addEventListener('error', () => { clearTimeout(timer); done() }, { once: true })
+      })
+      trackers.push(p)
+    })
+
+    // 字体：整体一次，并设置 1.8s 上限
+    if (document.fonts && document.fonts.ready) {
+      trackers.push(withTimeout(document.fonts.ready.catch(() => {}), 1800))
+    }
+
+    // DOM 就绪：尽早推进
+    const domReady = new Promise(resolve => {
+      if (document.readyState === 'interactive' || document.readyState === 'complete') return resolve()
+      document.addEventListener('DOMContentLoaded', () => resolve(), { once: true })
+    })
+    trackers.push(domReady)
+
+    // window load：作为“保险”，但最多等 2.5s
+    const loadCapped = new Promise(resolve => {
+      if (document.readyState === 'complete') return resolve()
+      const t = setTimeout(resolve, 2500)
+      window.addEventListener('load', () => { clearTimeout(t); resolve() }, { once: true })
+    })
+    trackers.push(loadCapped)
+
+    let finished = 0
+    const total = trackers.length || 1
+    const onOneDone = () => {
+      finished++
+      if (PROGRESS_MODE === 'proportional') {
+        // 直接按比例更新，保持严格对应
+        const pct = (finished / total) * 100
+        setProgress(pct)
+      }
+      if (finished >= total) {
+        // 完成：先瞬到上限（如未到），短暂停留后再到 100 并打开
+        stopTicker()
+        const needPadToCap = currentPct < 100
+        if (needPadToCap) setProgress(100)
+        const finish = () => { preloader.endLoading() }
+        if (needPadToCap) setTimeout(finish, 100)
+        else finish()
+      }
+    }
+    trackers.forEach(p => p.then(onOneDone))
+
+    // 兜底：强制结束，避免极端情况下长时间遮挡（到点即刻收起）
+    setTimeout(() => {
+      if (!$loadingBox.classList.contains('loaded')) {
+        stopTicker()
+        setProgress(100)
+        preloader.endLoading()
+      }
+    }, 7000)
+  }
+
+  const preloader = {
+    endLoading: () => {
+stopTicker()
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  function start() {
+    preloader.initLoading()
+    determinateActivated = false
+currentPct = 0
+    setProgress(0)
+    if (PROGRESS_MODE === 'ticker') startTicker()
+    requestAnimationFrame(calcAssets)
+  }
+
+  start()
+
+  // 可选 PJAX 支持：若站点启用 pjax，重新触发加载条
+  // 适配常见 pjax / instant.page / swup 事件，可按需精简
+  const pjaxEvents = ['pjax:send','pjax:complete','swup:animationInStart','swup:contentReplaced']
+  pjaxEvents.forEach(ev => {
+    document.addEventListener(ev, e => {
+      if (ev.includes('send') || ev.includes('animationIn')) {
+        start()
+      } else if (ev.includes('complete') || ev.includes('contentReplaced')) {
+        // 重新统计新页面资源
+        requestAnimationFrame(calcAssets)
+      }
+    })
+  })
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><!-- 添加 data-effect 以支持顶图特效切换 (sunset | rainy | sunny | sunrise)--><!-- 默认 rainy，可通过主题配置 theme.header_effect_default 覆盖--><header class="post-bg fixed" id="page-header" style="background-image: url('/img/cover/mips/mips.webp')" data-effect="rainy"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BUAA-CO-mips知识点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2024-09-22T03:14:19.000Z" title="创建 2024-09-22 11:14:19">2024-09-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-08-12T04:55:20.750Z" title="更新 2025-08-12 12:55:20">2025-08-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-co/">buaa-co</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-co/mips/">mips</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-co/mips/mips%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9/">mips语法知识点</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">6.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>25分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>CO初识mips知识点</h1>
+<h2 id="寄存器地址：">寄存器地址：</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/09/22/mipscommand/image-20240903164135575.webp" class="" title="image-20240903164135575">
+<h2 id="伪指令">伪指令</h2>
+<ul>
+<li>**.data：**用于预先存储数据的伪指令的开始标志。</li>
+<li>**.text：**程序代码指令开始的标志。</li>
+<li>**.word：**以字为单位存储数据。</li>
+<li>**.asciiz：**以字节为单位存储字符串。</li>
+<li>**.space：**申请若干个字节的未初始化的内存空间。</li>
+</ul>
+<h2 id="V0-的不同值">V0   的不同值</h2>
+<p>常用：</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Code in $v0</th>
+<th>Arguments</th>
+<th style="text-align:center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em><strong>print integer</strong></em></td>
+<td><em><strong>1</strong></em></td>
+<td>$a0 = integer to print</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>print float</td>
+<td>2</td>
+<td>$f12 = float to print</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>print double</td>
+<td>3</td>
+<td>$f12 = double to print</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><em><strong>print string</strong></em></td>
+<td><em><strong>4</strong></em></td>
+<td>$a0 = address of null-terminated string to print</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>read integer</td>
+<td>5</td>
+<td></td>
+<td style="text-align:center">$v0 contains integer read</td>
+</tr>
+<tr>
+<td>read float</td>
+<td>6</td>
+<td></td>
+<td style="text-align:center">$f0 contains float read</td>
+</tr>
+<tr>
+<td>read double</td>
+<td>7</td>
+<td></td>
+<td style="text-align:center">$f0 contains double read</td>
+</tr>
+<tr>
+<td>read string</td>
+<td>8</td>
+<td>$a0 = address of input buffer $a1 = maximum number of characters           to read</td>
+<td style="text-align:center"><em>See note below table</em></td>
+</tr>
+<tr>
+<td>sbrk (allocate heap memory)</td>
+<td>9</td>
+<td>$a0 = number of bytes to allocate</td>
+<td style="text-align:center">$v0 contains address of allocated memory</td>
+</tr>
+<tr>
+<td><em><strong>exit (terminate execution)</strong></em></td>
+<td><em><strong>10</strong></em></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>print character</td>
+<td>11</td>
+<td>$a0 = character to print</td>
+<td style="text-align:center"><em>See note below table</em></td>
+</tr>
+<tr>
+<td>read character</td>
+<td>12</td>
+<td></td>
+<td style="text-align:center">$v0 contains character read</td>
+</tr>
+<tr>
+<td>open file</td>
+<td>13</td>
+<td>$a0 = address of null-terminated string containing filename $a1 =           flags $a2 = mode</td>
+<td style="text-align:center">$v0 contains file descriptor (negative if error). <em>See note below           table</em></td>
+</tr>
+<tr>
+<td>read from file</td>
+<td>14</td>
+<td>$a0 = file descriptor $a1 = address of input buffer $a2 =           maximum number of characters to read</td>
+<td style="text-align:center">$v0 contains number of characters read (0 if end-of-file, negative           if error). <em>See note below table</em></td>
+</tr>
+<tr>
+<td>write to file</td>
+<td>15</td>
+<td>$a0 = file descriptor $a1 = address of output buffer $a2 =           number of characters to write</td>
+<td style="text-align:center">$v0 contains number of characters written (negative if error). <em>See           note below table</em></td>
+</tr>
+<tr>
+<td>close file</td>
+<td>16</td>
+<td>$a0 = file descriptor</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>exit2 (terminate with value)</td>
+<td>17</td>
+<td>$a0 = termination result</td>
+<td style="text-align:center"><em>See note below table</em></td>
+</tr>
+<tr>
+<td><em>Services 1 through 17 are compatible with the SPIM simulator,           other than Open File (13) as described in the Notes below the table.           Services 30 and higher are exclusive to MARS.</em></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>time (system time)</td>
+<td>30</td>
+<td></td>
+<td style="text-align:center">$a0 = low order 32 bits of system time $a1 = high order 32 bits           of system time. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>MIDI out</td>
+<td>31</td>
+<td>$a0 = pitch (0-127) $a1 = duration in milliseconds $a2 =           instrument (0-127) $a3 = volume (0-127)</td>
+<td style="text-align:center">Generate tone and return immediately. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>sleep</td>
+<td>32</td>
+<td>$a0 = the length of time to sleep in milliseconds.</td>
+<td style="text-align:center">Causes the MARS Java thread to sleep for (at least) the specified           number of milliseconds. This timing will not be precise, as the Java           implementation will add some overhead.</td>
+</tr>
+<tr>
+<td>MIDI out synchronous</td>
+<td>33</td>
+<td>$a0 = pitch (0-127) $a1 = duration in milliseconds $a2 =           instrument (0-127) $a3 = volume (0-127)</td>
+<td style="text-align:center">Generate tone and return upon tone completion. <em>See note below           table</em></td>
+</tr>
+<tr>
+<td>print integer in hexadecimal</td>
+<td>34</td>
+<td>$a0 = integer to print</td>
+<td style="text-align:center">Displayed value is 8 hexadecimal digits, left-padding with zeroes if           necessary.</td>
+</tr>
+<tr>
+<td>print integer in binary</td>
+<td>35</td>
+<td>$a0 = integer to print</td>
+<td style="text-align:center">Displayed value is 32 bits, left-padding with zeroes if necessary.</td>
+</tr>
+<tr>
+<td>print integer as unsigned</td>
+<td>36</td>
+<td>$a0 = integer to print</td>
+<td style="text-align:center">Displayed as unsigned decimal value.</td>
+</tr>
+<tr>
+<td>(not used)</td>
+<td>37-39</td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>set seed</td>
+<td>40</td>
+<td>$a0 = i.d. of pseudorandom number generator (any int). $a1 = seed           for corresponding pseudorandom number generator.</td>
+<td style="text-align:center">No values are returned. Sets the seed of the corresponding           underlying Java pseudorandom number generator (<code>java.util.Random</code>).           <em>See note below table</em></td>
+</tr>
+<tr>
+<td>random int</td>
+<td>41</td>
+<td>$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td style="text-align:center">$a0 contains the next pseudorandom, uniformly distributed int value           from this random number generator’s sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>random int range</td>
+<td>42</td>
+<td>$a0 = i.d. of pseudorandom number generator (any int). $a1 =           upper bound of range of returned values.</td>
+<td style="text-align:center">$a0 contains pseudorandom, uniformly distributed int value in the           range 0 = [int] [upper bound], drawn from this random number           generator’s sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>random float</td>
+<td>43</td>
+<td>$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td style="text-align:center">$f0 contains the next pseudorandom, uniformly distributed float           value in the range 0.0 = f 1.0 from this random number generator’s           sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>random double</td>
+<td>44</td>
+<td>$a0 = i.d. of pseudorandom number generator (any int).</td>
+<td style="text-align:center">$f0 contains the next pseudorandom, uniformly distributed double           value in the range 0.0 = f 1.0 from this random number generator’s           sequence. <em>See note below table</em></td>
+</tr>
+<tr>
+<td>(not used)</td>
+<td>45-49</td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>ConfirmDialog</td>
+<td>50</td>
+<td>$a0 = address of null-terminated string that is the message to user</td>
+<td style="text-align:center">$a0 contains value of user-chosen option 0: Yes 1: No 2:           Cancel</td>
+</tr>
+<tr>
+<td>InputDialogInt</td>
+<td>51</td>
+<td>$a0 = address of null-terminated string that is the message to user</td>
+<td style="text-align:center">$a0 contains int read $a1 contains status value 0: OK status -1:           input data cannot be correctly parsed -2: Cancel was chosen -3:           OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td>InputDialogFloat</td>
+<td>52</td>
+<td>$a0 = address of null-terminated string that is the message to user</td>
+<td style="text-align:center">$f0 contains float read $a1 contains status value 0: OK status -1:           input data cannot be correctly parsed -2: Cancel was chosen -3:           OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td>InputDialogDouble</td>
+<td>53</td>
+<td>$a0 = address of null-terminated string that is the message to user</td>
+<td style="text-align:center">$f0 contains double read $a1 contains status value 0: OK status -1:           input data cannot be correctly parsed -2: Cancel was chosen -3:           OK was chosen but no data had been input into field</td>
+</tr>
+<tr>
+<td>InputDialogString</td>
+<td>54</td>
+<td>$a0 = address of null-terminated string that is the message to user $a1           = address of input buffer $a2 = maximum number of characters to           read</td>
+<td style="text-align:center"><em>See Service 8 note below table</em> $a1 contains status value 0:           OK status. Buffer contains the input string. -2: Cancel was           chosen. No change to buffer. -3: OK was chosen but no data had           been input into field. No change to buffer. -4: length of the           input string exceeded the specified maximum. Buffer contains the           maximum allowable input string plus a terminating null.</td>
+</tr>
+<tr>
+<td>MessageDialog</td>
+<td>55</td>
+<td>$a0 = address of null-terminated string that is the message to user $a1           = the type of message to be displayed: 0: error message,           indicated by Error icon           1: information message, indicated by Information icon           2: warning message, indicated by Warning icon           3: question message, indicated by Question icon           other: plain message (no icon displayed)</td>
+<td style="text-align:center">N/A</td>
+</tr>
+<tr>
+<td>MessageDialogInt</td>
+<td>56</td>
+<td>$a0 = address of null-terminated string that is an information-type           message to user $a1 = int value to display in string form after           the first string</td>
+<td style="text-align:center">N/A</td>
+</tr>
+<tr>
+<td>MessageDialogFloat</td>
+<td>57</td>
+<td>$a0 = address of null-terminated string that is an information-type           message to user $f12 = float value to display in string form           after the first string</td>
+<td style="text-align:center">N/A</td>
+</tr>
+<tr>
+<td>MessageDialogDouble</td>
+<td>58</td>
+<td>$a0 = address of null-terminated string that is an information-type           message to user $f12 = double value to display in string form           after the first string</td>
+<td style="text-align:center">N/A</td>
+</tr>
+<tr>
+<td>MessageDialogString</td>
+<td>59</td>
+<td>$a0 = address of null-terminated string that is an information-type           message to user $a1 = address of null-terminated string to           display after the first string</td>
+<td style="text-align:center">N/A</td>
+</tr>
+</tbody>
+</table>
+<p>注释：服务编号为30及以上的服务不包含在SPIM服务8中。它遵循UNIX 'fgets’的语义。对于指定长度n，字符串的长度不能超过n-1。如果长度小于n-1，则在末尾添加换行符。在任何情况下，都会用空字符填充。如果n等于1，则忽略输入并将空字符放置在缓冲区地址上。如果n大于1，则忽略输入并且不会将任何内容写入缓冲区。</p>
+<p>服务11 - 打印低字节所对应的ASCII字符。</p>
+<p>服务13 - MARS实现了三个标志值：0表示只读，1表示可写且可创建，9表示可写且可创建和追加。它忽略模式。如果操作失败，则返回的文件描述符将为负数。底层文件I/O实现使用java.io.FileInputStream.read()读取和java.io.FileOutputStream.write()写入。MARS内部维护文件描述符，并从3开始分配它们。文件描述符0、1、2始终用于：从标准输入读取、向标准输出写入和向标准错误写入（自版本4.3起新增）。</p>
+<p>服务13、14、15 - 在MARS 3.7中，结果寄存器已更改为与SPIM兼容。之前在《计算机组织与设计》的附录B中错误地印成了$a0，现在是$a1。</p>
+<p>服务17 - 如果MIPS程序在MARS图形界面（GUI）的控制下运行，则忽略$a1中的退出代码。服务30 - 系统时间来自java.util.Date.getTime()，表示自1970年1月1日以来的毫秒数。</p>
+<p>服务31、33 - 通过声卡模拟MIDI输出。详情见下文。</p>
+<p>服务40至44使用Java底层的伪随机数生成器，由java.util.Random类提供。每个流（由$a0的内容标识）都由不同的Random对象模拟。没有默认的种子值，因此如果需要重复的随机序列，请使用Set Seed服务（40）。</p>
+<h1>常用指令</h1>
+<p><strong>str:   .asciiz “The numbers are:\n”</strong></p>
+<p># 这里使用了宏，%i 为存储当前行数的寄存器，%j 为存储当前列数的寄存器 # 把 (%i * 8 + %j) * 4 存入 %ans 寄存器中</p>
+<p>.macro  getindex(%ans, %i, %<strong>j)</strong><br>
+<strong>sll</strong> %ans, %i, 3             #%ans = %i * 8<br>
+<strong>add</strong> %ans, %ans, %<strong>j</strong>          #%ans = %ans + %j<br>
+<strong>sll</strong> %ans, %ans, 2           # %ans = %ans * 4 .end_macro</p>
+<p>在汇编程序中，还有一种和C语言中 #define 类似的宏定义，一般用于常量的定义上，那就是 <code>.eqv</code>。<code>.eqv</code> 用法如下：</p>
+<p>.eqv EQV_NAME string</p>
+<p><strong>li</strong> $t0, 0                  # $t0=0</p>
+<p><strong>la</strong>  $a0, str   地址</p>
+<p><strong>beq</strong> $t0, $s0, loop_in_end  # $t0 == $s0 的时候跳出循环</p>
+<p><strong>bne</strong> 不相等时</p>
+<p><strong>array</strong>: .space 40           # 存储这些数需要用到数组，数组需要使用 10 * 4 = 40 字节                           # 一个 int 整数需要占用 4 个字节，需要存储 10 个 int 整数                           # 因此，array[0] 的地址为 0x00，array[1] 的地址为 0x04                           # array[2] 的地址为 0x08，以此类推。</p>
+<p><strong>sll</strong> $t1, $t0, 2            # $t1 = $t0 &lt;&lt; 2，即 $t1 = $t0 * 4</p>
+<p><strong>sw</strong> $v0, array($t1)         # 把输入的数v0存入地址为 array + $t1 的内存中</p>
+<p><strong>lw</strong> $a0, array($t1)         # 把内存中地址为 array + $t1 的数取出到 $a0 中</p>
+<p><strong>addi</strong> $t0, $t0, 1           # $t0 = $t0 + 1</p>
+<p><strong>add</strong> $t0, $t0, $a0           # $t0 = $t0 + $a0</p>
+<p><strong>jal</strong> f #跳转到函数f，并且将$ra变为下一句地址</p>
+<p><strong>jr</strong> $ra 跳转到寄存器$ra</p>
+<h1>从 CO 到 OS：MIPS 相关知识补充</h1>
+<blockquote>
+<p><em><strong>本节摘取自BUAA-OS2025课程官方文档，仅作自用参考，如有侵权和违反相关条例，联系作者将立即删除</strong></em></p>
+</blockquote>
+<h2 id="回顾">回顾</h2>
+<p>在上学期的计组课程中，我们实现了一个可以与外设交互，响应并处理中断、异常的 MIPS CPU。</p>
+<p>你是否好奇，CPU 是如何运行操作系统的？计组知识又是如何和 OS 实验衔接起来的？</p>
+<p>下面，我们将介绍操作系统实验使用的 CPU 与我们计组的课设 CPU 的不同之处，并对 MIPS 汇编相关知识进行补充。</p>
+<p>操作系统实验使用 MIPS32 4Kc CPU， 这是一款由 MIPS® Technologies 公司开发的使用 MIPS32 指令集的商业处理器核。</p>
+<p>而计组中实现的 CPU 使用 MIPS-C 指令集，MIPS-C 指令集是 MIPS32 指令集的精简版本，也就是相当于计组实现的 CPU 指令集和功能是操作系统实验中使用的一个子集。</p>
+<p>具体谈及操作系统实验中涉及，而计组 CPU 不完整的功能，主要是有两个部分：访存流程、CP0协处理器相关。</p>
+<h2 id="访存流程">访存流程</h2>
+<p>在计组中，我们的 CPU 不存在<strong>虚拟地址</strong>机制，访存指令中的所有地址均是物理地址。物理地址被直接发送到 DM、IM 中，直接获取数据。这简化了 MIPS32 的访存流程，让大家可以更多的关注 CPU 内部计算与控制逻辑。</p>
+<p>而在完整的 MIPS32 访存流程中，汇编指令 <strong>不直接和物理内存打交道</strong>。</p>
+<p>访存指令中的地址，被称作<strong>虚拟地址</strong>，在执行访存操作的时候，虚拟地址会先被送入 <strong>MMU</strong> 进行<strong>地址翻译</strong>、<strong>权限检查</strong>，最终拿到物理地址。</p>
+<p>对于 MMU 检查合法的访存操作，通过 MMU 拿到物理地址之后，相应访存操作才会进一步被实际在物理地址上执行。</p>
+<p>所有的软件（包括 MIPS 汇编、C 语言编写的软件等）访存的地址都是虚拟地址。</p>
+<p>MIPS32 的 MMU 支持基于 <strong>TLB</strong> 的 <strong>页式地址翻译</strong>，而操作系统实验使用了 MIPS32 的这个地址翻译功能。这一部分在计组的 CPU 中并没有涉及。</p>
+<p>这将牵扯出我们OS中的两个知识点：MIPS32 具体访存流程、TLB 在 MIPS32 地址翻译中扮演的角色。具体内容将在我们 Lab2 内存管理中学到，在 pre 中我们仅介绍到此。</p>
+<p>目前，只需要大家牢记，在 MIPS32 指令集中，我们的访存指令不再直接操作物理地址，而是使用虚拟地址以及地址翻译机制，间接管理物理内存。</p>
+<h2 id="CP0-协处理器相关">CP0 协处理器相关</h2>
+<p>计组课程中 CPU 的协处理器 CP0 基本只负责中断与异常的相关处理。</p>
+<p>而 MIPS32 指令集的 CP0 更为复杂，也具有更多功能，整体上 CP0 用于对整个处理器的状态进行维护和控制，包括但不限于对于中断及异常信息的记录、特权管理、地址翻译控制等。</p>
+<p>关于控制地址翻译的功能，将在 Lab2 的实验中具体涉及，我们先简单看一下前两个 CP0 的功能。</p>
+<h3 id="中断异常相关">中断异常相关</h3>
+<p>对于中断及异常的处理，MIPS32 比 MIPS-C 的要复杂一些，而我们实验中使用的部分主要涉及 CP0 的一些寄存器： Cause、EPC、BadVAddr 。</p>
+<p>其中 Cause 与 EPC 寄存器在 MIPS32 与 MIPS-C 中均存在，其定义也是相似的，而 BadVAddr 则不存在于 MIPS-C 中。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/09/22/mipscommand/mips32-Cause.webp" class="" title="mips-Cause">
+<p>Cause 寄存器：上图是 MIPS32 中定义的 Cause 寄存器，其中保存着 CPU 中哪一些中断或者异常发生了。 15-8 位指示了哪一些中断等待处理，其中 15-10 位来自硬件，9-8 位可以由软件写入。当中断请求发生时，Cause 寄存器对应位置 1。 6-2 位则记录发生的异常号，供软件进行区别。还需要特别注意的是 31位 BD，当这一位为1时，表明发生异常的指令位于延迟槽，软件在处理其异常时需要特别特殊处理。</p>
+<p>EPC 寄存器： EPC 寄存器存放异常发生的指令对应 PC 地址，软件在完成异常处理之后，可以根据此 PC 返回。</p>
+<p>BadVAddr 寄存器： 在我们前文的访存流程中有提到，若访存操作合法，具体的操作才会被执行。不合法的访存操作则会触发异常，当访存相关的异常被触发时，这个寄存器将会被用来记录触发异常的访存地址供软件进行处理。</p>
+<p>计组课程着重于实现一个简略的硬件 CP0 ，并不关注软件实现的部分，而操作系统课程更多关注配合硬件的软件部分（即操作系统本身）。</p>
+<h3 id="特权管理相关">特权管理相关</h3>
+<p>在 MIPS-C 中，我们的处理器只有一个<strong>特权模式</strong>，对于所有指令，均一视同仁的在这个<strong>特权模式</strong>下，所有操作均被允许执行。而 MIPS32 中，则定义了多种特权模式，我们主要使用的两种状态被叫做<strong>用户态</strong>、<strong>内核态</strong>。</p>
+<p>在内核态下，CPU 可以执行其架构允许的任何操作；可以执行任何指令、启动任何 I/O 操作、访问任何内存区域等等。在其他特权模式下， CPU 允许执行的操作收到硬件限制限制。通常，某些特殊指令是不被允许的（具体而言，通常是影响计算机控制或者完成 I/O 操作的指令），某些内存区域也无法访问，等等。</p>
+<blockquote>
+<p>内核态即计组实验中所提到的特权态，用户态就是非特权态。</p>
+<p>操作系统借助 CPU 的这套硬件特权控制机制，实现对并发运行的不同用户程序的隔离，以及对计算机整体安全的保护。</p>
+<p>试想若 CPU 不存在这样一种特权控制机制，那么任意用户程序都可视为具有与操作系统同等的地位。这种情况下，用户程序可以完全脱离操作系统的管理与控制，这是不安全的。</p>
+</blockquote>
+<p>这些内容会在我们 Lab3 进程与异常等实验中具体涉及到。在 pre 中，我们只需要先建立起基本的预备概念。</p>
+<p>与处理器状态相关的寄存器，主要是 Status 寄存器，它控制处理器整体工作模式。在计组的 CP0 中，也存在一个 Status 寄存器，不过在当时，我们只使用了其对中断使能控制的功能。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/09/22/mipscommand/mips32-Status.webp" class="" title="mips-Status">
+<p>Status 寄存器： 上图是 MIPS32 中定义的 Status 寄存器，其控制整个处理器状态。其完整定义比较复杂，我们只用关注其中部分位即可。Status 寄存器的第 0 位，是全局中断使能位。只有这一位配置为 1 ，处理器才可以响应中断。第 15-8 为中断使能位，分别控制 8 个中断输入的使能。第 4 位 UM 与 第 1 位 EXL 则用于控制处理器的特权模式。当且仅当 UM 为 1 且 EXL 为 0 时，处理器运行在用户态，其它状态下，处理器均运行于内核态。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/09/22/mipscommand/drawio.webp" class="">
+<p>计组中，我们 CPU 只能一次运行一个我们编写的 MIPS 汇编程序。而在操作系统中，我们可以通过操作系统配合硬件时钟中断给不同进程分配 CPU 时间，使得 CPU 在执行不同进程间切换，实现多个进程的并发执行。</p>
+<p>对于 MIPS 体系结构来说实时钟中断产生时，就会触发中断，将 PC 指向异常处理程序入口。异常处理程序首先保存现场，此后根据 Cause 寄存器中的情况进行异常分发，转到内核的不同异常处理子程序。同学们将在 Lab3 中，看到其具体实现。</p>
+<h2 id="MIPS-Calling-Convention">MIPS Calling Convention</h2>
+<p>本章内容精简自<a target="_blank" rel="noopener" href="https://os.buaa.edu.cn/tutorial-embedded/2025%E6%98%A5-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/assets/MIPSCallingConventionsSummary.pdf">MIPS Calling Conventions Summary</a></p>
+<h3 id="通用寄存器">通用寄存器</h3>
+<p>首先，我们回忆一下计组中学过的 MIPS 的 32 个通用寄存器。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">寄存器编号</th>
+<th style="text-align:left">助记符</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">zero</td>
+<td style="text-align:left">值总是为 0</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">at</td>
+<td style="text-align:left">（汇编暂存寄存器）一般由汇编器作为临时寄存器使用。</td>
+</tr>
+<tr>
+<td style="text-align:left">2-3</td>
+<td style="text-align:left">v0-v1</td>
+<td style="text-align:left">用于存放表达式的值或函数的整形、指针类型返回值。</td>
+</tr>
+<tr>
+<td style="text-align:left">4-7</td>
+<td style="text-align:left">a0-a3</td>
+<td style="text-align:left">用于函数传参。其值在函数调用的过程中不会被保存。若函数参数较多，多出来的参数会采用栈进行传递。</td>
+</tr>
+<tr>
+<td style="text-align:left">8-15</td>
+<td style="text-align:left">t0-t7</td>
+<td style="text-align:left">用于存放表达式的值的临时寄存器; 其值在函数调用的过程中不会被保存。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>16-23</strong></td>
+<td style="text-align:left"><strong>s0-s7</strong></td>
+<td style="text-align:left"><strong>保存寄存器; 这些寄存器中的值在经过函数调用后不会被改变。</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">24-25</td>
+<td style="text-align:left">t8-t9</td>
+<td style="text-align:left">用于存放表达式的值的临时寄存器; 其值在函数调用的过程中不会被保存。</td>
+</tr>
+<tr>
+<td style="text-align:left">26-27</td>
+<td style="text-align:left">k0-k1</td>
+<td style="text-align:left">仅在内核态下使用。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>28</strong></td>
+<td style="text-align:left"><strong>gp</strong></td>
+<td style="text-align:left"><strong>全局指针和内容指针。</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>29</strong></td>
+<td style="text-align:left"><strong>sp</strong></td>
+<td style="text-align:left"><strong>栈指针。</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>30</strong></td>
+<td style="text-align:left"><strong>fp或s8</strong></td>
+<td style="text-align:left"><strong>保存寄存器（同 s0-s7）。也可用作帧指针。</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>31</strong></td>
+<td style="text-align:left"><strong>ra</strong></td>
+<td style="text-align:left"><strong>函数返回地址。</strong></td>
+</tr>
+</tbody>
+</table>
+<p>其中加粗的部分，是我们在函数调用中需要保留其值的寄存器。</p>
+<h3 id="栈帧">栈帧</h3>
+<p>每次调用一个函数时，都会为该函数创建一个唯一的栈帧。</p>
+<p>栈帧的结构很重要。它在调用者和被调用者之间形成了一个契约，它定义了参数在调用者和被调用者之间如何传递，一个函数调用的返回值如何从被调用者传递给调用者，并定义了如何共享寄存器。</p>
+<p>通常，函数的栈帧可能包含以下几个部分：</p>
+<ul>
+<li>用于存储传递给此调用的函数参数的空间。</li>
+<li>存储已保存寄存器值的位置（s0 到 s7）。</li>
+<li>一个存储子程序返回地址的地方（ra）。</li>
+<li>一个用于本地数据存储的地方。</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2024/09/22/mipscommand/mips-stackframe.webp" class="" title="mips-stackframe">
+<p>首先，我们先来看<strong>栈帧的黄色部分，即参数部分</strong>。当前函数 A 调用当前函数的子函数 B 时，会将 B 的参数压入当前函数 A 的栈帧中的参数部分，以实现对函数调用时的传参。此外，还需注意，由于 a0-a3 寄存器也将被用作传参，所以参数部分中的淡黄色部分（arg 0 至 arg 3）只需要保留栈帧空间，并不填入具体参数值。至于参数个数超过的 4 个的子函数，当前函数 A 就需要将多出来的第 4 至第 n-1 个参数压入栈中（arg 4 至 arg n-1），实现对子函数 B 的调用。</p>
+<p>随后，我们再来看<strong>栈帧的浅绿部分，即保留寄存器部分</strong>，前面提到我们会在当前函数被调用后，在当前函数最开始，复制当前函数要使用的任何规定需要保存的寄存器（s0 到 s7）的值压入栈帧的保留寄存器部分。此后，由于我们已经在栈帧中保存了当前函数被调用时寄存器的最初样貌，在函数执行中，函数可以随意读写已保存寄存器。当函数执行完毕，返回前，我们会复原栈中保留寄存器部分到寄存器中，使得函数的调用者（父函数），可以认为在整个调用过程中，保存的寄存器没有发生变化。</p>
+<p>接着，我们来看<strong>栈帧的深绿部分，即返回地址部分</strong>。返回地址部分用于存储 ra 的值。该值在执行当前函数开始时被复制到栈中，并在当前函数返回之前被复制回 ra 寄存器中。</p>
+<p>此外，我们还需要注意<strong>栈帧的灰色部分，即填充部分</strong>，其作用在于确保栈帧的总大小总是 8 的倍数。在这里插入它，以确保其上方的局部数据存储部分首地址是双字对齐的。这是为了与 MIPS 64 位体系结构的双字读取指令兼容。</p>
+<p>最后，我们看<strong>栈帧的蓝色部分，即局部数据存储部分</strong>。它用来存储函数的局部变量。函数必须为此区域的所有局部变量保留足够的存储空间，包括需要在函数调用前后保留的任何临时寄存器（t0 到 t9）值的空间。</p>
+<h3 id="Leaf-Nonleaf-Subroutine">Leaf &amp; Nonleaf Subroutine</h3>
+<p>并不是每个函数都需要其栈帧中描述的每个部分。一般的规则是，如果程序不需要其中的一个部分，那么它可以从其栈帧中省略该部分。为了明确这一点，我们将区分 3 个不同类别的函数：</p>
+<h4 id="简单叶函数（Simple-Leaf）">简单叶函数（Simple Leaf）</h4>
+<p>不调用任何其他子例程，不使用栈上的任何内存空间（因为其不需要内存来保存局部变量或寄存器的值）。这样的函数不需要栈帧，也不需要更改 sp。</p>
+<h4 id="有局部数据的叶函数（Leaf-with-Data）">有局部数据的叶函数（Leaf with Data）</h4>
+<p>需要栈空间的叶函数（但不需要、不调用任何其他子例程），其栈帧可用于本地变量或寄存器的值的保存。这样的函数被调用后应当压栈（栈帧大小应该是 8 的倍数）。但是，ra 并不用保存在栈帧中。</p>
+<h4 id="非叶函数（Nonleaf）">非叶函数（Nonleaf）</h4>
+<p>函数内调用了其他函数。一个非叶函数的栈帧包含了上一节所述的大部分结构。</p>
+<p>（具体例子参阅<a target="_blank" rel="noopener" href="https://os.buaa.edu.cn/tutorial-embedded/2025%E6%98%A5-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/assets/MIPSCallingConventionsSummary.pdf">MIPS Calling Conventions Summary</a> P8）</p>
+<h2 id="MIPS-Directives-Macro">MIPS Directives &amp; Macro</h2>
+<h3 id="byte、-half、-word、-ascii、-asciiz"><code>.byte</code>、<code>.half</code>、<code>.word</code>、<code>.ascii</code>、<code>.asciiz</code></h3>
+<p>这类在计组中常见的 directives，相信同学们都很熟悉，分别对应着不同数据的类型。</p>
+<h3 id="align"><code>.align</code></h3>
+<p><code>.align</code> 的作用是“使下面的数据进行地址对齐”，下面这段代码使得下面大小为一个字的变量 <code>var</code> 按 4 字节进行对齐（参数 x<em>x</em> 代表以 2x2<em>x</em> 字节对齐）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.align 2 # align to 4-byte boundary (2^2)</span><br><span class="line">var: .word 0</span><br></pre></td></tr></table></figure>
+<p>该指令允许程序员通过指定一个零对齐，来覆盖<code>.half</code>、<code>.word</code>等的自动对齐特性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.half 3</span><br><span class="line">.align 0 # 关闭自动对齐</span><br><span class="line">.word 100 # 使得 word 紧贴着 half</span><br></pre></td></tr></table></figure>
+<h3 id="globl、-extern"><code>.globl</code>、<code>.extern</code></h3>
+<p>我们在计组中的写的汇编程序往往只有一个文件。但在操作系统课中，存在跨文件的情况，例如跨文件调用函数。</p>
+<ul>
+<li><code>.globl</code>：将符号定义为具有对其他模块可见的全局符号</li>
+<li><code>.extern</code>：要对另一个模块中的全局符号的引用（即外部符号），需要注意的是所有对标签引用都会自动被认为是在引用全局符号，所以我们在对另一模块中的全局标签引用时，没有必要添加 <code>.extern</code>（但对另一模块中的全局变量引用时，需要添加<code>.extern</code>）</li>
+</ul>
+<p>此后在链接时，链接器要将各个目标文件的内容“合为一体”，通过上述方式标记的符号就可以被跨文件引用。</p>
+<p>例如，在未来课程设计的 <code>asm.h</code> 头文件中，我们定义了如下宏：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#define FEXPORT(symbol)         \   # 使symbol代指的函数对其他模块可见</span><br><span class="line">    .globl symbol;              \   # 使标签对链接器可见，使得其它文件中可以调用我们使用宏定义声明的函数。</span><br><span class="line">    .type symbol, @function;    \</span><br><span class="line">    symbol:</span><br></pre></td></tr></table></figure>
+<p>在未来内核实验的 <code>genex.S</code> 汇编文件中，我们通过该宏声明了一个全局函数 <code>ret_from_exception</code>（你可以忽略函数中的内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FEXPORT(ret_from_exception)</span><br><span class="line">    /* Do Something */</span><br></pre></td></tr></table></figure>
+<p>此时我们可以在未来内核实验的另一文件 <code>env_asm.S</code> 中，直接调用该函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.text</span><br><span class="line">LEAF(env_pop_tf)</span><br><span class="line">    /* Do Something */</span><br><span class="line">    j       ret_from_exception # 直接调用该函数，默认ret_from_exception为全局标签，无需.extern</span><br><span class="line">END(env_pop_tf)</span><br></pre></td></tr></table></figure>
+<h3 id="set"><code>.set</code></h3>
+<p>设置汇编器的工作方式。默认情况下，汇编器会尝试通过重新排列指令，来填充分支指令和存取指令造成的空闲时间。了解即可。</p>
+<ul>
+<li><code>.set noreorder</code> 和 <code>.set reorder</code>：告知汇编器是否重新对指令进行顺序进行排序。reorder 模式下汇编器会自动调度指令至延迟槽，noreorder 模式下需要手动填充延迟槽。</li>
+<li><code>.set at</code> 和 <code>.set noat</code>：at 模式下，1 号寄存器（$at）为汇编器保留用于实现扩展指令；noat 模式下，汇编器不会使用 1 号寄存器。</li>
+</ul>
+<h3 id="LEAF、NESTED、END-三个宏"><code>LEAF</code>、<code>NESTED</code>、<code>END</code> 三个宏</h3>
+<p>在操作系统实验中，我们将常常会遇到三个和函数有关的宏。是我们人为定义的</p>
+<h4 id="LEAF"><code>LEAF</code></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#define LEAF(symbol)                        \</span><br><span class="line">    .globl  symbol;                         \</span><br><span class="line">    .align  2;                              \</span><br><span class="line">    .type   symbol,@function;               \</span><br><span class="line">    .ent    symbol;                         \</span><br><span class="line">    symbol:                                 \</span><br><span class="line">    .frame  sp,0,ra</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一行是对 <code>LEAF</code> 宏的定义，后面括号中的 <code>symbol</code> 类似于函数的参数，在宏定义 中的作用类似，编译时在宏中会将 <code>symbol</code> 替换为实际传入的文本，也即我们的函数名。</li>
+<li>第二行中，<code>.globl</code> 的作用是“使标签对链接器可见”，这样即使在其它文件中也可 以引用到 <code>symbol</code> 标签，<strong>从而使得其它文件中可以调用我们使用宏定义声明的函数</strong>。</li>
+<li>第三行中，<code>.align 2</code> 的作用是“使下面的数据进行地址对齐”，这一行语句使得下面的 <code>symbol</code> 标签按 4 Byte 进行对齐，<strong>从而使得我们可以使用 <code>jal</code> 指令跳转到这个函数</strong>（末尾拼接两位 0）。</li>
+<li>第四行中，<code>.type</code> 的作用是设置 <code>symbol</code> 标签的类别，在这里我们设置了 <code>symbol</code> 标签为函数标签。</li>
+<li>第五行中，<code>.ent</code> 的作用是标记每个函数的开头，需要与 <code>.end</code> 配对使用。这些标记使得可以在 Debug 时查看调用链</li>
+</ul>
+<p><code>LEAF</code>宏在使用时, 我们可以这样用，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LEAF(msyscall)</span><br><span class="line">    // Just use &#x27;syscall&#x27; instruction and return.</span><br><span class="line">    syscall</span><br><span class="line">    jr      ra</span><br><span class="line">END(msyscall)</span><br></pre></td></tr></table></figure>
+<h4 id="NESTED"><code>NESTED</code></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#define NESTED(symbol, framesize, rpc)      \</span><br><span class="line">    .globl  symbol;                         \</span><br><span class="line">    .align  2;                              \</span><br><span class="line">    .type   symbol,@function;               \</span><br><span class="line">    .ent    symbol,0;                       \</span><br><span class="line">    symbol:                                 \</span><br><span class="line">    .frame  sp, framesize, rpc</span><br></pre></td></tr></table></figure>
+<p>通过对比，我们可以发现 <code>LEAF</code> 宏和 <code>NESTED</code> 宏的区别就在于 <strong><code>LEAF</code> 宏定义的函数在被调用时没有分配栈帧的空间记录自己的“运行状态”，<code>NESTED</code> 宏在被调用时分配了栈帧的空间用于记录自己的“运行状态”</strong>。</p>
+<p><code>NESTED</code> 宏在使用时, 我们可以这样用，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NESTED(handle_int, TF_SIZE, zero)</span><br><span class="line">    mfc0    t0, CP0_CAUSE</span><br><span class="line">    mfc0    t2, CP0_STATUS</span><br><span class="line">    and     t0, t2</span><br><span class="line">    andi    t1, t0, STATUS_IM7</span><br><span class="line">    bnez    t1, timer_irq</span><br><span class="line">timer_irq:</span><br><span class="line">    li      a0, 0</span><br><span class="line">    j       schedule</span><br><span class="line">END(handle_int)</span><br></pre></td></tr></table></figure>
+<h4 id="END"><code>END</code></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define END(function)                       \</span><br><span class="line">    .end    function;                       \</span><br><span class="line">    .size   function,.-function</span><br></pre></td></tr></table></figure>
+<p>第一行是对 <code>END</code> 宏的定义，与上面 <code>LEAF</code> 与 <code>NESTED</code> 类似。</p>
+<p>第二行的 <code>.end</code> 是为了与先前 <code>LEAF</code> 或 <code>NESTED</code> 声明中的 <code>.ent</code> 配对，标记了 <code>symbol</code> 函数的结束。</p>
+<p>第三行的 <code>.size</code> 是标记了 <code>function</code> 符号占用的存储空间大小，将 <code>function</code> 符号占用的空间大小设置为 <code>.-function</code>，<code>.</code> 代表了当前地址，当前位置的地址减去 <code>function</code> 标签处的地址即可计算出符号占用的空间大小。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.site">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>链接: </span><span class="post-copyright-info"><a href="https://wrongization.site/2024/09/22/mipscommand.html">https://wrongization.site/2024/09/22/mipscommand.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/co/">co</a><a class="post-meta__tags" href="/tags/mips/">mips</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/mips/mips.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/10/23/p3cpu.html" title="BUAA-CO-P3-logisim单周期CPU（简化指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p3cpu/cpu.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">明夜</div><div class="prev_info">BUAA-CO-P3-logisim单周期CPU（简化指令）</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/25/vscode.html" title="VSCode配置C/C++"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/vscode/vscode.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">VSCode配置C/C++</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关文章</span></div><div class="relatedPosts-list"><div><a href="/2024/10/23/p3cpu.html" title="BUAA-CO-P3-logisim单周期CPU（简化指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p3cpu/cpu.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-23</div><div class="title">BUAA-CO-P3-logisim单周期CPU（简化指令）</div></div></a></div><div><a href="/2024/11/02/coise.html" title="BUAA-CO-ISE外部运行配置"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/coise/coise.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-02</div><div class="title">BUAA-CO-ISE外部运行配置</div></div></a></div><div><a href="/2024/11/05/p4cpu.html" title="BUAA-CO-P4-verilog单周期CPU（简化指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p4cpu/p4cpu.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-05</div><div class="title">BUAA-CO-P4-verilog单周期CPU（简化指令）</div></div></a></div><div><a href="/2024/11/11/p5cpu.html" title="BUAA-CO-P5-verilog五层流水线CPU（简化指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p5cpu/p5cpu.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-11</div><div class="title">BUAA-CO-P5-verilog五层流水线CPU（简化指令）</div></div></a></div><div><a href="/2024/12/16/p7cpu.html" title="BUAA-CO-P7-verilog五层流水线CPU（全指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p7cpu/p7cpu.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-16</div><div class="title">BUAA-CO-P7-verilog五层流水线CPU（全指令）</div></div></a></div><div><a href="/2024/12/02/p6cpu.html" title="BUAA-CO-P6-verilog五层流水线CPU（全指令）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/p6cpu/p6cpu.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-02</div><div class="title">BUAA-CO-P6-verilog五层流水线CPU（全指令）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp" onerror="this.onerror=null;this.src='/img/gif404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">wrongization的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以先看软件配置系列，顶部菜单栏可选择不同子页面。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">CO初识mips知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">寄存器地址：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">伪指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V0-%E7%9A%84%E4%B8%8D%E5%90%8C%E5%80%BC"><span class="toc-number">1.3.</span> <span class="toc-text">V0   的不同值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">常用指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">从 CO 到 OS：MIPS 相关知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-number">3.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E5%AD%98%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">访存流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CP0-%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="toc-number">3.3.</span> <span class="toc-text">CP0 协处理器相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%BC%82%E5%B8%B8%E7%9B%B8%E5%85%B3"><span class="toc-number">3.3.1.</span> <span class="toc-text">中断异常相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%9D%83%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3"><span class="toc-number">3.3.2.</span> <span class="toc-text">特权管理相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MIPS-Calling-Convention"><span class="toc-number">3.4.</span> <span class="toc-text">MIPS Calling Convention</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">3.4.1.</span> <span class="toc-text">通用寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%B8%A7"><span class="toc-number">3.4.2.</span> <span class="toc-text">栈帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Leaf-Nonleaf-Subroutine"><span class="toc-number">3.4.3.</span> <span class="toc-text">Leaf &amp; Nonleaf Subroutine</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%8F%B6%E5%87%BD%E6%95%B0%EF%BC%88Simple-Leaf%EF%BC%89"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">简单叶函数（Simple Leaf）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%B1%80%E9%83%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%B6%E5%87%BD%E6%95%B0%EF%BC%88Leaf-with-Data%EF%BC%89"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">有局部数据的叶函数（Leaf with Data）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E5%8F%B6%E5%87%BD%E6%95%B0%EF%BC%88Nonleaf%EF%BC%89"><span class="toc-number">3.4.3.3.</span> <span class="toc-text">非叶函数（Nonleaf）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MIPS-Directives-Macro"><span class="toc-number">3.5.</span> <span class="toc-text">MIPS Directives &amp; Macro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#byte%E3%80%81-half%E3%80%81-word%E3%80%81-ascii%E3%80%81-asciiz"><span class="toc-number">3.5.1.</span> <span class="toc-text">.byte、.half、.word、.ascii、.asciiz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align"><span class="toc-number">3.5.2.</span> <span class="toc-text">.align</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#globl%E3%80%81-extern"><span class="toc-number">3.5.3.</span> <span class="toc-text">.globl、.extern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set"><span class="toc-number">3.5.4.</span> <span class="toc-text">.set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LEAF%E3%80%81NESTED%E3%80%81END-%E4%B8%89%E4%B8%AA%E5%AE%8F"><span class="toc-number">3.5.5.</span> <span class="toc-text">LEAF、NESTED、END 三个宏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LEAF"><span class="toc-number">3.5.5.1.</span> <span class="toc-text">LEAF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NESTED"><span class="toc-number">3.5.5.2.</span> <span class="toc-text">NESTED</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#END"><span class="toc-number">3.5.5.3.</span> <span class="toc-text">END</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/20/python.html" title="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/python/python.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集"/></a><div class="content"><a class="title" href="/2025/08/20/python.html" title="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集">Python-CUDA-CuDNN-Pytorch-Jupyter配置合集</a><time datetime="2025-08-20T05:45:14.000Z" title="创建 2025-08-20 13:45:14">2025-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/20/java.html" title="Java多版本环境配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/java/java.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="Java多版本环境配置"/></a><div class="content"><a class="title" href="/2025/08/20/java.html" title="Java多版本环境配置">Java多版本环境配置</a><time datetime="2025-08-20T03:45:14.000Z" title="创建 2025-08-20 11:45:14">2025-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/osshell/osshell.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-shell"/></a><div class="content"><a class="title" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell">BUAA-OS-shell</a><time datetime="2025-06-17T16:28:25.000Z" title="创建 2025-06-18 00:28:25">2025-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/10/oo_unit4.html" title="BUAA-OO-unit4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oo_unit4/oo_unit4.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit4"/></a><div class="content"><a class="title" href="/2025/06/10/oo_unit4.html" title="BUAA-OO-unit4">BUAA-OO-unit4</a><time datetime="2025-06-10T15:20:28.000Z" title="创建 2025-06-10 23:20:28">2025-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab6/oslab6.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB6"/></a><div class="content"><a class="title" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6">BUAA-OS-LAB6</a><time datetime="2025-06-01T03:45:14.000Z" title="创建 2025-06-01 11:45:14">2025-06-01</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wrongization</div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20250929" target="_blank">萌ICP备20250929号</a> <span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> <a style="margin-inline:5px"target="_blank" href="https://www.cloudflare-cn.com"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/DNS-Cloudflare-f6821f?style=flat&logo=cloudflare" title="本站采用Clouldflare DNS" alt="Clouldflare"> </a> <a style="margin-inline:5px"target="_blank" href="https://ipw.cn/ipv6webcheck/?site=wrongization.github.io"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Internet-IPV6-07c160?style=flat&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjI2NjE2MjI3NDgxIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjI0NjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDY0YTQ0OCA0NDggMCAxIDAgMCA4OTZBNDQ4IDQ0OCAwIDAgMCA1MTIgNjR6IG0wIDgyMC4wMzJBMzcyLjAzMiAzNzIuMDMyIDAgMCAxIDUxMiAxMzkuOTY4YTM3Mi4wMzIgMzcyLjAzMiAwIDAgMSAwIDc0NC4wNjR6IiBmaWxsPSIjMDdjMTYwIiBwLWlkPSIyNDcwIj48L3BhdGg+PHBhdGggZD0iTTM4Mi4yMDggNzMxLjI2NFYzMjBIMzIwdjQxMS4yNjRoNjIuMjA4eiBtMTQ0LjU3NiAwVjU3MS4xMzZoMTA2LjU2Yzk4LjQ5NiAwIDE0OC4wMzItNDIuMDQ4IDE0OC4wMzItMTI2LjE0NEM3ODEuMzc2IDM2MS40NzIgNzMyLjQxNiAzMjAgNjM0LjQ5NiAzMjBINDY0djQxMS4yNjRoNjIuNzg0eiBtMTAyLjUyOC0yMTMuNjk2SDUyNi43ODR2LTE0NGgxMDIuNTI4YzMwLjUyOCAwIDUyLjk5MiA1Ljc2IDY3LjM5MiAxNy4yOCAxNC40IDEwLjM2OCAyMS44ODggMjguOCAyMS44ODggNTQuMTQ0IDAgMjUuMzQ0LTcuNDg4IDQzLjc3Ni0yMS4zMTIgNTUuMjk2LTE0LjQgMTEuNTItMzYuODY0IDE3LjI4LTY3Ljk2OCAxNy4yOHoiIGZpbGw9IiMwN2MxNjAiIHAtaWQ9IjI0NzEiPjwvcGF0aD48L3N2Zz4=" title="本站支持IPv6访问" alt="ipv6"> </a> <a style="margin-inline:5px"target="_blank" href="https://v6.51.la/land/3L1PzYyEGNZiFQyL"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Support-51.LA-1690ff?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAAzNJREFUWEe9V0tPFEEQ5j+BC8h7kaiJB72oUS/Gg3pRSYw3PRkvHky8EpC3LNGoG4yKxIgxRPEgvjBBWUIEI+oShekZdmd2y/qGGXeYbmZndnUr+fbVPVVfV39V3VvVOig+x0fMNL9XFPGRbLptUMxX8ct6x22i9oRVUSBm25DQkIE0fuAvFUV7wiRe/GpZBFoZLYPqsWL4JwQQPD68SUQ1HoSyCdT1adQ5YdC16QzV9mrKOUEoiwBWHLuh0cSCST9EnnbdFNQUcSvKIrCzX9DBOzppWbLt4uQG1TAh1dztUBaBag7WNeNEZ3u5bFFDvxZJkCUTaBwQtGdE0NJazglPZPHHUw+NSFoomUBNj6DLzzec0AVLfjJpB2cmbEWURKCZU9zMGZhZsZywBVvL5G1dQB+qZ/0oiUCMU3z2sUF5J6jfumYyocUYmUALA3s8njKdcLJ9+Z2j3awP6ETlw4vIBOr7BB1N6qRvH9826AM6UfnwIjIBpHbgfaH0trPXrA/oBHpR+XERiUAjC2vfqKAVTd79rE+PmHFm3LD1ovLlIhIBNJ6rLzKbETw2tWTR8Ac5K4/mTVsvQSUZmgBSCUezPwuNxzW04P23dDJ8uoBOoJf6gJIMTQDN5cITufEsr+VtxSM7OJT81v8uG1iSoQig9Or52J1clBtP95vNANjrTkVv+MZ6gW6gH5XvUATqegUdH9Mloa1z1zvkdD23O779LpOEbpAhle+iBLDvSP/oR1lkY9z3cR9wRYa6vzIlbxN0w/6VJVmUQAOv7gALLK1vTa7FX0/7Tj50vr0JQcvrcpmeZ/1gIV7fQFEC1T0aXX8ll970V4v3VT77oYduzx3BtaeLpq0j6Mk7P5AAUtbB16yFX3LpXXqmvv1AD4fv4pbkyxi7OHHf4Dvk1vmBBGIsPgSC5dgfkGfMpXM2MdX9D3qI8UqTc6ZdEZgPwBKzWd4ynuN5LpBAE+/psXu6fetFWwXOcakd4d8w5p3rBcbQmFCWmI+jGz5OPjDs8dAE4gw4q+W0IXUuIEzvPD9Uz2HlqktKURH+b/wlwC/On1OzovD8OdVSnIFVsKkkmMRq25BI/QEyZCI2oNn1NQAAAABJRU5ErkJggg==" title="本站采用51.LA统计" alt="51.LA"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="打开/关闭夜间模式"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"3L1PzYyEGNZiFQyL",ck:"3L1PzYyEGNZiFQyL"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> new LingQue.Monitor().init({id:"3L1Q2CzO5ktWU3Sd"});</script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><linkrel="stylesheet"href="http://aciano.top/redirect/?target=https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.6" zIndex="-1" count="60" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

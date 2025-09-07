@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA-OS-LAB2 | wrongization</title><meta name="author" content="wrongization"><meta name="copyright" content="wrongization"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BUAA OS LAB2 实验报告 Thinking Thinking 2.1 Q:  请根据上述说明，回答问题：在编写的 C 程序中，指针变量中存储的地址 被视为虚拟地址，还是物理地址？MIPS 汇编程序中 lw和sw 指令使用的地址被视为虚 拟地址，还是物理地址？  A: 实际程序中，访存、跳转等指令以及用于取指的PC寄存器中的访存目标地址都是虚拟地址。我们编写的C程序中中指针的值也是虚拟地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA-OS-LAB2">
+<meta property="og:url" content="https://wrongization.site/2025/03/29/oslab2.html">
+<meta property="og:site_name" content="wrongization">
+<meta property="og:description" content="BUAA OS LAB2 实验报告 Thinking Thinking 2.1 Q:  请根据上述说明，回答问题：在编写的 C 程序中，指针变量中存储的地址 被视为虚拟地址，还是物理地址？MIPS 汇编程序中 lw和sw 指令使用的地址被视为虚 拟地址，还是物理地址？  A: 实际程序中，访存、跳转等指令以及用于取指的PC寄存器中的访存目标地址都是虚拟地址。我们编写的C程序中中指针的值也是虚拟地址">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wrongization.site/img/cover/oslab2/oslab2.webp">
+<meta property="article:published_time" content="2025-03-29T09:46:54.000Z">
+<meta property="article:modified_time" content="2025-04-10T07:18:49.500Z">
+<meta property="article:author" content="wrongization">
+<meta property="article:tag" content="os">
+<meta property="article:tag" content="lab2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wrongization.site/img/cover/oslab2/oslab2.webp"><link rel="shortcut icon" href="/img/logo.webp"><link rel="canonical" href="https://wrongization.site/2025/03/29/oslab2.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/%E5%8D%8E%E6%96%87%E4%B8%AD%E5%AE%8B%7CTitillium%20Web%7CPingFang%20SC%7CHiragino%20Sans%20GB%7CMicrosoft%20JhengHei%7CMicrosoft%20YaHeisans-serif" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":0},
+  copy: {
+    success: '成功复制~',
+    error: '复制内容到了星之彼方',
+    noSupport: '不支持的浏览器！'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":100,"languages":{"author":"作者: wrongization","link":"原文连接: ","source":"来源: https://wrongization.site","info":"复制和转载请标明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"你切换到了简体中文","cht_to_chs":"你切换到了繁体中文","day_to_night":"永远是深夜有多好。","night_to_day":"地球就是完美的观测特等席。","bgLight":"#7D26CD","bgDark":"#551A8B","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '💡加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA-OS-LAB2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2025-04-10 15:18:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://lib.baomitu.com" crossorigin><link rel="preconnect" href="https://pic.imgdb.cn" crossorigin><link rel="preload" as="font" href="/font/maple.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="/font/broadway.ttf" type="font/ttf" crossorigin><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">🍵载入中...</div><!-- 新的精美加载条--><div class="progress-bar"><div class="progress-track"><div class="progress-fill"></div><div class="progress-glow"></div></div><div class="progress-text">正在向夜晚奔去...</div></div></div></div><script>(() => {
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const $progressBar = $loadingBox.querySelector('.progress-bar')
+  const $progressFill = $loadingBox.querySelector('.progress-fill')
+  const $progressText = $loadingBox.querySelector('.progress-text')
+let determinateActivated = false
+let currentPct = 0
+// 进度模式：'proportional'（按资源完成比例推进）或 'ticker'（按时间匀速推进）
+const PROGRESS_MODE = 'ticker'
+// 统一节拍：让进度条均匀增长（不超过 MAX_TICK_PCT），真实完成时再跳到 100%
+const MAX_TICK_PCT = 98 // 均匀增长的上限，避免未完成时到 100
+const TICK_DURATION = 4000 // 从 0 均匀增长到 MAX_TICK_PCT 的目标时长(ms)
+let tickerRAF = 0
+let tickerStart = 0
+
+  function setProgress(p) {
+    const pct = Math.min(100, Math.max(0, p))
+    const next = Math.max(currentPct, pct) // 只增不减，避免视觉回退
+    if (!determinateActivated) {
+      determinateActivated = true
+      $progressBar.classList.add('determinate')
+      $progressFill.style.animation = '' // stop indeterminate slide
+    }
+$progressBar.style.setProperty('--progress-pct', next + '%')
+// 直接设置内联样式，确保视觉宽度与百分比一致（即使 CSS 尚未更新）
+$progressFill.style.width = next + '%'
+// 关闭动画与位移，避免出现仅一小段在滑动的视觉错觉
+$progressFill.style.animation = 'none'
+$progressFill.style.transform = 'none'
+    if ($progressText) $progressText.setAttribute('data-percent', next.toFixed(0) + '%')
+    currentPct = next
+  }
+
+  function stopTicker() {
+    if (tickerRAF) {
+      cancelAnimationFrame(tickerRAF)
+      tickerRAF = 0
+    }
+  }
+
+function startTicker() {
+    stopTicker()
+    tickerStart = performance.now()
+    const tick = (now) => {
+      if ($loadingBox.classList.contains('loaded')) return // 已结束不再推进
+      const elapsed = now - tickerStart
+      const target = Math.min(MAX_TICK_PCT, (elapsed / TICK_DURATION) * MAX_TICK_PCT)
+      setProgress(target)
+      tickerRAF = requestAnimationFrame(tick)
+    }
+    tickerRAF = requestAnimationFrame(tick)
+  }
+
+  // 小工具：为 Promise 加超时上限，避免个别资源阻塞
+  function withTimeout(promise, ms) {
+    let timer
+    const timeout = new Promise(resolve => { timer = setTimeout(resolve, ms) })
+    return Promise.race([
+      promise.finally(() => clearTimeout(timer)),
+      timeout
+    ])
+  }
+
+function calcAssets() {
+    // 只跟踪“首屏/非懒加载”的关键图片 + 字体(限时) + DOM 就绪 + (load 限时)
+    const allImgs = Array.from(document.images || [])
+    const vh = window.innerHeight || 800
+    const isNearViewport = img => {
+      const rect = img.getBoundingClientRect ? img.getBoundingClientRect() : null
+      return rect ? rect.top < vh * 1.2 : true
+    }
+    const isLazy = img => (
+      img.loading === 'lazy' || img.getAttribute('data-src') || img.getAttribute('data-original')
+    )
+    const trackedImgs = allImgs.filter(img => {
+      // 非懒加载直接跟踪；懒加载只跟踪在视口附近的
+      if (isLazy(img)) return isNearViewport(img)
+      return true
+    })
+
+    const trackers = []
+
+    // 图片：逐个计数，并给每张上限 3.5s，避免单张图卡住
+    trackedImgs.forEach(img => {
+      const p = new Promise(resolve => {
+        if (img.complete && img.naturalWidth) return resolve()
+        const done = () => resolve()
+        const timer = setTimeout(done, 3500)
+        img.addEventListener('load', () => { clearTimeout(timer); done() }, { once: true })
+        img.addEventListener('error', () => { clearTimeout(timer); done() }, { once: true })
+      })
+      trackers.push(p)
+    })
+
+    // 字体：整体一次，并设置 1.8s 上限
+    if (document.fonts && document.fonts.ready) {
+      trackers.push(withTimeout(document.fonts.ready.catch(() => {}), 1800))
+    }
+
+    // DOM 就绪：尽早推进
+    const domReady = new Promise(resolve => {
+      if (document.readyState === 'interactive' || document.readyState === 'complete') return resolve()
+      document.addEventListener('DOMContentLoaded', () => resolve(), { once: true })
+    })
+    trackers.push(domReady)
+
+    // window load：作为“保险”，但最多等 2.5s
+    const loadCapped = new Promise(resolve => {
+      if (document.readyState === 'complete') return resolve()
+      const t = setTimeout(resolve, 2500)
+      window.addEventListener('load', () => { clearTimeout(t); resolve() }, { once: true })
+    })
+    trackers.push(loadCapped)
+
+    let finished = 0
+    const total = trackers.length || 1
+    const onOneDone = () => {
+      finished++
+      if (PROGRESS_MODE === 'proportional') {
+        // 直接按比例更新，保持严格对应
+        const pct = (finished / total) * 100
+        setProgress(pct)
+      }
+      if (finished >= total) {
+        // 完成：先瞬到上限（如未到），短暂停留后再到 100 并打开
+        stopTicker()
+        const needPadToCap = currentPct < 100
+        if (needPadToCap) setProgress(100)
+        const finish = () => { preloader.endLoading() }
+        if (needPadToCap) setTimeout(finish, 100)
+        else finish()
+      }
+    }
+    trackers.forEach(p => p.then(onOneDone))
+
+    // 兜底：强制结束，避免极端情况下长时间遮挡（到点即刻收起）
+    setTimeout(() => {
+      if (!$loadingBox.classList.contains('loaded')) {
+        stopTicker()
+        setProgress(100)
+        preloader.endLoading()
+      }
+    }, 7000)
+  }
+
+  const preloader = {
+    endLoading: () => {
+stopTicker()
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  function start() {
+    preloader.initLoading()
+    determinateActivated = false
+currentPct = 0
+    setProgress(0)
+    if (PROGRESS_MODE === 'ticker') startTicker()
+    requestAnimationFrame(calcAssets)
+  }
+
+  start()
+
+  // 可选 PJAX 支持：若站点启用 pjax，重新触发加载条
+  // 适配常见 pjax / instant.page / swup 事件，可按需精简
+  const pjaxEvents = ['pjax:send','pjax:complete','swup:animationInStart','swup:contentReplaced']
+  pjaxEvents.forEach(ev => {
+    document.addEventListener(ev, e => {
+      if (ev.includes('send') || ev.includes('animationIn')) {
+        start()
+      } else if (ev.includes('complete') || ev.includes('contentReplaced')) {
+        // 重新统计新页面资源
+        requestAnimationFrame(calcAssets)
+      }
+    })
+  })
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp" onerror="onerror=null;src='/img/gif404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><!-- 添加 data-effect 以支持顶图特效切换 (sunset | rainy | sunny | sunrise)--><!-- 默认 rainy，可通过主题配置 theme.header_effect_default 覆盖--><header class="post-bg fixed" id="page-header" style="background-image: url('/img/cover/oslab2/oslab2.webp')" data-effect="rainy"><nav id="nav"><span id="blog-info"><a href="/" title="wrongization"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp"/><span class="site-name">wrongization</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 类别</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-images"></i><span> 图库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-paint-brush"></i><span> 画廊</span></a></li><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 摄影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BUAA-OS-LAB2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建</span><time class="post-meta-date-created" datetime="2025-03-29T09:46:54.000Z" title="创建 2025-03-29 17:46:54">2025-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新</span><time class="post-meta-date-updated" datetime="2025-04-10T07:18:49.500Z" title="更新 2025-04-10 15:18:49">2025-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-os/">buaa-os</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buaa-os/lab2/">lab2</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数统计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时间:</span><span>14分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-series"><h3>os-系列：</h3><li><a class="title" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell">BUAA-OS-shell</a></li><li><a class="title" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6">BUAA-OS-LAB6</a></li><li><a class="title" href="/2025/05/17/oslab5.html" title="BUAA-OS-LAB5">BUAA-OS-LAB5</a></li><li><a class="title" href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4">BUAA-OS-LAB4</a></li><li><a class="title" href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3">BUAA-OS-LAB3</a></li><li><a class="title" href="/2025/03/29/oslab2.html" title="BUAA-OS-LAB2">BUAA-OS-LAB2</a></li><li><a class="title" href="/2025/03/22/oslab1.html" title="BUAA-OS-LAB1">BUAA-OS-LAB1</a></li><li><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a></li></div><article class="post-content" id="article-container"><h1>BUAA OS LAB2 实验报告</h1>
+<h2 id="Thinking">Thinking</h2>
+<h3 id="Thinking-2-1">Thinking 2.1</h3>
+<p>Q:</p>
+<blockquote>
+<p>请根据上述说明，回答问题：在编写的 C 程序中，指针变量中存储的地址 被视为虚拟地址，还是物理地址？MIPS 汇编程序中 lw和sw 指令使用的地址被视为虚 拟地址，还是物理地址？</p>
+</blockquote>
+<p>A:</p>
+<p>实际程序中，访存、跳转等指令以及用于取指的PC寄存器中的访存目标地址都是虚拟地址。我们编写的C程序中中指针的值也是虚拟地址。</p>
+<h3 id="Thinking-2-2">Thinking 2.2</h3>
+<p>Q:</p>
+<blockquote>
+<p>•从可重用性的角度，阐述用宏来实现链表的好处。</p>
+<p>•查看实验环境中的/usr/include/sys/queue.h，了解其中单向链表与循环链表的实 现，比较它们与本实验中使用的双向链表，分析三者在插入与删除操作上的性能差 异。</p>
+</blockquote>
+<p>A:</p>
+<p>宏的的特性就是可重复使用。当这段代码的具体实现需要更改时，只需要改宏这一处就行。宏相比函数由于是<strong>字符串的替换</strong>，因此不必进行地址的跳转和栈的保存。</p>
+<p>在实验环境中，只看到了单向链表、双向链表、单向队列、双向队列、循环队列，感觉循环队列在插入和删除操作方面和循环链表没太大差异，据此进一步分析。</p>
+<p>**插入操作：**单向链表插入操作十分简单，两行代码，双向链表插入操作一般运行四行代码，需要额外判断是否next指向了NULL，循环链表与双向链表运行代码量基本相等，需额外判断是否next指向了头指针。特别的是，插入到头结点对三种链表而言性能相似，单向链表与双向链表插入到尾结点均要遍历完整个链表。</p>
+<p>**删除操作：**单向链表的删除操作复杂度为O(n)，因为需要靠循环才能找到上一个链表节点的位置，双向链表及循环链表的删除操作与插入性能相近，也还是需要额外判断NULL或HEAD。删除头结点对三种链表而言性能相似，而单向链表与双向链表删除尾结点还是要遍历。</p>
+<h3 id="Thinking-2-3">Thinking 2.3</h3>
+<p>Q：</p>
+<blockquote>
+<p>请阅读include/queue.h以及include/pmap.h,将Page_list的结构梳 理清楚，选择正确的展开结构。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A:</span><br><span class="line">structPage_list&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">structPage *le_next;</span><br><span class="line">structPage *le_prev;</span><br><span class="line">&#125;pp_link;</span><br><span class="line">u_shortpp_ref;</span><br><span class="line">&#125;*lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">B:</span><br><span class="line">structPage_list&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">structPage *le_next;</span><br><span class="line">structPage **le_prev;</span><br><span class="line">&#125;pp_link;</span><br><span class="line">u_shortpp_ref;</span><br><span class="line">&#125; lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:</span><br><span class="line">structPage_list&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">structPage *le_next;</span><br><span class="line">structPage **le_prev;</span><br><span class="line">&#125;pp_link;</span><br><span class="line">u_shortpp_ref;</span><br><span class="line">&#125;*lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>A:</p>
+<p>答案选C。Page_list中含有的是Page结构体指针头。每一个Page内存控制块都有一个<code>pp_ref</code>用于表示其引用次数（为0时便可remove)，还有一个结构体用于存放实现双向链表的指针。</p>
+<h3 id="Thinking-2-4">Thinking 2.4</h3>
+<p>Q：</p>
+<blockquote>
+<p>请思考下面两个问题：</p>
+<p>• 请阅读上面有关TLB的描述，从虚拟内存和多进程操作系统的实现角度，阐述ASID 的必要性。</p>
+<p>• 请阅读 MIPS 4Kc 文档《MIPS32® 4K™ Processor Core Family Software User’s Manual》的 Section 3.3.1 与 Section 3.4，结合 ASID 段的位数，说明 4Kc 中可容纳 不同的地址空间的最大数量。</p>
+</blockquote>
+<p>A:</p>
+<p>**ASID的必要性：**同一虚拟地址在不同地址空间中通常映射到不同物理地址，ASID可以判断是在哪个地址空间。例如有多个进程都用到了这个虚拟地址，但若该虚拟地址对应的数据不是共享的，则基本可以表明指向的是不同物理地址，这也是一种对地址空间的保护。</p>
+<p><strong>可容纳不同地址空间的最大数量：<strong>MIPS 4Kc处理器通过8位ASID字段，最多可支持</strong>256个不同的地址空间</strong>。</p>
+<h3 id="Thinking-2-5">Thinking 2.5</h3>
+<p>Q：</p>
+<blockquote>
+<p>请回答下述三个问题：</p>
+<p>•tlb_invalidate和tlb_out的调用关系？</p>
+<p>•请用一句话概括tlb_invalidate的作用。</p>
+<p>•逐行解释tlb_out中的汇编代码。</p>
+</blockquote>
+<p>A:</p>
+<p>tlb_invalidate调用tlb_out</p>
+<p>调用tlb_invalidate可以将该地址空间的虚拟地址对应的表项清除出去，一般用于这个虚拟空间引用次数为0时释放tlb空间</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> LEAF(tlb_out)</span><br><span class="line"><span class="symbol">.set</span> noreorder</span><br><span class="line">	mfc0    t0,CP0_ENTRYHI  <span class="comment">//保存ENTRIHI原有值</span></span><br><span class="line">	mtc0    a0,CP0_ENTRYHI  <span class="comment">//将传进来的参数放进ENTRYHI中</span></span><br><span class="line">	<span class="keyword">nop</span></span><br><span class="line">	<span class="comment">/* Step 1: Use &#x27;tlbp&#x27; to probe TLB entry */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.8: Your code here. (1/2) */</span></span><br><span class="line">	tlbp <span class="comment">//检测ENTRYHI中的虚拟地址在tlb中是否有对应项</span></span><br><span class="line">	<span class="keyword">nop</span></span><br><span class="line">	<span class="comment">/* Step 2: Fetch the probe result from CP0.Index */</span></span><br><span class="line">	mfc0    t1, CP0_INDEX <span class="comment">//INDEX可以用来判断是否命中</span></span><br><span class="line"><span class="symbol">.set</span> reorder</span><br><span class="line">	bltz    t1, NO_SUCH_ENTRY <span class="comment">//若未命中，则跳转</span></span><br><span class="line"><span class="symbol">.set</span> noreorder</span><br><span class="line">	mtc0    zero, CP0_ENTRYHI  <span class="comment">//将ENTRYHI清零</span></span><br><span class="line">	mtc0    zero, CP0_ENTRYLO0 <span class="comment">//将ENTRYLO0清零</span></span><br><span class="line">	mtc0    zero, CP0_ENTRYLO1 <span class="comment">//将ENTRYLO1清零</span></span><br><span class="line">	<span class="keyword">nop</span></span><br><span class="line">	<span class="comment">/* Step 3: Use &#x27;tlbwi&#x27; to write CP0.EntryHi/Lo into TLB at CP0.Index  */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.8: Your code here. (2/2) */</span></span><br><span class="line">	tlbwi <span class="comment">//将清零后的两寄存器值写入到对应tlb表项中,相当于删除原有的tlb表项</span></span><br><span class="line"><span class="symbol">.set</span> reorder</span><br><span class="line"></span><br><span class="line"><span class="symbol">NO_SUCH_ENTRY:</span></span><br><span class="line">	mtc0    t0, CP0_ENTRYHI <span class="comment">//将原来的ENTRYHI恢复</span></span><br><span class="line">	j       ra <span class="comment">//返回</span></span><br><span class="line"><span class="symbol">END</span>(tlb_out)</span><br></pre></td></tr></table></figure>
+<h3 id="Thinking-2-6">Thinking 2.6</h3>
+<p>Q：</p>
+<blockquote>
+<p>请结合 Lab2 开始的 CPU 访存流程与下图中的 Lab2 用户函数部分，尝试 将函数调用与CPU访存流程对应起来，思考函数调用与CPU访存流程的关系。</p>
+</blockquote>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/29/oslab2/image-20250329164344140.webp" class="" title="image-20250329164344140">
+<p>A:</p>
+<h3 id="函数调用与CPU访存的关系总结"><strong>函数调用与CPU访存的关系总结</strong></h3>
+<ol>
+<li><strong>初始化阶段</strong>：<br>
+通过<code>env_setup_vm</code>、<code>page_alloc</code>等函数构建进程的页表框架，为后续访存提供基础设施。</li>
+<li><strong>主动映射阶段</strong>：<br>
+<code>load_icode</code>和<code>map_segment</code>预先建立关键映射（如代码段），减少运行时TLB未命中次数。</li>
+<li><strong>动态映射阶段</strong>：<br>
+运行时未映射的虚拟地址访问触发<code>do_tlb_refill</code>，依赖<code>passive_alloc</code>和<code>page_insert</code>动态分配物理页并更新页表，体现“按需分配”特性。</li>
+<li><strong>一致性维护</strong>：<br>
+映射变更后（如<code>page_insert</code>），通过<code>tlb_invalidate</code>确保TLB与页表一致，避免脏数据访问。</li>
+</ol>
+<h3 id="Thinking-2-7">Thinking 2.7</h3>
+<p>Q：</p>
+<blockquote>
+<p>从下述三个问题中任选其一回答：</p>
+<p>• 简单了解并叙述X86体系结构中的内存管理机制，比较X86和MIPS 在内存管理 上的区别。</p>
+<p>• 简单了解并叙述RISC-V 中的内存管理机制，比较RISC-V 与 MIPS 在内存管理上 的区别。</p>
+<p>• 简单了解并叙述LoongArch 中的内存管理机制，比较 LoongArch 与 MIPS 在内存 管理上的区别。</p>
+</blockquote>
+<p>A:</p>
+<p>内存管理机制对比表（X86、MIPS、RISC-V、LoongArch）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>特性</strong></th>
+<th style="text-align:left"><strong>X86</strong></th>
+<th style="text-align:left"><strong>MIPS</strong></th>
+<th style="text-align:left"><strong>RISC-V</strong></th>
+<th style="text-align:left"><strong>LoongArch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>地址转换机制</strong></td>
+<td style="text-align:left">分段 + 分页混合机制</td>
+<td style="text-align:left">纯分页机制</td>
+<td style="text-align:left">纯分页机制（支持 Sv32/Sv39/Sv48）</td>
+<td style="text-align:left">纯分页机制（多级页表）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>分段机制</strong></td>
+<td style="text-align:left">支持（强制逻辑地址分段）</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>分页机制</strong></td>
+<td style="text-align:left">多级页表（32位二级，64位四级/五级）</td>
+<td style="text-align:left">固定页表结构（TLB映射）</td>
+<td style="text-align:left">灵活分页模式（Sv32/Sv39等）</td>
+<td style="text-align:left">多级页表（类似X86，支持大页）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>TLB 管理</strong></td>
+<td style="text-align:left">硬件自动处理 TLB 未命中</td>
+<td style="text-align:left">软件处理 TLB 未命中（异常机制）</td>
+<td style="text-align:left">可选硬件加速或软件处理</td>
+<td style="text-align:left">硬件辅助 TLB 填充（部分自动化）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>权限控制</strong></td>
+<td style="text-align:left">分段和分页双重保护（Ring 0~3）</td>
+<td style="text-align:left">分页权限位 + 固定内核/用户区域</td>
+<td style="text-align:left">分页权限位（U/S/M模式）</td>
+<td style="text-align:left">分页权限位 + 特权级隔离</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>物理地址扩展</strong></td>
+<td style="text-align:left">PAE 或 64 位扩展（48~52位）</td>
+<td style="text-align:left">TLB 条目扩展（支持40~64位）</td>
+<td style="text-align:left">分页模式扩展（如Sv39支持56位）</td>
+<td style="text-align:left">多级页表扩展（支持大物理地址）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>地址空间划分</strong></td>
+<td style="text-align:left">分段划分逻辑空间</td>
+<td style="text-align:left">固定内核/用户区域（如 <code>kseg0</code>）</td>
+<td style="text-align:left">灵活划分（用户/内核地址空间）</td>
+<td style="text-align:left">固定内核映射区域 + 用户空间</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>兼容性设计</strong></td>
+<td style="text-align:left">保留分段以兼容历史架构</td>
+<td style="text-align:left">无历史包袱，设计简单</td>
+<td style="text-align:left">模块化设计，无历史兼容负担</td>
+<td style="text-align:left">自主研发，兼容性设计较少</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>典型应用场景</strong></td>
+<td style="text-align:left">通用计算（PC/服务器）</td>
+<td style="text-align:left">嵌入式/早期游戏主机/路由器</td>
+<td style="text-align:left">嵌入式/IoT/新兴处理器</td>
+<td style="text-align:left">国产高性能计算/服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lab2难点">lab2难点</h2>
+<h3 id="T1">T1</h3>
+<p>除以页大小得到页数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">mips_detect_memory</span><span class="params">(u_int _memsize)</span> &#123;</span><br><span class="line">         <span class="comment">/* Step 1: Initialize memsize. */</span></span><br><span class="line">          memsize = _memsize;</span><br><span class="line">  </span><br><span class="line">          <span class="comment">/* Step 2: Calculate the corresponding &#x27;npage&#x27; value. */</span></span><br><span class="line">          <span class="comment">/* Exercise 2.1: Your code here. */</span></span><br><span class="line">          npage = memsize / PAGE_SIZE;</span><br><span class="line">          printk(<span class="string">&quot;Memory size: %lu KiB, number of pages: %lu\n&quot;</span>, memsize / <span class="number">1024</span>, npage);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="T2">T2</h3>
+<p>注意顺序，先将新添加的表项链接到前后，再修改原先的链接顺序。</p>
+<p>注意prev指针指向的是前一项的next指针，是一个二重指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LIST_INSERT_AFTER(listelm, elm, field)                                                   \   </span></span><br><span class="line"><span class="keyword">do</span> &#123;                                                                                    		\</span><br><span class="line">                 LIST_NEXT((elm),field) = LIST_NEXT((listelm),field);                            \</span><br><span class="line">                 <span class="keyword">if</span> ((LIST_NEXT((listelm), field)) != <span class="literal">NULL</span>) &#123;                                       \</span><br><span class="line">			LIST_NEXT((listelm), field)-&gt;field.le_prev = &amp;(LIST_NEXT((elm), field));   			\</span><br><span class="line">														&#125;            						\</span><br><span class="line">                 LIST_NEXT((listelm),field) = (elm);      									  \</span><br><span class="line">    			(elm)-&gt;field.le_prev = &amp;LIST_NEXT((listelm),field);\</span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="T3">T3</h3>
+<p><code>page_free_list</code>是一个<code>page_list</code>类型，该类型在宏定义里用<code>PAGE_HEAD()</code>定义为了一个链表头部。</p>
+<p><code>PADDR()</code>将虚拟地址转换为物理地址，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">page_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">	<span class="comment">/* Step 1: Initialize page_free_list. */</span></span><br><span class="line">	<span class="comment">/* Hint: Use macro `LIST_INIT` defined in include/queue.h. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.3: Your code here. (1/4) */</span></span><br><span class="line"></span><br><span class="line">	LIST_INIT(&amp;page_free_list);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 2: Align `freemem` up to multiple of PAGE_SIZE. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.3: Your code here. (2/4) */</span></span><br><span class="line"></span><br><span class="line">	freemem = ROUND(freemem, PAGE_SIZE);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 3: Mark all memory below `freemem` as used (set `pp_ref` to 1) */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.3: Your code here. (3/4) */</span></span><br><span class="line">	<span class="type">int</span> size = PADDR(freemem) / PAGE_SIZE;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">		pages[i].pp_ref = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 4: Mark the other memory as free. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.3: Your code here. (4/4) */</span></span><br><span class="line">	<span class="keyword">for</span> (i = size; i &lt; npage; ++i) &#123;</span><br><span class="line">		pages[i].pp_ref = <span class="number">0</span>;</span><br><span class="line">		LIST_INSERT_HEAD(&amp;page_free_list, &amp;pages[i], pp_link);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="T4">T4</h3>
+<p>memset()需要的是虚拟地址，需要<code>page2kva()</code>将页转换为虚拟地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">page_alloc</span><span class="params">(<span class="keyword">struct</span> Page **new)</span> &#123;</span><br><span class="line">	<span class="comment">/* Step 1: Get a page from free memory. If fails, return the error code.*/</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">pp</span>;</span></span><br><span class="line">	<span class="comment">/* Exercise 2.4: Your code here. (1/2) */</span></span><br><span class="line"></span><br><span class="line">	pp = LIST_FIRST(&amp;page_free_list);</span><br><span class="line">	<span class="keyword">if</span> (pp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> -E_NO_MEM;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	LIST_REMOVE(pp, pp_link);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 2: Initialize this page with zero.</span></span><br><span class="line"><span class="comment">	 * Hint: use `memset`. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.4: Your code here. (2/2) */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(page2kva(pp), <span class="number">0</span>, PAGE_SIZE); <span class="comment">// memset requests virtual address!!!!</span></span><br><span class="line"></span><br><span class="line">	*new = pp;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="T5">T5</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">page_free</span><span class="params">(<span class="keyword">struct</span> Page *pp)</span> &#123;</span><br><span class="line">	assert(pp-&gt;pp_ref == <span class="number">0</span>);</span><br><span class="line">	<span class="comment">/* Just insert it into &#x27;page_free_list&#x27;. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.5: Your code here. */</span></span><br><span class="line">	LIST_INSERT_HEAD(&amp;page_free_list, pp, pp_link);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="T6">T6</h3>
+<p>如图，顺序已经十分清楚了。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2025/03/29/oslab2/image-20250329173213600.webp" class="" title="image-20250329173213600">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">pgdir_walk</span><span class="params">(Pde *pgdir, u_long va, <span class="type">int</span> create, Pte **ppte)</span> &#123;</span><br><span class="line">	Pde *pgdir_entryp;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">pp</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 1: Get the corresponding page directory entry. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.6: Your code here. (1/3) */</span></span><br><span class="line"></span><br><span class="line">	pgdir_entryp = pgdir + PDX(va);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 2: If the corresponding page table is not existent (valid) then:</span></span><br><span class="line"><span class="comment">	 *   * If parameter `create` is set, create one. Set the permission bits &#x27;PTE_C_CACHEABLE |</span></span><br><span class="line"><span class="comment">	 *     PTE_V&#x27; for this new page in the page directory. If failed to allocate a new page (out</span></span><br><span class="line"><span class="comment">	 *     of memory), return the error.</span></span><br><span class="line"><span class="comment">	 *   * Otherwise, assign NULL to &#x27;*ppte&#x27; and return 0.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.6: Your code here. (2/3) */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!((*pgdir_entryp) &amp; PTE_V)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (create) &#123;</span><br><span class="line">			try(page_alloc(&amp;pp));</span><br><span class="line">			*pgdir_entryp = page2pa(pp);</span><br><span class="line">			*pgdir_entryp = (*pgdir_entryp) | PTE_C_CACHEABLE | PTE_V;</span><br><span class="line">			pp-&gt;pp_ref++;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			*ppte = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 3: Assign the kernel virtual address of the page table entry to &#x27;*ppte&#x27;. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.6: Your code here. (3/3) */</span></span><br><span class="line">	*ppte = (Pte *)KADDR(PTE_ADDR(*pgdir_entryp)) + PTX(va);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="T7">T7</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">page_insert</span><span class="params">(Pde *pgdir, u_int asid, <span class="keyword">struct</span> Page *pp, u_long va, u_int perm)</span> &#123;</span><br><span class="line">	Pte *pte;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 1: Get corresponding page table entry. */</span></span><br><span class="line">	pgdir_walk(pgdir, va, <span class="number">0</span>, &amp;pte);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (pte &amp;&amp; (*pte &amp; PTE_V)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (pa2page(*pte) != pp) &#123;</span><br><span class="line">			page_remove(pgdir, asid, va);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			tlb_invalidate(asid, va);</span><br><span class="line">			*pte = page2pa(pp) | perm | PTE_C_CACHEABLE | PTE_V;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 2: Flush TLB with &#x27;tlb_invalidate&#x27;. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.7: Your code here. (1/3) */</span></span><br><span class="line"></span><br><span class="line">	tlb_invalidate(asid, va);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 3: Re-get or create the page table entry. */</span></span><br><span class="line">	<span class="comment">/* If failed to create, return the error. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.7: Your code here. (2/3) */</span></span><br><span class="line">	try(pgdir_walk(pgdir, va, <span class="number">1</span>, &amp;pte));</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Step 4: Insert the page to the page table entry with &#x27;perm | PTE_C_CACHEABLE | PTE_V&#x27;</span></span><br><span class="line"><span class="comment">	 * and increase its &#x27;pp_ref&#x27;. */</span></span><br><span class="line">	<span class="comment">/* Exercise 2.7: Your code here. (3/3) */</span></span><br><span class="line">	*pte = page2pa(pp) | perm | PTE_C_CACHEABLE | PTE_V;</span><br><span class="line">	pp-&gt;pp_ref++;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="T8">T8</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">LEAF(tlb_out)</span><br><span class="line">.set noreorder</span><br><span class="line">	mfc0    t0, CP0_ENTRYHI</span><br><span class="line">	mtc0    a0, CP0_ENTRYHI</span><br><span class="line">	nop</span><br><span class="line">	/* Step 1: Use &#x27;tlbp&#x27; to probe TLB entry */</span><br><span class="line">	/* Exercise 2.8: Your code here. (1/2) */</span><br><span class="line">	tlbp</span><br><span class="line">	nop</span><br><span class="line">	/* Step 2: Fetch the probe result from CP0.Index */</span><br><span class="line">	mfc0    t1, CP0_INDEX</span><br><span class="line">.set reorder</span><br><span class="line">	bltz    t1, NO_SUCH_ENTRY</span><br><span class="line">.set noreorder</span><br><span class="line">	mtc0    zero, CP0_ENTRYHI</span><br><span class="line">	mtc0    zero, CP0_ENTRYLO0</span><br><span class="line">	mtc0    zero, CP0_ENTRYLO1</span><br><span class="line">	nop</span><br><span class="line">	/* Step 3: Use &#x27;tlbwi&#x27; to write CP0.EntryHi/Lo into TLB at CP0.Index  */</span><br><span class="line">	/* Exercise 2.8: Your code here. (2/2) */</span><br><span class="line">	tlbwi</span><br><span class="line">.set reorder</span><br><span class="line"></span><br><span class="line">NO_SUCH_ENTRY:</span><br><span class="line">	mtc0    t0, CP0_ENTRYHI</span><br><span class="line">	j       ra</span><br><span class="line">END(tlb_out)</span><br></pre></td></tr></table></figure>
+<h3 id="T9">T9</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _do_tlb_refill(u_long *pentrylo, u_int va, u_int asid) &#123;</span><br><span class="line">	tlb_invalidate(asid, va);</span><br><span class="line">	Pte *ppte;</span><br><span class="line">	<span class="comment">/* Hints:</span></span><br><span class="line"><span class="comment">	 *  Invoke &#x27;page_lookup&#x27; repeatedly in a loop to find the page table entry &#x27;*ppte&#x27;</span></span><br><span class="line"><span class="comment">	 * associated with the virtual address &#x27;va&#x27; in the current address space &#x27;cur_pgdir&#x27;.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 *  **While** &#x27;page_lookup&#x27; returns &#x27;NULL&#x27;, indicating that the &#x27;*ppte&#x27; could not be found,</span></span><br><span class="line"><span class="comment">	 *  allocate a new page using &#x27;passive_alloc&#x27; until &#x27;page_lookup&#x27; succeeds.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Exercise 2.9: Your code here. */</span></span><br><span class="line">	<span class="keyword">while</span> (page_lookup(cur_pgdir, va, &amp;ppte) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		passive_alloc(va, cur_pgdir, asid);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ppte = (Pte *)((u_long)ppte &amp; ~<span class="number">0x7</span>);</span><br><span class="line">	pentrylo[<span class="number">0</span>] = ppte[<span class="number">0</span>] &gt;&gt; <span class="number">6</span>;</span><br><span class="line">	pentrylo[<span class="number">1</span>] = ppte[<span class="number">1</span>] &gt;&gt; <span class="number">6</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="T10">T10</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">NESTED(do_tlb_refill, 24, zero)</span><br><span class="line">	mfc0    a1, CP0_BADVADDR</span><br><span class="line">	mfc0    a2, CP0_ENTRYHI</span><br><span class="line">	andi    a2, a2, 0xff /* ASID is stored in the lower 8 bits of CP0_ENTRYHI */</span><br><span class="line">.globl do_tlb_refill_call;</span><br><span class="line">do_tlb_refill_call:</span><br><span class="line">	addi    sp, sp, -24 /* Allocate stack for arguments(3), return value(2), and return address(1) */</span><br><span class="line">	sw      ra, 20(sp) /* [sp + 20] - [sp + 23] store the return address */</span><br><span class="line">	addi    a0, sp, 12 /* [sp + 12] - [sp + 19] store the return value */</span><br><span class="line">	jal     _do_tlb_refill /* (Pte *, u_int, u_int) [sp + 0] - [sp + 11] reserved for 3 args */</span><br><span class="line">	lw      a0, 12(sp) /* Return value 0 - Even page table entry */</span><br><span class="line">	lw      a1, 16(sp) /* Return value 1 - Odd page table entry */</span><br><span class="line">	lw      ra, 20(sp) /* Return address */</span><br><span class="line">	addi    sp, sp, 24 /* Deallocate stack */</span><br><span class="line">	mtc0    a0, CP0_ENTRYLO0 /* Even page table entry */</span><br><span class="line">	mtc0    a1, CP0_ENTRYLO1 /* Odd page table entry */</span><br><span class="line">	nop</span><br><span class="line">	/* Hint: use &#x27;tlbwr&#x27; to write CP0.EntryHi/Lo into a random tlb entry. */</span><br><span class="line">	/* Exercise 2.10: Your code here. */</span><br><span class="line">	tlbwr</span><br><span class="line">	jr      ra</span><br><span class="line">END(do_tlb_refill)</span><br></pre></td></tr></table></figure>
+<h2 id="实验体会总结">实验体会总结</h2>
+<p>这次实验最麻烦的一点是信息量巨大，需要看懂许多的结构体和定义函数的使用方法，而且还有物理地址、虚拟地址、二级页表页号等的转换，TLB也是涉及大量地址转换。</p>
+<p>体会：</p>
+<ul>
+<li>需要多看课程组的Hint，好几个不知道值的参数都是宏定义</li>
+<li>一般情况下用的都是虚拟地址，只有填入内容才会使用物理地址</li>
+<li>对于c语言结构体和指针的使用需要熟悉</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>作者: </span><span class="post-copyright-info"><a href="https://wrongization.site">wrongization</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>链接: </span><span class="post-copyright-info"><a href="https://wrongization.site/2025/03/29/oslab2.html">https://wrongization.site/2025/03/29/oslab2.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>转载注意: </span><span class="post-copyright-info">除非另有说明，否则本博客中的所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/os/">os</a><a class="post-meta__tags" href="/tags/lab2/">lab2</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/oslab2/oslab2.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab3/oslab3.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">明夜</div><div class="prev_info">BUAA-OS-LAB3</div></div></a></div><div class="next-post pull-right"><a href="/2025/03/22/oslab1.html" title="BUAA-OS-LAB1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab1/oslab1.webp" onerror="onerror=null;src='/img/404.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">昨夜</div><div class="next_info">BUAA-OS-LAB1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关文章</span></div><div class="relatedPosts-list"><div><a href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab0/oslab0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-17</div><div class="title">BUAA-OS-LAB0</div></div></a></div><div><a href="/2025/03/22/oslab1.html" title="BUAA-OS-LAB1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab1/oslab1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-22</div><div class="title">BUAA-OS-LAB1</div></div></a></div><div><a href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab3/oslab3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-10</div><div class="title">BUAA-OS-LAB3</div></div></a></div><div><a href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab4/oslab4.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-07</div><div class="title">BUAA-OS-LAB4</div></div></a></div><div><a href="/2025/05/17/oslab5.html" title="BUAA-OS-LAB5"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab5/oslab5.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-17</div><div class="title">BUAA-OS-LAB5</div></div></a></div><div><a href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab6/oslab6.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-01</div><div class="title">BUAA-OS-LAB6</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/logo.webp" onerror="this.onerror=null;this.src='/img/gif404.gif'" alt="avatar"/></div><div class="author-info__name">wrongization</div><div class="author-info__description">wrongization的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/categories/"><div class="headline">类别</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wrongization"><i class="fab fa-github"></i><span>My Github Page</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/175003959" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #FF69B4;"></i></a><a class="social-icon" href="https://500px.com.cn/wrongization" target="_blank" title="500px"><i class="fab fa-500px" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2560668452@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #7D26CD;"></i></a><a class="social-icon" href="https://steamcommunity.com/id/wrongization" target="_blank" title="steam"><i class="fab fa-steam-square" style="color: #00008B;"></i></a><a class="social-icon" href="https://www.test-ipv6.com/index.html.zh_CN" target="_blank" title="ipv6测试"><i class="fas fa-spinner fa-pulse" style="color: #00EE00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以先看软件配置系列，顶部菜单栏可选择不同子页面。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">BUAA OS LAB2 实验报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Thinking"><span class="toc-number">1.1.</span> <span class="toc-text">Thinking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">Thinking 2.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-2"><span class="toc-number">1.1.2.</span> <span class="toc-text">Thinking 2.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-3"><span class="toc-number">1.1.3.</span> <span class="toc-text">Thinking 2.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-4"><span class="toc-number">1.1.4.</span> <span class="toc-text">Thinking 2.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-5"><span class="toc-number">1.1.5.</span> <span class="toc-text">Thinking 2.5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-6"><span class="toc-number">1.1.6.</span> <span class="toc-text">Thinking 2.6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E4%B8%8ECPU%E8%AE%BF%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.7.</span> <span class="toc-text">函数调用与CPU访存的关系总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-2-7"><span class="toc-number">1.1.8.</span> <span class="toc-text">Thinking 2.7</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lab2%E9%9A%BE%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">lab2难点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#T1"><span class="toc-number">1.2.1.</span> <span class="toc-text">T1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T2"><span class="toc-number">1.2.2.</span> <span class="toc-text">T2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T3"><span class="toc-number">1.2.3.</span> <span class="toc-text">T3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T4"><span class="toc-number">1.2.4.</span> <span class="toc-text">T4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T5"><span class="toc-number">1.2.5.</span> <span class="toc-text">T5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T6"><span class="toc-number">1.2.6.</span> <span class="toc-text">T6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T7"><span class="toc-number">1.2.7.</span> <span class="toc-text">T7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T8"><span class="toc-number">1.2.8.</span> <span class="toc-text">T8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T9"><span class="toc-number">1.2.9.</span> <span class="toc-text">T9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T10"><span class="toc-number">1.2.10.</span> <span class="toc-text">T10</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BD%93%E4%BC%9A%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">实验体会总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/osshell/osshell.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-shell"></a><div class="content"><a class="title" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell">BUAA-OS-shell</a><time datetime="2025-06-17T16:28:25.000Z" title="创建 2025-06-18 00:28:25">2025-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab6/oslab6.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB6"></a><div class="content"><a class="title" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6">BUAA-OS-LAB6</a><time datetime="2025-06-01T03:45:14.000Z" title="创建 2025-06-01 11:45:14">2025-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/17/oslab5.html" title="BUAA-OS-LAB5"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab5/oslab5.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB5"></a><div class="content"><a class="title" href="/2025/05/17/oslab5.html" title="BUAA-OS-LAB5">BUAA-OS-LAB5</a><time datetime="2025-05-17T11:55:44.000Z" title="创建 2025-05-17 19:55:44">2025-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab4/oslab4.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB4"></a><div class="content"><a class="title" href="/2025/05/07/oslab4.html" title="BUAA-OS-LAB4">BUAA-OS-LAB4</a><time datetime="2025-05-07T12:35:18.000Z" title="创建 2025-05-07 20:35:18">2025-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab3/oslab3.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB3"></a><div class="content"><a class="title" href="/2025/04/10/oslab3.html" title="BUAA-OS-LAB3">BUAA-OS-LAB3</a><time datetime="2025-04-10T07:19:46.000Z" title="创建 2025-04-10 15:19:46">2025-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/29/oslab2.html" title="BUAA-OS-LAB2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab2/oslab2.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB2"></a><div class="content"><a class="title" href="/2025/03/29/oslab2.html" title="BUAA-OS-LAB2">BUAA-OS-LAB2</a><time datetime="2025-03-29T09:46:54.000Z" title="创建 2025-03-29 17:46:54">2025-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/22/oslab1.html" title="BUAA-OS-LAB1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab1/oslab1.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB1"></a><div class="content"><a class="title" href="/2025/03/22/oslab1.html" title="BUAA-OS-LAB1">BUAA-OS-LAB1</a><time datetime="2025-03-22T15:12:09.000Z" title="创建 2025-03-22 23:12:09">2025-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab0/oslab0.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB0"></a><div class="content"><a class="title" href="/2025/03/17/oslab0.html" title="BUAA-OS-LAB0">BUAA-OS-LAB0</a><time datetime="2025-03-17T12:55:10.000Z" title="创建 2025-03-17 20:55:10">2025-03-17</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最近投稿</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/20/python.html" title="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/python/python.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集"/></a><div class="content"><a class="title" href="/2025/08/20/python.html" title="Python-CUDA-CuDNN-Pytorch-Jupyter配置合集">Python-CUDA-CuDNN-Pytorch-Jupyter配置合集</a><time datetime="2025-08-20T05:45:14.000Z" title="创建 2025-08-20 13:45:14">2025-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/20/java.html" title="Java多版本环境配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/java/java.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="Java多版本环境配置"/></a><div class="content"><a class="title" href="/2025/08/20/java.html" title="Java多版本环境配置">Java多版本环境配置</a><time datetime="2025-08-20T03:45:14.000Z" title="创建 2025-08-20 11:45:14">2025-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/osshell/osshell.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-shell"/></a><div class="content"><a class="title" href="/2025/06/18/os-shell.html" title="BUAA-OS-shell">BUAA-OS-shell</a><time datetime="2025-06-17T16:28:25.000Z" title="创建 2025-06-18 00:28:25">2025-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/10/oo_unit4.html" title="BUAA-OO-unit4"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oo_unit4/oo_unit4.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OO-unit4"/></a><div class="content"><a class="title" href="/2025/06/10/oo_unit4.html" title="BUAA-OO-unit4">BUAA-OO-unit4</a><time datetime="2025-06-10T15:20:28.000Z" title="创建 2025-06-10 23:20:28">2025-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/oslab6/oslab6.webp" onerror="this.onerror=null;this.src='/img/404.webp'" alt="BUAA-OS-LAB6"/></a><div class="content"><a class="title" href="/2025/06/01/oslab6.html" title="BUAA-OS-LAB6">BUAA-OS-LAB6</a><time datetime="2025-06-01T03:45:14.000Z" title="创建 2025-06-01 11:45:14">2025-06-01</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient( 0deg,#D15FEE,30%,#7D26CD 100%)"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wrongization</div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20250929" target="_blank">萌ICP备20250929号</a> <span id="realtime_duration"></span> <p> <a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"> </a> <a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"> </a> <a style="margin-inline:5px"target="_blank" href="https://github.com/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"> </a> <a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a> <a style="margin-inline:5px"target="_blank" href="https://www.cloudflare-cn.com"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/DNS-Cloudflare-f6821f?style=flat&logo=cloudflare" title="本站采用Clouldflare DNS" alt="Clouldflare"> </a> <a style="margin-inline:5px"target="_blank" href="https://ipw.cn/ipv6webcheck/?site=wrongization.github.io"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Internet-IPV6-07c160?style=flat&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjI2NjE2MjI3NDgxIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjI0NjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDY0YTQ0OCA0NDggMCAxIDAgMCA4OTZBNDQ4IDQ0OCAwIDAgMCA1MTIgNjR6IG0wIDgyMC4wMzJBMzcyLjAzMiAzNzIuMDMyIDAgMCAxIDUxMiAxMzkuOTY4YTM3Mi4wMzIgMzcyLjAzMiAwIDAgMSAwIDc0NC4wNjR6IiBmaWxsPSIjMDdjMTYwIiBwLWlkPSIyNDcwIj48L3BhdGg+PHBhdGggZD0iTTM4Mi4yMDggNzMxLjI2NFYzMjBIMzIwdjQxMS4yNjRoNjIuMjA4eiBtMTQ0LjU3NiAwVjU3MS4xMzZoMTA2LjU2Yzk4LjQ5NiAwIDE0OC4wMzItNDIuMDQ4IDE0OC4wMzItMTI2LjE0NEM3ODEuMzc2IDM2MS40NzIgNzMyLjQxNiAzMjAgNjM0LjQ5NiAzMjBINDY0djQxMS4yNjRoNjIuNzg0eiBtMTAyLjUyOC0yMTMuNjk2SDUyNi43ODR2LTE0NGgxMDIuNTI4YzMwLjUyOCAwIDUyLjk5MiA1Ljc2IDY3LjM5MiAxNy4yOCAxNC40IDEwLjM2OCAyMS44ODggMjguOCAyMS44ODggNTQuMTQ0IDAgMjUuMzQ0LTcuNDg4IDQzLjc3Ni0yMS4zMTIgNTUuMjk2LTE0LjQgMTEuNTItMzYuODY0IDE3LjI4LTY3Ljk2OCAxNy4yOHoiIGZpbGw9IiMwN2MxNjAiIHAtaWQ9IjI0NzEiPjwvcGF0aD48L3N2Zz4=" title="本站支持IPv6访问" alt="ipv6"> </a> <a style="margin-inline:5px"target="_blank" href="https://v6.51.la/land/3L1PzYyEGNZiFQyL"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Support-51.LA-1690ff?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAAzNJREFUWEe9V0tPFEEQ5j+BC8h7kaiJB72oUS/Gg3pRSYw3PRkvHky8EpC3LNGoG4yKxIgxRPEgvjBBWUIEI+oShekZdmd2y/qGGXeYbmZndnUr+fbVPVVfV39V3VvVOig+x0fMNL9XFPGRbLptUMxX8ct6x22i9oRVUSBm25DQkIE0fuAvFUV7wiRe/GpZBFoZLYPqsWL4JwQQPD68SUQ1HoSyCdT1adQ5YdC16QzV9mrKOUEoiwBWHLuh0cSCST9EnnbdFNQUcSvKIrCzX9DBOzppWbLt4uQG1TAh1dztUBaBag7WNeNEZ3u5bFFDvxZJkCUTaBwQtGdE0NJazglPZPHHUw+NSFoomUBNj6DLzzec0AVLfjJpB2cmbEWURKCZU9zMGZhZsZywBVvL5G1dQB+qZ/0oiUCMU3z2sUF5J6jfumYyocUYmUALA3s8njKdcLJ9+Z2j3awP6ETlw4vIBOr7BB1N6qRvH9826AM6UfnwIjIBpHbgfaH0trPXrA/oBHpR+XERiUAjC2vfqKAVTd79rE+PmHFm3LD1ovLlIhIBNJ6rLzKbETw2tWTR8Ac5K4/mTVsvQSUZmgBSCUezPwuNxzW04P23dDJ8uoBOoJf6gJIMTQDN5cITufEsr+VtxSM7OJT81v8uG1iSoQig9Or52J1clBtP95vNANjrTkVv+MZ6gW6gH5XvUATqegUdH9Mloa1z1zvkdD23O779LpOEbpAhle+iBLDvSP/oR1lkY9z3cR9wRYa6vzIlbxN0w/6VJVmUQAOv7gALLK1vTa7FX0/7Tj50vr0JQcvrcpmeZ/1gIV7fQFEC1T0aXX8ll970V4v3VT77oYduzx3BtaeLpq0j6Mk7P5AAUtbB16yFX3LpXXqmvv1AD4fv4pbkyxi7OHHf4Dvk1vmBBGIsPgSC5dgfkGfMpXM2MdX9D3qI8UqTc6ZdEZgPwBKzWd4ynuN5LpBAE+/psXu6fetFWwXOcakd4d8w5p3rBcbQmFCWmI+jGz5OPjDs8dAE4gw4q+W0IXUuIEzvPD9Uz2HlqktKURH+b/wlwC/On1OzovD8OdVSnIFVsKkkmMRq25BI/QEyZCI2oNn1NQAAAABJRU5ErkJggg==" title="本站采用51.LA统计" alt="51.LA"> </a> </p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="打开/关闭夜间模式"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="隐藏/显示侧边栏"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="返回顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"3L1PzYyEGNZiFQyL",ck:"3L1PzYyEGNZiFQyL"})</script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script> new LingQue.Monitor().init({id:"3L1Q2CzO5ktWU3Sd"});</script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/duration.min.js"></script><script src="/scripts/realtime.js"></script><linkrel="stylesheet"href="http://aciano.top/redirect/?target=https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.6" zIndex="-1" count="60" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="ZTMY" data-fontsize="15px" data-random="false" async="async"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
