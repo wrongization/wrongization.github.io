@@ -1,29 +1,113 @@
 /*maple字体*/
 @font-face {
   font-family: 'maple';
-  src: url('../../font/MapleMono-NF-CN-Regular.ttf') format('truetype');
+  src: url('../../font/MapleMono-Thin.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-ThinItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-ExtraLight.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-ExtraLightItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-Light.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-LightItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('/../../font/MapleMono-Regular.ttf.woff2') format('woff2');
   font-display: swap;
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'maple';
-  src: url('../../font/MapleMono-NF-CN-Italic.ttf') format('truetype');
+  src: url('../../font/MapleMono-Italic.ttf.woff2') format('woff2');
   font-display: swap;
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: 'maple';
-  src: url('../../font/MapleMono-NF-CN-Bold.ttf') format('truetype');
+  src: url('../../font/MapleMono-Medium.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-MediumItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-SemiBold.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-SemiBoldItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-Bold.ttf.woff2') format('woff2');
   font-display: swap;
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: 'broadway';
-  src: url('../../font/Broadway.ttf') format('truetype');
+  font-family: 'maple';
+  src: url('../../font/MapleMono-BoldItalic.ttf.woff2') format('woff2');
   font-display: swap;
-  font-weight: bold;
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-ExtraBold.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 800;
   font-style: normal;
+}
+@font-face {
+  font-family: 'maple';
+  src: url('../../font/MapleMono-ExtraBoldItalic.ttf.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 800;
+  font-style: italic;
 }
