@@ -3598,6 +3598,7 @@ h1.page-title + .tag-cloud-list {
   -ms-transition: all 0.5s;
   transition: all 0.5s;
   overflow: hidden;
+  --cursor-ratio: 0.5;
 }
 #page-header #site-info,
 #page-header #page-site-info,
@@ -3610,6 +3611,88 @@ h1.page-title + .tag-cloud-list {
 #page-header #nav {
   position: relative;
   z-index: 4;
+}
+#page-header .effect-lanes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+  opacity: 0.82;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=82)";
+  filter: alpha(opacity=82);
+}
+#page-header .effect-lanes:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: -webkit-radial-gradient(22vw circle at calc(var(--cursor-ratio, 0.5) * 100%) 35%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  background: -moz-radial-gradient(22vw circle at calc(var(--cursor-ratio, 0.5) * 100%) 35%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  background: -o-radial-gradient(22vw circle at calc(var(--cursor-ratio, 0.5) * 100%) 35%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  background: -ms-radial-gradient(22vw circle at calc(var(--cursor-ratio, 0.5) * 100%) 35%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  background: radial-gradient(22vw circle at calc(var(--cursor-ratio, 0.5) * 100%) 35%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  -webkit-transition: opacity 0.35s ease;
+  -moz-transition: opacity 0.35s ease;
+  -o-transition: opacity 0.35s ease;
+  -ms-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease;
+  opacity: 0.75;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+  filter: alpha(opacity=75);
+}
+#page-header .effect-lanes .lane {
+  position: relative;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  background: -webkit-linear-gradient(270deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  background: -moz-linear-gradient(270deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  background: -o-linear-gradient(270deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  background: -ms-linear-gradient(270deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  backdrop-filter: blur(2px);
+  opacity: 0.12;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=12)";
+  filter: alpha(opacity=12);
+  -webkit-transition: opacity 0.32s ease, filter 0.32s ease, -webkit-transform 0.32s ease;
+  -moz-transition: opacity 0.32s ease, filter 0.32s ease, -moz-transform 0.32s ease;
+  -o-transition: opacity 0.32s ease, filter 0.32s ease, -o-transform 0.32s ease;
+  -ms-transition: opacity 0.32s ease, filter 0.32s ease, -ms-transform 0.32s ease;
+  transition: opacity 0.32s ease, filter 0.32s ease, transform 0.32s ease;
+}
+#page-header .effect-lanes .lane:last-child {
+  border-right: none;
+}
+#page-header .effect-lanes .lane .lane-label {
+  position: absolute;
+  left: 12px;
+  bottom: 18px;
+  padding: 6px 10px;
+  font-size: 0.85em;
+  color: rgba(255,255,255,0.92);
+  background: rgba(0,0,0,0.26);
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+#page-header[data-effect-index="0"] .effect-lanes .lane:nth-child(1),
+#page-header[data-effect-index="1"] .effect-lanes .lane:nth-child(2),
+#page-header[data-effect-index="2"] .effect-lanes .lane:nth-child(3),
+#page-header[data-effect-index="3"] .effect-lanes .lane:nth-child(4) {
+  opacity: 0.36;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=36)";
+  filter: alpha(opacity=36);
+  filter: brightness(1.08) saturate(1.05);
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+#page-header.not-top-img .effect-lanes,
+#page-header:not(.full_page) .effect-lanes {
+  display: none;
 }
 #page-header[data-effect="sunset"] {
   filter: brightness(0.9) saturate(95%) contrast(100%);
