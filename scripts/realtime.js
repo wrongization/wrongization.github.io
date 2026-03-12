@@ -8,6 +8,7 @@
     const duration = dayjs.duration(now.diff(startDate)); 
     const days = Math.floor(duration.asDays());
     const seconds = Math.floor(duration.asSeconds());
+    // 心跳 秒数
     el.innerHTML = `已运行${days}${duration.format('天HH时mm分ss秒')}, 是${seconds}次 <i id="heartbeat" class="fa fas fa-heartbeat"></i>`;
   }
 
