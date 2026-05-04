@@ -9336,10 +9336,14 @@ blockquote.pullquote.right {
   #about-page .about-statistic {
     min-height: 380px;
     width: 39%;
-    background: url(../../../img/tongji.webp) no-repeat top;
+    background: url(../../../img/shot_day.webp) no-repeat top;
     background-size: cover;
     color: var(--anzhiyu-white);
     overflow: hidden;
+  }
+  [data-theme="dark"] #about-page .about-statistic {
+    background: url(../../../img/shot_night.webp) no-repeat top;
+    background-size: cover;
   }
   /*统计*//*tongji*/
   [data-theme="dark"] #about-page .about-statistic::after {
