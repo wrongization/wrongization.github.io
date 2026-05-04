@@ -9333,28 +9333,23 @@ blockquote.pullquote.right {
       margin-bottom: 0;
     }
   }
-  #about-page .about-statistic {
-    min-height: 380px;
+  #about-page .author-content-item.stat-card {
     width: 39%;
-    background: url(../../../img/tongji.webp) no-repeat top;
-    background-size: cover;
-    color: var(--anzhiyu-white);
+    height: 40vh;
+    background: url(../../../img/shot.webp);
     overflow: hidden;
+    color: #121212;
+    font-weight: bold;
+    font-size: 5vh;
+    background: linear-gradient(135deg, #d9e7ff 0%, #f3f6ff 100%);
   }
-  /*统计*//*tongji*/
-  [data-theme="dark"] #about-page .about-statistic::after {
-    box-shadow: 0 159px 173px 71px #1c1c1c inset;
-    opacity: 0.8;
+  [data-theme="dark"] #about-page .author-content-item.stat-card {
+    color: #dadada;
+    background: linear-gradient(135deg, #1f2433 0%, #10131b 100%);
   }
-  #about-page .about-statistic::after {
-    box-shadow: 0 159px 173px 71px #bce1ff inset;
-    opacity: 0.3;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+  #about-page .author-content-item.stat-card .stat-card-title {
+    display: flex;
+    flex-direction: column;
   }
   .author-content-item .card-content {
     position: absolute;
@@ -9422,50 +9417,6 @@ blockquote.pullquote.right {
     font-size: 12px;
     margin-bottom: 0.5rem;
     text-shadow: 0 0 2px rgb(91, 87, 94), 0 0 5px rgb(90, 88, 93), 0 0 8px rgb(255, 255, 255);
-  }
-  #statistic {
-    font-size: 16px;
-    border-radius: 15px;
-    width: 100%;
-    color: var(--anzhiyu-white);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 2px rgb(74, 74, 74), 0 0 5px rgb(155, 155, 155), 0 0 8px rgb(255, 255, 255);
-  }
-  /*统计字体*/
-  #statistic div span:first-child {
-    opacity: 0.8;
-    font-size: 18px;
-    line-height: 0.8;
-  }
-  #statistic div span:last-child {
-    font-weight: 700;
-    font-size: 38px;
-    line-height: 1;
-    white-space: nowrap;
-  }
-  #statistic div {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 40%;
-    margin-bottom: 0.8rem;
-  }
-  
-  .post-tips {
-    color: var(--anzhiyu-gray);
-    font-size: 14px;
-    position: absolute;
-    bottom: 1rem;
-    left: 2rem;
-  }
-  .post-tips a {
-    color: var(--anzhiyu-gray) !important;
-    border: none !important;
   }
   .author-content-item .card-content .banner-button-group {
     position: absolute;
@@ -9631,10 +9582,6 @@ blockquote.pullquote.right {
     justify-content: space-between;
   }
   
-  .post-tips a:hover {
-    color: var(--anzhiyu-main) !important;
-    background: none !important;
-  }
   
   .author-content-item.single.reward .reward-list-updateDate {
     color: var(--anzhiyu-gray);
