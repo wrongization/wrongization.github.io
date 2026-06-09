@@ -65,13 +65,9 @@
   ];
 
   // ==================== 可信域名白名单 ====================
-  // 这些域名的脚本注入的验证组件（如 Yandex Metrika 的反机器人检测）
-  // 不会被拦截，避免误杀合法的安全服务。
+  // 仅包含确认无害的反机器人服务。注意：mc.yandex.ru 已被用于投递 ClickFix 攻击，不在此列。
   var TRUSTED_SCRIPT_DOMAINS = [
-    'mc.yandex.ru',          // Yandex Metrika 机器人检测
-    'yandex.ru',             // Yandex 其他服务
-    'yastatic.net',          // Yandex 静态资源 CDN
-    'challenges.cloudflare.com' // Cloudflare Turnstile
+    'challenges.cloudflare.com' // Cloudflare Turnstile（正规无干扰验证）
   ];
 
   function isFromTrustedSource() {
@@ -341,7 +337,7 @@
     var trusted = isFromTrustedSource();
 
     if (trusted) {
-      // 来自可信域名（如 Yandex Metrika）的验证组件，放行不拦截
+      // 来自可信域名的合法验证组件，放行不拦截
       console.log('%c[Anti-ClickFix] Trusted captcha detected from whitelisted source — allowed through.',
         'color:#f39c12;font-weight:bold;');
       console.log('%cRecent scripts:', 'color:#888;');
