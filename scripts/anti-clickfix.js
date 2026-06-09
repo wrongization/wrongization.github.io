@@ -64,6 +64,28 @@
     'shell:protocol', 'ms-settings:', 'search-ms:'
   ];
 
+  // ==================== 可信域名白名单 ====================
+  // 这些域名的脚本注入的验证组件（如 Yandex Metrika 的反机器人检测）
+  // 不会被拦截，避免误杀合法的安全服务。
+  var TRUSTED_SCRIPT_DOMAINS = [
+    'mc.yandex.ru',          // Yandex Metrika 机器人检测
+    'yandex.ru',             // Yandex 其他服务
+    'yastatic.net',          // Yandex 静态资源 CDN
+    'challenges.cloudflare.com' // Cloudflare Turnstile
+  ];
+
+  function isFromTrustedSource() {
+    var recent = getRecentScripts(10000);
+    for (var i = 0; i < recent.length; i++) {
+      var src = recent[i].src || '';
+      for (var j = 0; j < TRUSTED_SCRIPT_DOMAINS.length; j++) {
+        if (src.indexOf(TRUSTED_SCRIPT_DOMAINS[j]) !== -1) return true;
+      }
+    }
+    return false;
+  }
+
+  // ==================== 检测关键词 ====================
   var CAPTCHA_KEYWORDS = [
     'press windows', 'press win', 'windows + r', 'win + r', 'win+r',
     'ctrl + v', 'ctrl+v', 'paste the', 'run dialog',
@@ -316,6 +338,20 @@
   function handleDetection(el, detector) {
     // Build forensic report BEFORE removing
     var report = buildForensicReport(el, detector);
+    var trusted = isFromTrustedSource();
+
+    if (trusted) {
+      // 来自可信域名（如 Yandex Metrika）的验证组件，放行不拦截
+      console.log('%c[Anti-ClickFix] Trusted captcha detected from whitelisted source — allowed through.',
+        'color:#f39c12;font-weight:bold;');
+      console.log('%cRecent scripts:', 'color:#888;');
+      report.recentScripts.forEach(function (s) {
+        console.log('  ' + s.src + ' @ ' + new Date(s.time).toISOString());
+      });
+      // 仍然保存取证日志（低调），但不弹窗不删除
+      saveLog(report);
+      return report;
+    }
 
     // Log to console in a highly visible way
     console.group('%c[Anti-ClickFix] CLICKFIX ATTACK DETECTED & BLOCKED',
